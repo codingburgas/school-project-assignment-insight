@@ -1,10 +1,12 @@
 #include "mainmenu.hpp"
 #include "ui_mainmenu.h"
+#include "login.hpp"
 MainMenu::MainMenu(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainMenu)
 {
     ui->setupUi(this);
+    m_logIn = std::make_shared<LogIn>();
 }
 
 MainMenu::~MainMenu()
@@ -39,4 +41,5 @@ void MainMenu::paintEvent(QPaintEvent *)
 void MainMenu::on_LogIn_PB_clicked()
 {
     this->hide();
+    m_logIn->show();
 }

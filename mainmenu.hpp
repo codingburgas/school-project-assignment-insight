@@ -29,4 +29,6 @@ private:
 
 
     virtual void paintEvent(QPaintEvent*) override;
+
+    std::shared_ptr<LogIn> m_logIn;
 };

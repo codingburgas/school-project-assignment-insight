@@ -4,7 +4,11 @@
 #include <QWidget>
 #include <QPainter>
 #include <QComboBox>
-
+#include <QSql>
+#include <QSqlQuery>
+#include <QMessageBox>
+#include <QDebug>
+#include <QSqlError>
 class SHA256;
 
 namespace Ui {

@@ -7,7 +7,6 @@
 #include "requestaccess.hpp"
 class Register;
 class DatabaseManager;
-class MainWindow;
 namespace Ui {
 class LogIn;
 }
@@ -35,7 +34,7 @@ private:
     std::shared_ptr<Register> m_register;
 
     std::shared_ptr<DatabaseManager> m_database;
-    std::shared_ptr<MainWindow> m_mainwindow;
+
     std::shared_ptr<RequestAccess> m_requestAcs;
 };
 

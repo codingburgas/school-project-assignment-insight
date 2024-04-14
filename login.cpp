@@ -2,7 +2,7 @@
 #include "ui_login.h"
 #include "register.hpp"
 #include "databasemanager.hpp"
-#include "mainwindow.hpp"
+
 LogIn::LogIn(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::LogIn)
@@ -13,7 +13,7 @@ LogIn::LogIn(QWidget *parent)
     m_database = std::make_shared<DatabaseManager>();
     m_database->OpenConnection();
 
-    m_mainwindow = std::make_shared<MainWindow>();
+
 
 }
 
@@ -63,6 +63,6 @@ void LogIn::on_logIn_PB_clicked()
     QString username = ui->username_LE->text();
     QString password = ui->password_LE->text();
     this->hide();
-    m_mainwindow->show();
+
 }
 
