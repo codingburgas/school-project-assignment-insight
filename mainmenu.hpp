@@ -1,7 +1,11 @@
-#ifndef MAINMENU_H
-#define MAINMENU_H
+#pragma once
 
 #include <QMainWindow>
+#include <QPaintEvent>
+#include <QPainter>
+#include <QFontDatabase>
+
+class LogIn;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,7 +21,12 @@ public:
     MainMenu(QWidget *parent = nullptr);
     ~MainMenu();
 
+private slots:
+
+    void on_LogIn_PB_clicked();
 private:
     Ui::MainMenu *ui;
+
+
+    virtual void paintEvent(QPaintEvent*) override;
 };
-#endif // MAINMENU_H

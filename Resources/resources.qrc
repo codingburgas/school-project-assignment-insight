@@ -1,0 +1,40 @@
+<RCC>
+    <qresource prefix="/Resources">
+        <file>Images/3DBook.png</file>
+        <file>Fonts/Outfit-Bold.ttf</file>
+        <file>Fonts/Outfit-Regular.ttf</file>
+        <file>Images/logo-color 1.png</file>
+        <file>Images/logo-color 2.png</file>
+        <file>Images/icons/calendar.png</file>
+        <file>Images/icons/Chevron Up.png</file>
+        <file>Images/icons/Expand Arrow.png</file>
+        <file>Images/icons/Graduation Cap.png</file>
+        <file>Images/icons/Home.png</file>
+        <file>Images/icons/Import.png</file>
+        <file>Images/icons/Phone.png</file>
+        <file>Images/icons/Planner.png</file>
+        <file>Images/icons/Prize.png</file>
+        <file>Images/icons/Settings.png</file>
+        <file>Images/icons/Speech Bubble.png</file>
+        <file>Images/icons/Test Results.png</file>
+        <file>Images/icons/Wallet.png</file>
+        <file>Images/icons/Less Than.png</file>
+        <file>Images/icons/More Than.png</file>
+        <file>Images/icons/Earth Globe.png</file>
+        <file>Images/icons/Student Male.png</file>
+        <file>Images/image 29.png</file>
+        <file>Images/image 30.png</file>
+        <file>Images/image 31.png</file>
+        <file>Images/image 28.png</file>
+        <file>Images/icons/Star.png</file>
+        <file>Images/c.png</file>
+        <file>Images/cpp.png</file>
+        <file>Images/Csharp .png</file>
+        <file>Images/Java.png</file>
+        <file>Images/javascript.png</file>
+        <file>Images/python.png</file>
+        <file>Images/icons/Group 8.png</file>
+        <file>Images/icons/Rectangle 102.png</file>
+        <file>Images/icons/Upload to the Cloud.png</file>
+    </qresource>
+</RCC>

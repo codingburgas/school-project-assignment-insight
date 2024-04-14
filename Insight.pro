@@ -13,7 +13,7 @@ SOURCES += \
     mainmenu.cpp
 
 HEADERS += \
-    mainmenu.h
+    mainmenu.hpp
 
 FORMS += \
     mainmenu.ui
@@ -22,3 +22,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    Resources/resources.qrc
