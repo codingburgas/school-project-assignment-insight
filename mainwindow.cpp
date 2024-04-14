@@ -36,3 +36,32 @@ void MainWindow::paintEvent(QPaintEvent *)
     QRect rectLinear(this->rect());
     painter.fillRect(rectLinear, gradient);
 }
+
+void MainWindow::on_ITCourses_PB_clicked()
+{
+    ui->Courses_SW->setCurrentIndex(1);
+}
+
+
+void MainWindow::on_programmingCourses_PB_clicked()
+{
+    ui->Courses_SW->setCurrentIndex(2);
+}
+
+
+void MainWindow::on_homepage_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_schedule_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(1);
+}
+
+
+void MainWindow::on_classes_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(2);
+}
