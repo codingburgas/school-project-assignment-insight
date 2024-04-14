@@ -2281,10 +2281,1135 @@ border-radius:10px;</string>
       </widget>
       <widget class="QWidget" name="NaturalSciences"/>
       <widget class="QWidget" name="SocialSciences"/>
-      <widget class="QWidget" name="ExcelSpec_course"/>
+      <widget class="QWidget" name="ExcelSpec_course">
+       <widget class="QLabel" name="label_210">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>10</y>
+          <width>311</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>30</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;</string>
+        </property>
+        <property name="text">
+         <string>Excel Specialist</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="createLesson_PB">
+        <property name="geometry">
+         <rect>
+          <x>760</x>
+          <y>50</y>
+          <width>141</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#0056d2;
+color:white;</string>
+        </property>
+        <property name="text">
+         <string>Create a lesson</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="Exams"/>
+    <widget class="QWidget" name="Exams">
+     <widget class="QStackedWidget" name="Exams_SW">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>931</width>
+        <height>671</height>
+       </rect>
+      </property>
+      <widget class="QWidget" name="AllCourses_5"/>
+      <widget class="QWidget" name="ITCourses_5">
+       <widget class="QWidget" name="widget_119" native="true">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>40</y>
+          <width>193</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#EFEFEF;
+border-radius:10px;</string>
+        </property>
+        <widget class="QWidget" name="widget_120" native="true">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>154</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/image 28.png);</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_208">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>140</y>
+           <width>111</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Excel Specialist</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_121" native="true">
+        <property name="geometry">
+         <rect>
+          <x>360</x>
+          <y>40</y>
+          <width>193</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#EFEFEF;
+border-radius:10px;</string>
+        </property>
+        <widget class="QWidget" name="widget_122" native="true">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>154</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/image 28.png);</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_212">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>140</y>
+           <width>111</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Excel Expert</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_123" native="true">
+        <property name="geometry">
+         <rect>
+          <x>670</x>
+          <y>40</y>
+          <width>193</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#EFEFEF;
+border-radius:10px;</string>
+        </property>
+        <widget class="QWidget" name="widget_124" native="true">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>154</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/image 31.png);</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_216">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>140</y>
+           <width>111</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Word Specialist</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_125" native="true">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>300</y>
+          <width>193</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#EFEFEF;
+border-radius:10px;</string>
+        </property>
+        <widget class="QWidget" name="widget_126" native="true">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>154</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/image 31.png);</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_220">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>140</y>
+           <width>111</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Word Expert</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_127" native="true">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>310</y>
+          <width>193</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#EFEFEF;
+border-radius:10px;</string>
+        </property>
+        <widget class="QWidget" name="widget_128" native="true">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>181</width>
+           <height>131</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/image 30.png);</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_224">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>140</y>
+           <width>111</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>IT Essentials</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="ItCourses_5" native="true">
+        <property name="geometry">
+         <rect>
+          <x>670</x>
+          <y>320</y>
+          <width>193</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#EFEFEF;
+border-radius:10px;</string>
+        </property>
+        <widget class="QWidget" name="widget_129" native="true">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>154</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/image 29.png);</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_228">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>140</y>
+           <width>161</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Database Fundamentals</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="Programming_5">
+       <widget class="QWidget" name="widget_130" native="true">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>420</y>
+          <width>193</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#EFEFEF;
+border-radius:10px;</string>
+        </property>
+        <widget class="QWidget" name="widget_131" native="true">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>154</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/Java.png);
+border-radius:10px;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_232">
+         <property name="geometry">
+          <rect>
+           <x>70</x>
+           <y>120</y>
+           <width>41</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Java</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_233">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>170</y>
+           <width>81</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Mrs.Todorova</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_234">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>170</y>
+           <width>31</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>4.85</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_235">
+         <property name="geometry">
+          <rect>
+           <x>117</x>
+           <y>167</y>
+           <width>31</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/icons/Star.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_132" native="true">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>170</y>
+          <width>193</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#EFEFEF;
+border-radius:10px;</string>
+        </property>
+        <widget class="QWidget" name="widget_133" native="true">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>0</y>
+           <width>171</width>
+           <height>131</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/cpp.png);</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_236">
+         <property name="geometry">
+          <rect>
+           <x>70</x>
+           <y>120</y>
+           <width>41</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>C++</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_237">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>170</y>
+           <width>58</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Mr.Stoev</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_238">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>170</y>
+           <width>31</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>4.85</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_239">
+         <property name="geometry">
+          <rect>
+           <x>117</x>
+           <y>167</y>
+           <width>31</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/icons/Star.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_134" native="true">
+        <property name="geometry">
+         <rect>
+          <x>680</x>
+          <y>160</y>
+          <width>193</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#EFEFEF;
+border-radius:10px;</string>
+        </property>
+        <widget class="QWidget" name="widget_135" native="true">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>154</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/Csharp .png);</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_240">
+         <property name="geometry">
+          <rect>
+           <x>85</x>
+           <y>120</y>
+           <width>31</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>C#</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_241">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>170</y>
+           <width>71</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Mr.Dimitrov</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_242">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>170</y>
+           <width>31</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>4.85</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_243">
+         <property name="geometry">
+          <rect>
+           <x>117</x>
+           <y>167</y>
+           <width>31</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/icons/Star.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_136" native="true">
+        <property name="geometry">
+         <rect>
+          <x>360</x>
+          <y>170</y>
+          <width>193</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#EFEFEF;
+border-radius:10px;</string>
+        </property>
+        <widget class="QWidget" name="widget_137" native="true">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>154</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/c.png);</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_244">
+         <property name="geometry">
+          <rect>
+           <x>55</x>
+           <y>120</y>
+           <width>111</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Objective-C</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_245">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>170</y>
+           <width>58</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Mr.Stoev</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_246">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>170</y>
+           <width>31</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>4.85</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_247">
+         <property name="geometry">
+          <rect>
+           <x>117</x>
+           <y>167</y>
+           <width>31</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/icons/Star.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_138" native="true">
+        <property name="geometry">
+         <rect>
+          <x>650</x>
+          <y>430</y>
+          <width>193</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#EFEFEF;
+border-radius:10px;</string>
+        </property>
+        <widget class="QWidget" name="widget_139" native="true">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>154</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/javascript.png);</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_248">
+         <property name="geometry">
+          <rect>
+           <x>60</x>
+           <y>110</y>
+           <width>71</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>JavaScript</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_249">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>170</y>
+           <width>58</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Mr.Stoev</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_250">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>170</y>
+           <width>31</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>4.85</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_251">
+         <property name="geometry">
+          <rect>
+           <x>117</x>
+           <y>167</y>
+           <width>31</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/icons/Star.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_140" native="true">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>420</y>
+          <width>193</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#EFEFEF;
+border-radius:10px;</string>
+        </property>
+        <widget class="QWidget" name="widget_141" native="true">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>181</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/python.png);</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_252">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>170</y>
+           <width>81</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Mrs.Todorova</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_253">
+         <property name="geometry">
+          <rect>
+           <x>150</x>
+           <y>170</y>
+           <width>31</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>4.85</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_254">
+         <property name="geometry">
+          <rect>
+           <x>117</x>
+           <y>167</y>
+           <width>31</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resources/Images/icons/Star.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_255">
+         <property name="geometry">
+          <rect>
+           <x>70</x>
+           <y>120</y>
+           <width>51</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>Python</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_71" native="true">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>20</y>
+          <width>101</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget
+{
+background-color:#EDEDED
+}</string>
+        </property>
+        <widget class="QWidget" name="widget_72" native="true">
+         <property name="geometry">
+          <rect>
+           <x>15</x>
+           <y>3</y>
+           <width>71</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget
+{
+background-color:white;
+border-radius:30px;
+	image: url(:/Resources/Images/icons/Student Male.png);
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_111">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>60</y>
+           <width>81</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Programming&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;exams&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_66" native="true">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>20</y>
+          <width>101</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget
+{
+background-color:#EDEDED
+}</string>
+        </property>
+        <widget class="QWidget" name="widget_68" native="true">
+         <property name="geometry">
+          <rect>
+           <x>15</x>
+           <y>3</y>
+           <width>71</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget
+{
+background-color:white;
+border-radius:30px;
+	image: url(:/Resources/Images/icons/Student Male.png);
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_109">
+         <property name="geometry">
+          <rect>
+           <x>17</x>
+           <y>70</y>
+           <width>71</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>IT exams</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_58" native="true">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>20</y>
+          <width>101</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget
+{
+background-color:#EDEDED
+}</string>
+        </property>
+        <widget class="QWidget" name="widget_60" native="true">
+         <property name="geometry">
+          <rect>
+           <x>15</x>
+           <y>3</y>
+           <width>71</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget
+{
+background-color:white;
+border-radius:30px;
+	image: url(:/Resources/Images/icons/Student Male.png);
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_107">
+         <property name="geometry">
+          <rect>
+           <x>17</x>
+           <y>70</y>
+           <width>71</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>All exams</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_62" native="true">
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>20</y>
+          <width>101</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget
+{
+background-color:#EDEDED
+}</string>
+        </property>
+        <widget class="QWidget" name="widget_64" native="true">
+         <property name="geometry">
+          <rect>
+           <x>15</x>
+           <y>3</y>
+           <width>71</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget
+{
+background-color:white;
+border-radius:30px;
+	image: url(:/Resources/Images/icons/Student Male.png);
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_108">
+         <property name="geometry">
+          <rect>
+           <x>13</x>
+           <y>65</y>
+           <width>71</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Natural&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;exams&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_69" native="true">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>20</y>
+          <width>101</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget
+{
+background-color:#EDEDED
+}</string>
+        </property>
+        <widget class="QWidget" name="widget_70" native="true">
+         <property name="geometry">
+          <rect>
+           <x>15</x>
+           <y>3</y>
+           <width>71</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget
+{
+background-color:white;
+border-radius:30px;
+	image: url(:/Resources/Images/icons/Student Male.png);
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_110">
+         <property name="geometry">
+          <rect>
+           <x>15</x>
+           <y>65</y>
+           <width>71</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Social&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;exams&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
    </widget>
    <zorder>logOut_PB</zorder>
    <zorder>settings_PB</zorder>

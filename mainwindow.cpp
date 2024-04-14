@@ -65,3 +65,17 @@ void MainWindow::on_classes_PB_clicked()
 {
     ui->Navbar->setCurrentIndex(2);
 }
+
+
+void MainWindow::on_excelSpecialistCourse_PB_clicked()
+{
+    ui->Courses_SW->setCurrentIndex(5);
+}
+
+
+void MainWindow::on_createLesson_PB_clicked()
+{
+    this->hide();
+    m_CreateLesson->show();
+}
+
