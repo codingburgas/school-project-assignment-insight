@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,16 +12,21 @@ SOURCES += \
     login.cpp \
     main.cpp \
     mainmenu.cpp \
-    requestaccess.cpp
+    register.cpp \
+    requestaccess.cpp \
+    sha256.cpp
 
 HEADERS += \
     login.hpp \
     mainmenu.hpp \
-    requestaccess.hpp
+    register.hpp \
+    requestaccess.hpp \
+    sha256.hpp
 
 FORMS += \
     login.ui \
     mainmenu.ui \
+    register.ui \
     requestaccess.ui
 
 # Default rules for deployment.

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPainter>
 #include <QDebug>
+#include "requestaccess.hpp"
 class Register;
 class DatabaseManager;
 class MainWindow;
@@ -35,6 +36,7 @@ private:
 
     std::shared_ptr<DatabaseManager> m_database;
     std::shared_ptr<MainWindow> m_mainwindow;
+    std::shared_ptr<RequestAccess> m_requestAcs;
 };
 
 #endif // LOGIN_H

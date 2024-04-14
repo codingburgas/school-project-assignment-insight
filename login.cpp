@@ -1,5 +1,7 @@
 #include "login.hpp"
 #include "ui_login.h"
+#include "register.hpp"
+#include "databasemanager.hpp"
 #include "mainwindow.hpp"
 LogIn::LogIn(QWidget *parent)
     : QWidget(parent)
@@ -9,6 +11,7 @@ LogIn::LogIn(QWidget *parent)
     m_register = std::make_shared<Register>();
 
     m_database = std::make_shared<DatabaseManager>();
+    m_database->OpenConnection();
 
     m_mainwindow = std::make_shared<MainWindow>();
 
@@ -43,12 +46,15 @@ void LogIn::paintEvent(QPaintEvent *)
 void LogIn::on_register_PB_clicked()
 {
     this->hide();
+    m_register->show();
 }
 
 
 void LogIn::on_requestAcess_PB_clicked()
 {
+    m_requestAcs = std::make_shared<RequestAccess>();
     this->hide();
+    m_requestAcs->show();
 }
 
 
