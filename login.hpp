@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QDebug>
 #include "requestaccess.hpp"
+#include "sha256.hpp"
 class Register;
 class DatabaseManager;
 namespace Ui {
@@ -36,6 +37,7 @@ private:
     std::shared_ptr<DatabaseManager> m_database;
 
     std::shared_ptr<RequestAccess> m_requestAcs;
+    std::shared_ptr<SHA256> m_SHA256;
 };
 
 #endif // LOGIN_H

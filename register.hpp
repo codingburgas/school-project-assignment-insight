@@ -9,7 +9,7 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QSqlError>
-class SHA256;
+#include "sha256.hpp"
 
 namespace Ui {
 class Register;
@@ -33,6 +33,8 @@ private:
 
     std::shared_ptr<QComboBox> m_BirthYear;
     std::shared_ptr<SHA256> m_SHA256;
+
+    int monthToNumber(QString& month);
 };
 
 #endif // REGISTER_H

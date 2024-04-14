@@ -8,6 +8,7 @@ LogIn::LogIn(QWidget *parent)
     , ui(new Ui::LogIn)
 {
     ui->setupUi(this);
+    m_SHA256 = std::make_shared<SHA256>();
     m_register = std::make_shared<Register>();
 
     m_database = std::make_shared<DatabaseManager>();
@@ -62,7 +63,55 @@ void LogIn::on_logIn_PB_clicked()
 {
     QString username = ui->username_LE->text();
     QString password = ui->password_LE->text();
-    this->hide();
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM users WHERE Username = :username");
+    qry.bindValue(":username", username);
 
+    // Execute the query and check if the user exists
+    if (qry.exec() && qry.next())
+    {
+        // Retrieve hashed password and salt from the database
+        QString hashedPasswordFromDB = qry.value("Password").toString();
+        QString saltFromDB = qry.value("Password Salt").toString();
+
+        // Hash the entered password for comparison
+        QString hashedPasswordToCheck = m_SHA256->Hash(password, saltFromDB);
+
+        // Check if the hashed passwords match
+        if (hashedPasswordToCheck == hashedPasswordFromDB)
+        {
+            qry.bindValue(":username", username);
+
+            if(qry.exec())
+            {
+                QMessageBox::information(this, "Login Successful", "Welcome to YRT Bank! \n\nYou have successfully logged in.");
+                this->hide();
+            }
+            else
+            {
+                // Handle the failure of the update query
+                QMessageBox::critical(this, "Failure", "Application error, please contact us immediately");
+                qDebug() << qry.lastError();
+                qDebug() << qry.lastQuery();  // Print the last executed query for further inspection
+                qDebug() << qry.boundValues();  // Print the bound values for further inspection
+            }
+        }
+        else
+        {
+            // Handle the case of incorrect password
+            QMessageBox::critical(this, "Failure", "Wrong password or username");
+            qDebug() << qry.lastError();
+            qDebug() << qry.lastQuery();  // Print the last executed query for further inspection
+            qDebug() << qry.boundValues();  // Print the bound values for further inspection
+        }
+    }
+    else
+    {
+        // Handle the case of incorrect username
+        QMessageBox::critical(this, "Failure", "Wrong password or username");
+        qDebug() << qry.lastError();
+        qDebug() << qry.lastQuery();  // Print the last executed query for further inspection
+        qDebug() << qry.boundValues();  // Print the bound values for further inspection
+    }
 }
 
