@@ -29,8 +29,8 @@ border-radius:10px;
 }</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QLabel" name="label">
+    <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+     <widget class="QLabel" name="createLesson_LA">
       <property name="font">
        <font>
         <pointsize>25</pointsize>
@@ -45,7 +45,7 @@ border-radius:10px;
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="heading_LA">
       <property name="font">
        <font>
         <pointsize>20</pointsize>
@@ -60,7 +60,7 @@ border-radius:10px;
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="heading_LE">
       <property name="styleSheet">
        <string notr="true">QLineEdit{
 border: 2px solid black;
@@ -70,7 +70,7 @@ color:black;
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="text_LA">
       <property name="font">
        <font>
         <pointsize>20</pointsize>
@@ -98,27 +98,22 @@ color:black;
          <height>363</height>
         </rect>
        </property>
-       <widget class="QFrame" name="frame">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>10</y>
-          <width>851</width>
-          <height>600</height>
-         </rect>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-       </widget>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QPlainTextEdit" name="text_LE">
+          <property name="styleSheet">
+           <string notr="true">color:black;
+border:1px solid black;
+font: 12pt &quot;Segoe UI&quot;;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="createLesson_PB_2">
+     <widget class="QPushButton" name="back_PB">
       <property name="styleSheet">
        <string notr="true">QPushButton{
 background-color:#ffff;
@@ -139,7 +134,8 @@ QPushButton:hover{
     <item>
      <widget class="QPushButton" name="createLesson_PB">
       <property name="styleSheet">
-       <string notr="true">background-color:#4D4C4C;</string>
+       <string notr="true">background-color:#4D4C4C;
+color:white;</string>
       </property>
       <property name="text">
        <string>Create a lesson</string>

@@ -8,6 +8,7 @@
 #include "sha256.hpp"
 class Register;
 class DatabaseManager;
+class MainWindow;
 namespace Ui {
 class LogIn;
 }
@@ -38,6 +39,8 @@ private:
 
     std::shared_ptr<RequestAccess> m_requestAcs;
     std::shared_ptr<SHA256> m_SHA256;
+
+    std::shared_ptr<MainWindow> m_mainWindow;
 };
 
 #endif // LOGIN_H

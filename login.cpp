@@ -2,6 +2,7 @@
 #include "ui_login.h"
 #include "register.hpp"
 #include "databasemanager.hpp"
+#include "mainwindow.hpp"
 
 LogIn::LogIn(QWidget *parent)
     : QWidget(parent)
@@ -13,6 +14,8 @@ LogIn::LogIn(QWidget *parent)
 
     m_database = std::make_shared<DatabaseManager>();
     m_database->OpenConnection();
+
+    m_mainWindow = std::make_shared<MainWindow>();
 
 
 
@@ -86,6 +89,7 @@ void LogIn::on_logIn_PB_clicked()
             {
                 QMessageBox::information(this, "Login Successful", "Welcome to YRT Bank! \n\nYou have successfully logged in.");
                 this->hide();
+                m_mainWindow->show();
             }
             else
             {
