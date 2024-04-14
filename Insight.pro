@@ -13,6 +13,7 @@ SOURCES += \
     login.cpp \
     main.cpp \
     mainmenu.cpp \
+    mainwindow.cpp \
     register.cpp \
     requestaccess.cpp \
     sha256.cpp
@@ -21,6 +22,7 @@ HEADERS += \
     databasemanager.hpp \
     login.hpp \
     mainmenu.hpp \
+    mainwindow.hpp \
     register.hpp \
     requestaccess.hpp \
     sha256.hpp
@@ -28,6 +30,7 @@ HEADERS += \
 FORMS += \
     login.ui \
     mainmenu.ui \
+    mainwindow.ui \
     register.ui \
     requestaccess.ui
 

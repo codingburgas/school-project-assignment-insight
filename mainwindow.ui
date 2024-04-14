@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QWidget" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>832</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>832</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>832</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>40</y>
+     <width>1161</width>
+     <height>741</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget
+{
+background-color:white;
+border-radius:10px;
+}</string>
+   </property>
+   <widget class="QLabel" name="team_LA">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>10</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>28</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel
+{
+color:black;
+}</string>
+    </property>
+    <property name="text">
+     <string>Insight</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="logo_LA">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>81</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Resources/Images/logo-color 2.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="schedule_PB">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>155</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: transparent;
+	color:black;
+}
+
+QPushButton:hover
+{
+background-color:rgb(103,103,103);
+}</string>
+    </property>
+    <property name="text">
+     <string>Schedule</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="schedule_LA">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>160</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Resources/Images/icons/Planner.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="home_LA">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Resources/Images/icons/Home.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="homepage_PB">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>95</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: transparent;
+	color:black;
+}
+
+QPushButton:hover
+{
+background-color:rgb(103,103,103);
+}</string>
+    </property>
+    <property name="text">
+     <string>Homepage</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="classes_PB">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>210</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: transparent;
+	color:black;
+}
+
+QPushButton:hover
+{
+background-color:rgb(103,103,103);
+}</string>
+    </property>
+    <property name="text">
+     <string>Classes</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="classes_LA">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>215</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Resources/Images/icons/Graduation Cap.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="exams_PB">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>270</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: transparent;
+	color:black;
+}
+
+QPushButton:hover
+{
+background-color:rgb(103,103,103);
+}</string>
+    </property>
+    <property name="text">
+     <string>Exams</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="exams_LA">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>275</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Resources/Images/icons/Test Results.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="achievements_PB">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>330</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: transparent;
+	color:black;
+}
+
+QPushButton:hover
+{
+background-color:rgb(103,103,103);
+}</string>
+    </property>
+    <property name="text">
+     <string>Achievements</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="achievements_LA">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>335</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Resources/Images/icons/Prize.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="teams_LA">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>440</y>
+      <width>58</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(190,190,190);</string>
+    </property>
+    <property name="text">
+     <string>Teams</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="messages_PB">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>470</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: transparent;
+	color:black;
+}
+
+QPushButton:hover
+{
+background-color:rgb(103,103,103);
+}</string>
+    </property>
+    <property name="text">
+     <string>Messages</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="messages_LA">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>475</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Resources/Images/icons/Speech Bubble.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="support_PB">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>520</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: transparent;
+	color:black;
+}
+
+QPushButton:hover
+{
+background-color:rgb(103,103,103);
+}</string>
+    </property>
+    <property name="text">
+     <string>Support</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="support_LA">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>525</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Resources/Images/icons/Phone.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="studentName_LA">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>630</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:black;</string>
+    </property>
+    <property name="text">
+     <string>Boyan Kyovtorov</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="role_LA">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>650</y>
+      <width>58</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(190,190,190);</string>
+    </property>
+    <property name="text">
+     <string>Student</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="wallet_LA">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>680</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Resources/Images/icons/Wallet.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="settings_LA">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>680</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Resources/Images/icons/Settings.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="logOut_LA">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>680</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/Resources/Images/icons/Import.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="wallet_PB">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>680</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="settings_PB">
+    <property name="geometry">
+     <rect>
+      <x>65</x>
+      <y>680</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="logOut_PB">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>680</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QStackedWidget" name="Navbar">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>20</y>
+      <width>951</width>
+      <height>701</height>
+     </rect>
+    </property>
+    <widget class="QWidget" name="HomePage"/>
+    <widget class="QWidget" name="Schedule">
+     <widget class="QCalendarWidget" name="calendarWidget">
+      <property name="geometry">
+       <rect>
+        <x>643</x>
+        <y>40</y>
+        <width>301</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#calendarWidget QWidget{
+alternate-background-color:#D9D9D9;
+background-color:#D9D9D9
+}
+
+QCalendarWidget QAbstractItemView::item:weekend {
+color:black;
+}
+
+#calendarWidget QToolButton::menu-indicator{
+image:none;
+nosubcontrol-origin:margin;
+subcontrol-position: right center;
+margin-top: 10px;
+width:20px;
+}
+
+#qt_calendar_yearbutton{
+color:black;
+}
+
+#qt_calendar_monthbutton{
+color:black;
+}
+
+#qt_calendar_prevmonth, #qt_calendar_nextmonth{
+border:none;
+qproperty-icon:none;
+
+min-width:13px;
+max-width:13px;
+min-height:13px;
+max-height:13px;
+border-radius:5px;
+background-color:transparent;
+padding: 5px;
+}
+
+#qt_calendar_prevmonth{
+	image: url(:/Resources/Images/icons/Less Than.png);
+}
+
+#qt_calendar_nextmonth
+{
+	image: url(:/Resources/Images/icons/More Than.png);
+}</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Classes">
+     <widget class="QStackedWidget" name="Courses_SW">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>0</y>
+        <width>931</width>
+        <height>691</height>
+       </rect>
+      </property>
+      <widget class="QWidget" name="AllCourses"/>
+      <widget class="QWidget" name="ITCourses"/>
+      <widget class="QWidget" name="Programming"/>
+      <widget class="QWidget" name="NaturalSciences"/>
+      <widget class="QWidget" name="SocialSciences"/>
+      <widget class="QWidget" name="ExcelSpec_course">
+       <widget class="QLabel" name="label_210">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>10</y>
+          <width>311</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>30</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;</string>
+        </property>
+        <property name="text">
+         <string>Excel Specialist</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Exams">
+     <widget class="QStackedWidget" name="Exams_SW">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>931</width>
+        <height>671</height>
+       </rect>
+      </property>
+      <widget class="QWidget" name="AllCourses_5"/>
+      <widget class="QWidget" name="ITCourses_5"/>
+      <widget class="QWidget" name="Programming_5"/>
+     </widget>
+    </widget>
+   </widget>
+   <zorder>logOut_PB</zorder>
+   <zorder>settings_PB</zorder>
+   <zorder>wallet_PB</zorder>
+   <zorder>team_LA</zorder>
+   <zorder>logo_LA</zorder>
+   <zorder>schedule_LA</zorder>
+   <zorder>home_LA</zorder>
+   <zorder>classes_LA</zorder>
+   <zorder>exams_LA</zorder>
+   <zorder>achievements_LA</zorder>
+   <zorder>teams_LA</zorder>
+   <zorder>messages_LA</zorder>
+   <zorder>support_LA</zorder>
+   <zorder>studentName_LA</zorder>
+   <zorder>role_LA</zorder>
+   <zorder>Navbar</zorder>
+   <zorder>homepage_PB</zorder>
+   <zorder>schedule_PB</zorder>
+   <zorder>classes_PB</zorder>
+   <zorder>exams_PB</zorder>
+   <zorder>achievements_PB</zorder>
+   <zorder>messages_PB</zorder>
+   <zorder>support_PB</zorder>
+   <zorder>wallet_LA</zorder>
+   <zorder>settings_LA</zorder>
+   <zorder>logOut_LA</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
