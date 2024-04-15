@@ -46,7 +46,7 @@ border-radius:10px;
      <rect>
       <x>90</x>
       <y>10</y>
-      <width>131</width>
+      <width>141</width>
       <height>51</height>
      </rect>
     </property>
@@ -85,7 +85,7 @@ color:black;
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>155</y>
+      <y>150</y>
       <width>171</width>
       <height>41</height>
      </rect>
@@ -116,7 +116,8 @@ background-color:rgb(103,103,103);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/Resources/Images/icons/Planner.png);</string>
+     <string notr="true">image: url(:/Resources/Images/icons/Planner.png);
+background-color:transparent;</string>
     </property>
     <property name="text">
      <string/>
@@ -132,7 +133,8 @@ background-color:rgb(103,103,103);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/Resources/Images/icons/Home.png);</string>
+     <string notr="true">image: url(:/Resources/Images/icons/Home.png);
+background-color:transparent;</string>
     </property>
     <property name="text">
      <string/>
@@ -142,7 +144,7 @@ background-color:rgb(103,103,103);
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>95</y>
+      <y>100</y>
       <width>171</width>
       <height>41</height>
      </rect>
@@ -198,7 +200,8 @@ background-color:rgb(103,103,103);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/Resources/Images/icons/Graduation Cap.png);</string>
+     <string notr="true">image: url(:/Resources/Images/icons/Graduation Cap.png);
+background-color:transparent;</string>
     </property>
     <property name="text">
      <string/>
@@ -239,7 +242,8 @@ background-color:rgb(103,103,103);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/Resources/Images/icons/Test Results.png);</string>
+     <string notr="true">image: url(:/Resources/Images/icons/Test Results.png);
+background-color:transparent;</string>
     </property>
     <property name="text">
      <string/>
@@ -280,7 +284,8 @@ background-color:rgb(103,103,103);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/Resources/Images/icons/Prize.png);</string>
+     <string notr="true">image: url(:/Resources/Images/icons/Prize.png);
+background-color:transparent;</string>
     </property>
     <property name="text">
      <string/>
@@ -337,7 +342,8 @@ background-color:rgb(103,103,103);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/Resources/Images/icons/Speech Bubble.png);</string>
+     <string notr="true">image: url(:/Resources/Images/icons/Speech Bubble.png);
+background-color:transparent;</string>
     </property>
     <property name="text">
      <string/>
@@ -378,7 +384,8 @@ background-color:rgb(103,103,103);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/Resources/Images/icons/Phone.png);</string>
+     <string notr="true">image: url(:/Resources/Images/icons/Phone.png);
+background-color:transparent;</string>
     </property>
     <property name="text">
      <string/>
@@ -506,10 +513,10 @@ background-color:rgb(103,103,103);
    <widget class="QStackedWidget" name="Navbar">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>30</y>
-      <width>951</width>
-      <height>701</height>
+      <x>240</x>
+      <y>40</y>
+      <width>901</width>
+      <height>661</height>
      </rect>
     </property>
     <widget class="QWidget" name="HomePage"/>
@@ -2285,49 +2292,63 @@ border-radius:10px;</string>
        <widget class="QLabel" name="label_210">
         <property name="geometry">
          <rect>
-          <x>350</x>
+          <x>0</x>
           <y>10</y>
-          <width>311</width>
+          <width>881</width>
           <height>41</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <pointsize>30</pointsize>
+          <family>Segoe UI</family>
+          <pointsize>16</pointsize>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color:black;</string>
+         <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:black;
+	font: 16pt &quot;Segoe UI&quot;;
+
+}</string>
         </property>
         <property name="text">
          <string>Excel Specialist</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="createLesson_PB">
-        <property name="geometry">
-         <rect>
-          <x>790</x>
-          <y>30</y>
-          <width>111</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color:black;</string>
-        </property>
-        <property name="text">
-         <string>Create a lesson</string>
-        </property>
-       </widget>
        <widget class="QWidget" name="courses_WG" native="true">
         <property name="geometry">
          <rect>
-          <x>0</x>
-          <y>80</y>
-          <width>901</width>
-          <height>601</height>
+          <x>-10</x>
+          <y>50</y>
+          <width>911</width>
+          <height>631</height>
          </rect>
         </property>
+        <widget class="QPushButton" name="createLesson_PB">
+         <property name="geometry">
+          <rect>
+           <x>740</x>
+           <y>20</y>
+           <width>131</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton
+{
+background-color:#7A7D7D
+
+}</string>
+         </property>
+         <property name="text">
+          <string>Create a lesson</string>
+         </property>
+        </widget>
        </widget>
       </widget>
      </widget>
@@ -3419,20 +3440,230 @@ border-radius:30px;
       </widget>
      </widget>
     </widget>
+    <widget class="QWidget" name="Messages"/>
+    <widget class="QWidget" name="LessonOverview">
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>90</y>
+        <width>861</width>
+        <height>551</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>861</width>
+         <height>551</height>
+        </rect>
+       </property>
+       <widget class="QTextBrowser" name="lesson_TB">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>10</y>
+          <width>861</width>
+          <height>551</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;
+font: 16pt &quot;Segoe UI&quot;;</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="heading_LA">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>861</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:black;
+	font: 16pt &quot;Segoe UI&quot;;
+
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="CreateLesson">
+     <widget class="QLineEdit" name="heading_LE">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>60</y>
+        <width>851</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit{
+border:1px solid black;
+color:black;
+background-color:transparent;
+font: 16pt &quot;Segoe UI&quot;;
+}</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="heading_reg_LA">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>141</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:black;
+	font: 16pt &quot;Segoe UI&quot;;
+
+}</string>
+      </property>
+      <property name="text">
+       <string>Heading</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="material_LA">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>100</y>
+        <width>181</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:black;
+	font: 16pt &quot;Segoe UI&quot;;
+
+}</string>
+      </property>
+      <property name="text">
+       <string>Lesson Material</string>
+      </property>
+     </widget>
+     <widget class="QScrollArea" name="scrollArea_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>150</y>
+        <width>891</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>891</width>
+         <height>401</height>
+        </rect>
+       </property>
+       <widget class="QPlainTextEdit" name="material_PTE">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>871</width>
+          <height>371</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPlainTextEdit{
+border:1px solid black;
+color:black;
+background-color:transparent;
+	font: 16pt &quot;Segoe UI&quot;;
+}</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="addLesson_PB">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>600</y>
+        <width>291</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+background-color:#4D4C4C;
+color:white;
+border-radius:5px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Add lesson</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="goBack_PB">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>600</y>
+        <width>291</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+background-color:#D9D9D9;
+color:black;
+border-radius:5px;
+}
+
+QPushButton:hover{
+background-color:#282828;
+color:white;
+border-radius:5px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Go Back</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <zorder>logOut_PB</zorder>
    <zorder>settings_PB</zorder>
    <zorder>wallet_PB</zorder>
    <zorder>team_LA</zorder>
    <zorder>logo_LA</zorder>
-   <zorder>schedule_LA</zorder>
-   <zorder>home_LA</zorder>
-   <zorder>classes_LA</zorder>
-   <zorder>exams_LA</zorder>
-   <zorder>achievements_LA</zorder>
    <zorder>teams_LA</zorder>
    <zorder>messages_LA</zorder>
-   <zorder>support_LA</zorder>
    <zorder>studentName_LA</zorder>
    <zorder>role_LA</zorder>
    <zorder>Navbar</zorder>
@@ -3441,11 +3672,17 @@ border-radius:30px;
    <zorder>classes_PB</zorder>
    <zorder>exams_PB</zorder>
    <zorder>achievements_PB</zorder>
-   <zorder>messages_PB</zorder>
    <zorder>support_PB</zorder>
    <zorder>wallet_LA</zorder>
    <zorder>settings_LA</zorder>
    <zorder>logOut_LA</zorder>
+   <zorder>home_LA</zorder>
+   <zorder>classes_LA</zorder>
+   <zorder>exams_LA</zorder>
+   <zorder>achievements_LA</zorder>
+   <zorder>schedule_LA</zorder>
+   <zorder>messages_PB</zorder>
+   <zorder>support_LA</zorder>
   </widget>
  </widget>
  <resources/>

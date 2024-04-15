@@ -5,6 +5,8 @@
 #include <QSqlError>
 #include <QLayout>
 #include <QLabel>
+#include <QSqlQuery>
+#include <QMessageBox>
 namespace Ui {
 class MainWindow;
 }
@@ -35,9 +37,11 @@ private slots:
 
     void handleCourseButtons(const QString &buttonName);
 
+    void on_addLesson_PB_clicked();
+
+    void on_goBack_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     virtual void paintEvent(QPaintEvent*) override;
-
-    std::shared_ptr<CreateLesson> m_CreateLesson;
 };

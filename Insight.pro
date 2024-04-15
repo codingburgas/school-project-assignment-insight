@@ -9,7 +9,6 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    createlesson.cpp \
     databasemanager.cpp \
     login.cpp \
     main.cpp \
@@ -20,7 +19,6 @@ SOURCES += \
     sha256.cpp
 
 HEADERS += \
-    createlesson.hpp \
     databasemanager.hpp \
     login.hpp \
     mainmenu.hpp \
@@ -30,7 +28,6 @@ HEADERS += \
     sha256.hpp
 
 FORMS += \
-    createlesson.ui \
     login.ui \
     mainmenu.ui \
     mainwindow.ui \
