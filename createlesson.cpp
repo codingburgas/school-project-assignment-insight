@@ -24,7 +24,7 @@ void CreateLesson::on_createLesson_PB_clicked()
     qry.bindValue(":heading", heading);
     qry.bindValue(":lesson", lesson);
     if (qry.exec()) {
-        QMessageBox::information(this, "Success", "Your registration to Trawma Bank has been successful. \n\nRedirecting to the login page..");
+        QMessageBox::information(this, "Success", "You have successfully published a lesson.");
     }
 }
 

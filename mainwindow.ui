@@ -2306,18 +2306,27 @@ border-radius:10px;</string>
        <widget class="QPushButton" name="createLesson_PB">
         <property name="geometry">
          <rect>
-          <x>760</x>
-          <y>50</y>
-          <width>141</width>
-          <height>41</height>
+          <x>790</x>
+          <y>30</y>
+          <width>111</width>
+          <height>24</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:#0056d2;
-color:white;</string>
+         <string notr="true">background-color:black;</string>
         </property>
         <property name="text">
          <string>Create a lesson</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="courses_WG" native="true">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>80</y>
+          <width>901</width>
+          <height>601</height>
+         </rect>
         </property>
        </widget>
       </widget>

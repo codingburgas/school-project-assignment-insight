@@ -2,6 +2,9 @@
 
 #include <QWidget>
 #include <QPainter>
+#include <QSqlError>
+#include <QLayout>
+#include <QLabel>
 namespace Ui {
 class MainWindow;
 }
@@ -29,6 +32,8 @@ private slots:
     void on_excelSpecialistCourse_PB_clicked();
 
     void on_createLesson_PB_clicked();
+
+    void handleCourseButtons(const QString &buttonName);
 
 private:
     Ui::MainWindow *ui;

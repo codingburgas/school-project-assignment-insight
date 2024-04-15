@@ -143,6 +143,13 @@ color:white;</string>
      </widget>
     </item>
    </layout>
+   <zorder>createLesson_LA</zorder>
+   <zorder>heading_LA</zorder>
+   <zorder>heading_LE</zorder>
+   <zorder>text_LA</zorder>
+   <zorder>scrollArea</zorder>
+   <zorder>createLesson_PB</zorder>
+   <zorder>back_PB</zorder>
   </widget>
  </widget>
  <resources/>
