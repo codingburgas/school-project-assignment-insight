@@ -38,5 +38,6 @@
         <file>Images/icons/Upload to the Cloud.png</file>
         <file>Images/icons/List View.png</file>
         <file>Images/icons/Close.png</file>
+        <file>Images/icons/Edit.png</file>
     </qresource>
 </RCC>

@@ -120,31 +120,41 @@ void MainWindow::UpdateLessons()
 
     for (const QString& heading : lessonHeadings) {
         QLabel *iconLabel = new QLabel(lessonWidget);
-        iconLabel->setObjectName(heading + "_iconLabel"); // Set object name
+        iconLabel->setObjectName(heading + "_icon_LA"); // Set object name
         QPixmap icon(":/Resources/Images/icons/Test Results.png");
         iconLabel->setPixmap(icon);
         iconLabel->setGeometry(20, yOffset, 50, 50);
         iconLabel->setStyleSheet("background-color:transparent");
 
         QLabel *label = new QLabel(heading, lessonWidget);
-        label->setObjectName(heading + "_label"); // Set object name
+        label->setObjectName(heading + "_LA"); // Set object name
         label->setStyleSheet("QLabel { color: black; font-size: 16px; }");
         label->setGeometry(50, yOffset, 100, 50);
 
-        QPushButton *button = new QPushButton(lessonWidget);
-        button->setObjectName(heading + "_button"); // Set object name
-        button->setStyleSheet("background-color: transparent; border: 1px solid black;");
-        button->setGeometry(10, yOffset, 200, 50);
-        connect(button, &QPushButton::clicked, this, [=]() { handleCourseButtons(heading); });
+        QPushButton *acessCourse = new QPushButton(lessonWidget);
+        acessCourse->setObjectName(heading + "_acessCourse_PB"); // Set object name
+        acessCourse->setStyleSheet("background-color: transparent; border: 1px solid black;");
+        acessCourse->setGeometry(10, yOffset, 500, 50);
+        connect(acessCourse, &QPushButton::clicked, this, [=]() { handleCourseButtons(heading); });
 
-        QPushButton *newButton = new QPushButton(lessonWidget);
-        newButton->setObjectName(heading + "_newButton"); // Set object name
-        newButton->setGeometry(160, yOffset, 50, 50);
-        QIcon newIcon(":/Resources/Images/icons/Close.png");
-        newButton->setIcon(newIcon);
-        newButton->setIconSize(QSize(30, 30));
-        newButton->setStyleSheet("background-color: #900C0C; border: none;");
-        connect(newButton, &QPushButton::clicked, this, [=]() { deleteLesson(heading); });
+        QPushButton *deleteButton = new QPushButton(lessonWidget);
+        deleteButton->setObjectName(heading + "_delete_PB"); // Set object name
+        deleteButton->setGeometry(465, yOffset + 5, 40, 40);
+        QIcon closeIcon(":/Resources/Images/icons/Close.png");
+        deleteButton->setIcon(closeIcon);
+        deleteButton->setIconSize(QSize(30, 30));
+        deleteButton->setStyleSheet("background-color: #900C0C; border: none;");
+        connect(deleteButton, &QPushButton::clicked, this, [=]() { deleteLesson(heading); });
+
+        QPushButton *editButton = new QPushButton(lessonWidget);
+        editButton->setObjectName(heading + "_edit_PB"); // Set object name
+        editButton->setGeometry(420, yOffset, 50, 50);
+        QIcon editIcon(":/Resources/Images/icons/Edit.png");
+        editButton->setIcon(editIcon);
+        editButton->setIconSize(QSize(30, 30));
+        editButton->setStyleSheet("background-color: transparent; border: none;"); // Customize the appearance
+        connect(editButton, &QPushButton::clicked, this, [=]() { editLesson(heading); });
+
 
         yOffset += 75;
         counter++;
@@ -179,6 +189,24 @@ void MainWindow::on_addLesson_PB_clicked()
     }
 }
 
+void MainWindow::editLesson(const QString& heading)
+{
+    ui->Navbar->setCurrentIndex(6);
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM lessons WHERE Heading = :heading");
+    qry.bindValue(":heading", heading);
+
+    if(qry.exec() && qry.next()) {
+        ui->heading_LE->setText(qry.value(1).toString());
+        ui->material_PTE->setPlainText(qry.value(2).toString());
+        ui->addLesson_PB->setText("Update Lesson");
+    } else {
+        qDebug() << qry.lastError();
+    }
+}
+
+
+
 void MainWindow::deleteLesson(const QString &heading) {
     QSqlQuery qry;
     qry.prepare("DELETE FROM lessons WHERE heading = :heading");
@@ -186,24 +214,29 @@ void MainWindow::deleteLesson(const QString &heading) {
     if(qry.exec())
     {
         // Remove the UI elements associated with the deleted lesson
-        QList<QPushButton*> buttons = ui->courses_WG->findChildren<QPushButton*>(heading + "_button");
+        QList<QPushButton*> buttons = ui->courses_WG->findChildren<QPushButton*>(heading + "_acessCourse_PB");
         for (QPushButton* button : buttons) {
             delete button;
         }
 
-        QList<QLabel*> labels = ui->courses_WG->findChildren<QLabel*>(heading + "_label");
+        QList<QLabel*> labels = ui->courses_WG->findChildren<QLabel*>(heading + "_LA");
         for (QLabel* label : labels) {
             delete label;
         }
 
-        QList<QLabel*> iconLabels = ui->courses_WG->findChildren<QLabel*>(heading + "_iconLabel");
+        QList<QLabel*> iconLabels = ui->courses_WG->findChildren<QLabel*>(heading + "_icon_LA");
         for (QLabel* iconLabel : iconLabels) {
             delete iconLabel;
         }
 
-        QList<QPushButton*> newButtons = ui->courses_WG->findChildren<QPushButton*>(heading + "_newButton");
+        QList<QPushButton*> newButtons = ui->courses_WG->findChildren<QPushButton*>(heading + "_delete_PB");
         for (QPushButton* newButton : newButtons) {
             delete newButton;
+        }
+
+        QList<QPushButton*> iconButtons = ui->courses_WG->findChildren<QPushButton*>(heading + "_edit_PB");
+        for (QPushButton* iconButton : iconButtons) {
+            delete iconButton;
         }
 
         UpdateLessons();

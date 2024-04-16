@@ -46,6 +46,8 @@ private slots:
 
     void on_goBack_lesson_PB_clicked();
 
+    void editLesson(const QString& heading);
+
 private:
     Ui::MainWindow *ui;
     virtual void paintEvent(QPaintEvent*) override;
