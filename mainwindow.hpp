@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QSqlQuery>
 #include <QMessageBox>
+#include <algorithm>
 namespace Ui {
 class MainWindow;
 }
@@ -35,13 +36,26 @@ private slots:
 
     void on_createLesson_PB_clicked();
 
-    void handleCourseButtons(const QString &buttonName);
+    void handleCourseButtons(const QString &heading);
 
     void on_addLesson_PB_clicked();
 
     void on_goBack_PB_clicked();
 
+    void deleteLesson(const QString &heading);
+
+    void on_goBack_lesson_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     virtual void paintEvent(QPaintEvent*) override;
+
+    void UpdateLessons();
+
+    std::vector<QString> lessonHeadings;
+    std::vector<QString> lessonText;
+
+    QMap<QString, QList<QWidget*>> uiElementsMap; // Map to store UI elements associated with each lesson
+
+
 };

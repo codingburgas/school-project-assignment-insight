@@ -37,5 +37,6 @@
         <file>Images/icons/Rectangle 102.png</file>
         <file>Images/icons/Upload to the Cloud.png</file>
         <file>Images/icons/List View.png</file>
+        <file>Images/icons/Close.png</file>
     </qresource>
 </RCC>

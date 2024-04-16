@@ -3502,6 +3502,59 @@ color:black;
        <string/>
       </property>
      </widget>
+     <widget class="QLabel" name="label_55">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel
+{
+background-color:#7A7D7D;
+qproperty-alignment: AlignCenter;
+}</string>
+      </property>
+      <property name="text">
+       <string>Go back</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="goBack_lesson_PB">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:transparent;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_54">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>50</y>
+        <width>21</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/Resources/Images/icons/Less Than.png);
+background-color:transparent;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="CreateLesson">
      <widget class="QLineEdit" name="heading_LE">
