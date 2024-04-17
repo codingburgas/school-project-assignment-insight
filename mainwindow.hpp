@@ -54,6 +54,8 @@ private slots:
 
     void on_createExam_PB_clicked();
 
+    void on_addQuestion_PB_clicked();
+
     void on_createQuestion_PB_clicked();
 
 private:

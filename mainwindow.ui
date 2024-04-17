@@ -519,6 +519,9 @@ background-color:transparent;</string>
       <height>661</height>
      </rect>
     </property>
+    <property name="currentIndex">
+     <number>3</number>
+    </property>
     <widget class="QWidget" name="HomePage"/>
     <widget class="QWidget" name="Schedule">
      <widget class="QCalendarWidget" name="calendarWidget">
@@ -3587,7 +3590,7 @@ background-color:#2E2E2E;</string>
        </widget>
       </widget>
       <widget class="QWidget" name="CreateExam">
-       <widget class="QLabel" name="label_57">
+       <widget class="QLabel" name="subject_LA">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -3628,7 +3631,7 @@ background-color:transparent;</string>
          <string>Exam name:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="examName_LE">
         <property name="geometry">
          <rect>
           <x>140</x>
@@ -3643,7 +3646,7 @@ border:1px solid black;
 border-radius:5px;</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="createQuestion_PB">
+       <widget class="QPushButton" name="addQuestion_PB">
         <property name="geometry">
          <rect>
           <x>13</x>
@@ -3658,7 +3661,7 @@ color:white;
 border-radius:10px;</string>
         </property>
         <property name="text">
-         <string>Create question</string>
+         <string>Add question</string>
         </property>
        </widget>
        <widget class="QWidget" name="widget_36" native="true">
@@ -3686,7 +3689,7 @@ border-radius:10px;</string>
          <string notr="true">border:1px solid black;
 border-radius:10px;</string>
         </property>
-        <widget class="QLabel" name="label_59">
+        <widget class="QLabel" name="question_LA">
          <property name="geometry">
           <rect>
            <x>20</x>
@@ -3705,7 +3708,7 @@ border:none;</string>
           <string>Question</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_2">
+        <widget class="QLineEdit" name="question_LE">
          <property name="geometry">
           <rect>
            <x>140</x>
@@ -3739,7 +3742,7 @@ border:none;</string>
           <string>Points</string>
          </property>
         </widget>
-        <widget class="QCheckBox" name="checkBox_9">
+        <widget class="QCheckBox" name="closedAnswers_CB">
          <property name="geometry">
           <rect>
            <x>20</x>
@@ -3776,7 +3779,7 @@ font: 13pt &quot;Segoe UI&quot;;</string>
           <number>0</number>
          </property>
          <widget class="QWidget" name="page">
-          <widget class="QLineEdit" name="lineEdit_6">
+          <widget class="QLineEdit" name="answerB_LE">
            <property name="geometry">
             <rect>
              <x>130</x>
@@ -3791,7 +3794,7 @@ border:1px solid black;
 border-radius:5px;</string>
            </property>
           </widget>
-          <widget class="QCheckBox" name="checkBox_3">
+          <widget class="QCheckBox" name="correctB_CB">
            <property name="geometry">
             <rect>
              <x>480</x>
@@ -3809,11 +3812,11 @@ font: 13pt &quot;Segoe UI&quot;;</string>
             <string>Correct</string>
            </property>
           </widget>
-          <widget class="QCheckBox" name="checkBox_2">
+          <widget class="QCheckBox" name="correctA_CB">
            <property name="geometry">
             <rect>
              <x>480</x>
-             <y>10</y>
+             <y>20</y>
              <width>81</width>
              <height>22</height>
             </rect>
@@ -3827,62 +3830,7 @@ font: 13pt &quot;Segoe UI&quot;;</string>
             <string>Correct</string>
            </property>
           </widget>
-          <widget class="QLabel" name="label_62">
-           <property name="geometry">
-            <rect>
-             <x>580</x>
-             <y>140</y>
-             <width>49</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color:black;
-font: 12pt &quot;Segoe UI&quot;;
-background-color:transparent;
-border:none;</string>
-           </property>
-           <property name="text">
-            <string>Points</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>10</y>
-             <width>111</width>
-             <height>22</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border:none;
-color:black;
-font: 13pt &quot;Segoe UI&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Answer A:</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox_8">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>200</y>
-             <width>111</width>
-             <height>22</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border:none;
-color:black;
-font: 13pt &quot;Segoe UI&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Answer D:</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox_7">
+          <widget class="QCheckBox" name="answerD_CB">
            <property name="geometry">
             <rect>
              <x>480</x>
@@ -3900,21 +3848,7 @@ font: 13pt &quot;Segoe UI&quot;;</string>
             <string>Correct</string>
            </property>
           </widget>
-          <widget class="QLineEdit" name="lineEdit_8">
-           <property name="geometry">
-            <rect>
-             <x>640</x>
-             <y>140</y>
-             <width>71</width>
-             <height>24</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border:1px solid black;
-border-radius:5px;</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox_6">
+          <widget class="QCheckBox" name="correctC_CB">
            <property name="geometry">
             <rect>
              <x>480</x>
@@ -3932,39 +3866,7 @@ font: 13pt &quot;Segoe UI&quot;;</string>
             <string>Correct</string>
            </property>
           </widget>
-          <widget class="QCheckBox" name="checkBox_5">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>140</y>
-             <width>111</width>
-             <height>22</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border:none;
-color:black;
-font: 13pt &quot;Segoe UI&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Answer D:</string>
-           </property>
-          </widget>
-          <widget class="QLineEdit" name="lineEdit_5">
-           <property name="geometry">
-            <rect>
-             <x>640</x>
-             <y>80</y>
-             <width>71</width>
-             <height>24</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border:1px solid black;
-border-radius:5px;</string>
-           </property>
-          </widget>
-          <widget class="QLineEdit" name="lineEdit_7">
+          <widget class="QLineEdit" name="answerC_LE">
            <property name="geometry">
             <rect>
              <x>130</x>
@@ -3979,7 +3881,7 @@ border:1px solid black;
 border-radius:5px;</string>
            </property>
           </widget>
-          <widget class="QLineEdit" name="lineEdit_9">
+          <widget class="QLineEdit" name="answerD_LE">
            <property name="geometry">
             <rect>
              <x>130</x>
@@ -3994,48 +3896,11 @@ border:1px solid black;
 border-radius:5px;</string>
            </property>
           </widget>
-          <widget class="QCheckBox" name="checkBox_4">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>80</y>
-             <width>111</width>
-             <height>22</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border:none;
-color:black;
-font: 13pt &quot;Segoe UI&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Answer A:</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_61">
-           <property name="geometry">
-            <rect>
-             <x>580</x>
-             <y>80</y>
-             <width>49</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color:black;
-font: 12pt &quot;Segoe UI&quot;;
-background-color:transparent;
-border:none;</string>
-           </property>
-           <property name="text">
-            <string>Answer:</string>
-           </property>
-          </widget>
-          <widget class="QLineEdit" name="lineEdit_3">
+          <widget class="QLineEdit" name="answerA_LE">
            <property name="geometry">
             <rect>
              <x>130</x>
-             <y>10</y>
+             <y>20</y>
              <width>331</width>
              <height>24</height>
             </rect>
@@ -4046,21 +3911,7 @@ border:1px solid black;
 border-radius:5px;</string>
            </property>
           </widget>
-          <widget class="QLineEdit" name="lineEdit_10">
-           <property name="geometry">
-            <rect>
-             <x>640</x>
-             <y>200</y>
-             <width>71</width>
-             <height>24</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border:1px solid black;
-border-radius:5px;</string>
-           </property>
-          </widget>
-          <widget class="QLineEdit" name="lineEdit_4">
+          <widget class="QLineEdit" name="points_LE">
            <property name="geometry">
             <rect>
              <x>640</x>
@@ -4072,32 +3923,13 @@ border-radius:5px;</string>
            <property name="styleSheet">
             <string notr="true">border:1px solid black;
 border-radius:5px;</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_60">
-           <property name="geometry">
-            <rect>
-             <x>580</x>
-             <y>10</y>
-             <width>49</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color:black;
-font: 12pt &quot;Segoe UI&quot;;
-background-color:transparent;
-border:none;</string>
-           </property>
-           <property name="text">
-            <string>Points</string>
            </property>
           </widget>
           <widget class="QLabel" name="label_64">
            <property name="geometry">
             <rect>
              <x>580</x>
-             <y>200</y>
+             <y>10</y>
              <width>49</width>
              <height>20</height>
             </rect>
@@ -4112,43 +3944,123 @@ border:none;</string>
             <string>Points</string>
            </property>
           </widget>
-         </widget>
-         <widget class="QWidget" name="page_2">
-          <widget class="QPlainTextEdit" name="plainTextEdit">
+          <widget class="QLabel" name="answerA_LA">
            <property name="geometry">
             <rect>
-             <x>10</x>
-             <y>10</y>
-             <width>691</width>
-             <height>211</height>
+             <x>20</x>
+             <y>22</y>
+             <width>91</width>
+             <height>16</height>
             </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:black;
+font: 14pt &quot;Segoe UI&quot;;
+background-color:transparent;
+border:none;</string>
+           </property>
+           <property name="text">
+            <string>Answer A:</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="answerB_LA">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>80</y>
+             <width>91</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:black;
+font: 14pt &quot;Segoe UI&quot;;
+background-color:transparent;
+border:none;</string>
+           </property>
+           <property name="text">
+            <string>Answer B:</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="answerC_LA">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>140</y>
+             <width>111</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:black;
+font: 14pt &quot;Segoe UI&quot;;
+background-color:transparent;
+border:none;</string>
+           </property>
+           <property name="text">
+            <string>Answer C:</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="answerD_LA">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>200</y>
+             <width>91</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:black;
+font: 14pt &quot;Segoe UI&quot;;
+background-color:transparent;
+border:none;</string>
+           </property>
+           <property name="text">
+            <string>Answer D:</string>
            </property>
           </widget>
          </widget>
-        </widget>
-        <widget class="QLabel" name="label_65">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>70</y>
-           <width>711</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color:black;
+         <widget class="QWidget" name="page_2">
+          <widget class="QPlainTextEdit" name="openAnswer_TE">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>30</y>
+             <width>691</width>
+             <height>191</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border:1px solid black;
+border-radius:5px;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_65">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>711</width>
+             <height>20</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:black;
 font: 14pt &quot;Segoe UI&quot;;
 background-color:transparent;
 border:none;
     qproperty-alignment: AlignCenter;
 </string>
-         </property>
-         <property name="text">
-          <string>Example answer</string>
-         </property>
+           </property>
+           <property name="text">
+            <string>Example answer</string>
+           </property>
+          </widget>
+         </widget>
         </widget>
        </widget>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="createQuestion_PB">
         <property name="geometry">
          <rect>
           <x>160</x>

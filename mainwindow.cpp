@@ -280,9 +280,65 @@ void MainWindow::on_createExam_PB_clicked()
 }
 
 
-void MainWindow::on_createQuestion_PB_clicked()
+void MainWindow::on_addQuestion_PB_clicked()
 {
     ui->Exams_SW->setCurrentIndex(5);
 }
 
+
+
+void MainWindow::on_createQuestion_PB_clicked()
+{
+    QString examName = ui->examName_LE->text();
+    QString question = ui->question_LE->text();
+    QString openAnswer = ui->openAnswer_TE->toPlainText();
+    QString answerA = ui->answerA_LE->text();
+    QString answerB = ui->answerB_LE->text();
+    QString answerC = ui->answerC_LE->text();
+    QString answerD = ui->answerD_LE->text();
+    QString correctAnswers;
+    QString points = ui->points_LE->text();
+
+    for(int i = 0; i <= 4; i++)
+    {
+        QString correctCheckBoxName = "correct" + QString(QChar('A' + i)) + "_CB";
+        QCheckBox* checkBox = findChild<QCheckBox*>(correctCheckBoxName);
+        if(checkBox && checkBox->isChecked())
+        {
+            QString answerLineEditName = "answer" + QString(QChar('A' + i)) + "_LE";
+            QLineEdit* answerLineEdit = findChild<QLineEdit*>(answerLineEditName);
+            if(answerLineEdit)
+            {
+                QString answer = answerLineEdit->text();
+                correctAnswers += answer + ";";
+            }
+        }
+    }
+
+
+
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO questions(`Exam Name`, `Question`, `Answer1`, `Answer2`, `Answer3`, `Answer4`, `Open Answer`, `Correct Answers`, `Points`)"
+                "VALUES(:examName, :question, :answer1, :answer2, :answer3, :answer4, :openAnswer, :correctAnswers, :points)");
+    qry.bindValue(":examName", examName);
+    qry.bindValue(":question", question);
+    qry.bindValue(":answer1", answerA);
+    qry.bindValue(":answer2", answerB);
+    qry.bindValue(":answer3", answerC);
+    qry.bindValue(":answer4", answerD);
+    qry.bindValue(":openAnswer", openAnswer);
+    qry.bindValue(":correctAnswers", correctAnswers);
+    qry.bindValue(":points", points);
+    if(!qry.exec())
+    {
+        qDebug() << qry.lastError();
+    }
+    else
+    {
+        QMessageBox::information(this, "Success", "Question added");
+    }
+
+
+
+}
 
