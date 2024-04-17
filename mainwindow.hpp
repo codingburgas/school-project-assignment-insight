@@ -48,6 +48,14 @@ private slots:
 
     void editLesson(const QString& heading);
 
+    void on_excelSpecialist_PB_clicked();
+
+    void on_exams_PB_clicked();
+
+    void on_createExam_PB_clicked();
+
+    void on_createQuestion_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     virtual void paintEvent(QPaintEvent*) override;

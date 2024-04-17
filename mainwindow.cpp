@@ -260,3 +260,29 @@ void MainWindow::on_goBack_lesson_PB_clicked()
     ui->Navbar->setCurrentIndex(2);
 }
 
+
+void MainWindow::on_exams_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(3);
+    ui->Exams_SW->setCurrentIndex(1);
+}
+
+void MainWindow::on_excelSpecialist_PB_clicked()
+{
+    ui->Exams_SW->setCurrentIndex(3);
+}
+
+
+
+void MainWindow::on_createExam_PB_clicked()
+{
+    ui->Exams_SW->setCurrentIndex(4);
+}
+
+
+void MainWindow::on_createQuestion_PB_clicked()
+{
+    ui->Exams_SW->setCurrentIndex(5);
+}
+
+
