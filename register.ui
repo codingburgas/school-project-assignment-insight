@@ -106,10 +106,10 @@ color:white;
    <widget class="QLabel" name="registration_LA">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>20</x>
       <y>10</y>
-      <width>91</width>
-      <height>21</height>
+      <width>571</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -121,6 +121,8 @@ color:white;
      <string notr="true">QLabel
 {
 	color: black;
+    qproperty-alignment: AlignCenter;
+
 }</string>
     </property>
     <property name="text">

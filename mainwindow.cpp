@@ -8,6 +8,21 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Courses_SW->setCurrentIndex(1);
 
     UpdateLessons();
+    UpdateExams();
+
+    ui->scrollArea_3->setWidgetResizable(true); // Allow the widget to resize with the scroll area
+    ui->scrollArea_3->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding); // Set size policy
+
+    // Set scroll area widget
+    ui->scrollArea_3->setWidget(ui->scrollAreaWidgetContents_3);
+
+    // Add widgets and adjust their sizes and geometries
+
+    // After adding all widgets, adjust the size of the widget contents
+    ui->scrollAreaWidgetContents_3->adjustSize();
+
+    // Set scrollbar policy
+    ui->scrollArea_3->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 }
 
 
@@ -99,7 +114,6 @@ void MainWindow::on_createLesson_PB_clicked()
 
 void MainWindow::UpdateLessons()
 {
-    qDebug() << "sds";
     lessonHeadings.clear();
     QSqlQuery qry;
     qry.prepare("SELECT * FROM lessons");
@@ -159,9 +173,6 @@ void MainWindow::UpdateLessons()
         yOffset += 75;
         counter++;
     }
-
-    qDebug() << counter;
-
 }
 void MainWindow::on_addLesson_PB_clicked()
 {
@@ -315,8 +326,6 @@ void MainWindow::on_createQuestion_PB_clicked()
         }
     }
 
-
-
     QSqlQuery qry;
     qry.prepare("INSERT INTO questions(`Exam Name`, `Question`, `Answer1`, `Answer2`, `Answer3`, `Answer4`, `Open Answer`, `Correct Answers`, `Points`)"
                 "VALUES(:examName, :question, :answer1, :answer2, :answer3, :answer4, :openAnswer, :correctAnswers, :points)");
@@ -336,9 +345,171 @@ void MainWindow::on_createQuestion_PB_clicked()
     else
     {
         QMessageBox::information(this, "Success", "Question added");
+        ui->Exams_SW->setCurrentIndex(4);
+        UpdateExams();
+
+    }
+    UpdateQuestions(examName);
+}
+
+void MainWindow::UpdateExams()
+{
+    examNames.clear();
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM exams");
+
+    if (!qry.exec()) {
+        qDebug() << "Error executing query:" << qry.lastError().text();
+        return;
     }
 
+    while(qry.next())
+    {
+        examNames.push_back(qry.value(2).toString());
+    }
+    QWidget* examsWidget = ui->exams_WG;
+    int yOffset = 0; // Initial vertical offset
 
 
+    for (const QString& exam : examNames) {
+        QLabel *iconLabel = new QLabel(examsWidget);
+        iconLabel->setObjectName(exam + "_icon_LA"); // Set object name
+        QPixmap icon(":/Resources/Images/icons/Test Results.png");
+        iconLabel->setPixmap(icon);
+        iconLabel->setGeometry(20, yOffset, 50, 50);
+        iconLabel->setStyleSheet("background-color:transparent");
+
+        QLabel *label = new QLabel(exam, examsWidget);
+        label->setObjectName(exam + "_LA"); // Set object name
+        label->setStyleSheet("QLabel { color: black; font-size: 16px; }");
+        label->setGeometry(50, yOffset, 100, 50);
+
+        QPushButton *acessExam = new QPushButton(examsWidget);
+        acessExam->setObjectName(exam + "_acessExam_PB"); // Set object name
+        acessExam->setStyleSheet("background-color: transparent; border: 1px solid black;");
+        acessExam->setGeometry(10, yOffset, 500, 50);
+        connect(acessExam, &QPushButton::clicked, this, [=]() { accessExam_PB(exam); });
+
+        QPushButton *deleteButton = new QPushButton(examsWidget);
+        deleteButton->setObjectName(exam + "_delete_PB"); // Set object name
+        deleteButton->setGeometry(465, yOffset + 5, 40, 40);
+        QIcon closeIcon(":/Resources/Images/icons/Close.png");
+        deleteButton->setIcon(closeIcon);
+        deleteButton->setIconSize(QSize(30, 30));
+        deleteButton->setStyleSheet("background-color: #900C0C; border: none;");
+        connect(deleteButton, &QPushButton::clicked, this, [=]() { deleteLesson(exam); });
+
+        QPushButton *editButton = new QPushButton(examsWidget);
+        editButton->setObjectName(exam + "_edit_PB"); // Set object name
+        editButton->setGeometry(420, yOffset, 50, 50);
+        QIcon editIcon(":/Resources/Images/icons/Edit.png");
+        editButton->setIcon(editIcon);
+        editButton->setIconSize(QSize(30, 30));
+        editButton->setStyleSheet("background-color: transparent; border: none;"); // Customize the appearance
+        connect(editButton, &QPushButton::clicked, this, [=]() { editLesson(exam); });
+
+
+        yOffset += 75;
+    }
+
+}
+
+
+void MainWindow::UpdateQuestions(const QString& examName)
+{
+    questions.clear();
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM questions WHERE `Exam Name` = :examName");
+    qry.bindValue(":examName", examName);
+
+    if (!qry.exec()) {
+        qDebug() << "Error executing query:" << qry.lastError().text();
+        return;
+    }
+
+    while(qry.next())
+    {
+        questions.push_back(qry.value(2).toString());
+    }
+    QWidget* questionsWG = ui->scrollAreaWidgetContents_3;
+    int yOffset = 0; // Initial vertical offset
+
+
+    for (const QString& question : questions) {
+        QLabel *iconLabel = new QLabel(questionsWG);
+        iconLabel->setObjectName(question + "_icon_LA"); // Set object name
+        QPixmap icon(":/Resources/Images/icons/Test Results.png");
+        iconLabel->setPixmap(icon);
+        iconLabel->setGeometry(20, yOffset, 50, 50);
+        iconLabel->setStyleSheet("background-color:transparent");
+
+        QLabel *label = new QLabel(question, questionsWG);
+        label->setObjectName(question + "_LA"); // Set object name
+        label->setStyleSheet("QLabel { color: black; font-size: 16px; }");
+        label->setGeometry(50, yOffset, 100, 50);
+
+        QPushButton *acessExam = new QPushButton(questionsWG);
+        acessExam->setObjectName(question + "_acessExam_PB"); // Set object name
+        acessExam->setStyleSheet("background-color: transparent; border: 1px solid black;");
+        acessExam->setGeometry(10, yOffset, 500, 50);
+        connect(acessExam, &QPushButton::clicked, this, [=]() { accessExam_PB(acessExam->objectName()); });
+
+        QPushButton *deleteButton = new QPushButton(questionsWG);
+        deleteButton->setObjectName(question + "_delete_PB"); // Set object name
+        deleteButton->setGeometry(465, yOffset + 5, 40, 40);
+        QIcon closeIcon(":/Resources/Images/icons/Close.png");
+        deleteButton->setIcon(closeIcon);
+        deleteButton->setIconSize(QSize(30, 30));
+        deleteButton->setStyleSheet("background-color: #900C0C; border: none;");
+        connect(deleteButton, &QPushButton::clicked, this, [=]() { deleteExam_PB(acessExam->objectName()); });
+
+        QPushButton *editButton = new QPushButton(questionsWG);
+        editButton->setObjectName(question + "_edit_PB"); // Set object name
+        editButton->setGeometry(420, yOffset, 50, 50);
+        QIcon editIcon(":/Resources/Images/icons/Edit.png");
+        editButton->setIcon(editIcon);
+        editButton->setIconSize(QSize(30, 30));
+        editButton->setStyleSheet("background-color: transparent; border: none;"); // Customize the appearance
+        connect(editButton, &QPushButton::clicked, this, [=]() { editExam_PB(acessExam->objectName()); });
+
+
+        yOffset += 75;
+    }
+
+}
+
+void MainWindow::accessExam_PB(const QString& examName)
+{
+    UpdateQuestions(examName);
+    ui->Exams_SW->setCurrentIndex(4);
+    ui->examName_LA->hide();
+    ui->examName_LE->hide();
+    ui->subject_LA->setText(examName);
+    ui->examName_LE->setText(examName);
+}
+
+void MainWindow::deleteExam_PB(const QString& examName){}
+void MainWindow::editExam_PB(const QString& examName){}
+
+
+void MainWindow::on_publishExam_PB_clicked()
+{
+    QSqlQuery qry;
+    QString examName = ui->examName_LE->text();
+    qry.prepare("INSERT INTO exams (Subject, `Exam Name`) "
+                "VALUES(:subject, :examName)");
+    qry.bindValue(":subject", ui->subject_LA->text());
+    qry.bindValue(":examName", examName);
+
+    if(qry.exec())
+    {
+        qDebug() << "Inserted successfully.";
+        ui->Exams_SW->setCurrentIndex(3);
+        UpdateExams();
+    }
+    else
+    {
+        qDebug() << "Error executing query:" << qry.lastError().text();
+    }
 }
 

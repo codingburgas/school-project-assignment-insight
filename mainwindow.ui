@@ -2362,8 +2362,8 @@ background-color:#7A7D7D
        <rect>
         <x>20</x>
         <y>10</y>
-        <width>931</width>
-        <height>671</height>
+        <width>871</width>
+        <height>651</height>
        </rect>
       </property>
       <widget class="QWidget" name="AllExams"/>
@@ -3538,12 +3538,39 @@ border-radius:30px;
        </widget>
       </widget>
       <widget class="QWidget" name="ExcelSpecialist_QW">
+       <widget class="QWidget" name="exams_WG" native="true">
+        <property name="geometry">
+         <rect>
+          <x>-10</x>
+          <y>30</y>
+          <width>881</width>
+          <height>611</height>
+         </rect>
+        </property>
+        <widget class="QPushButton" name="createExam_PB">
+         <property name="geometry">
+          <rect>
+           <x>730</x>
+           <y>10</y>
+           <width>141</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:white;
+background-color:#2E2E2E;</string>
+         </property>
+         <property name="text">
+          <string>Creat an exam</string>
+         </property>
+        </widget>
+       </widget>
        <widget class="QLabel" name="label_56">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>0</y>
-          <width>871</width>
+          <x>-10</x>
+          <y>-10</y>
+          <width>881</width>
           <height>31</height>
          </rect>
         </property>
@@ -3560,33 +3587,6 @@ color:black;
         <property name="text">
          <string>Excel Specialist</string>
         </property>
-       </widget>
-       <widget class="QWidget" name="widget_22" native="true">
-        <property name="geometry">
-         <rect>
-          <x>-10</x>
-          <y>30</y>
-          <width>881</width>
-          <height>611</height>
-         </rect>
-        </property>
-        <widget class="QPushButton" name="createExam_PB">
-         <property name="geometry">
-          <rect>
-           <x>720</x>
-           <y>20</y>
-           <width>141</width>
-           <height>51</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color:white;
-background-color:#2E2E2E;</string>
-         </property>
-         <property name="text">
-          <string>Creat an exam</string>
-         </property>
-        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="CreateExam">
@@ -3613,7 +3613,7 @@ color:black;
          <string>Excel Specialist</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_58">
+       <widget class="QLabel" name="examName_LA">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -3664,15 +3664,46 @@ border-radius:10px;</string>
          <string>Add question</string>
         </property>
        </widget>
-       <widget class="QWidget" name="widget_36" native="true">
+       <widget class="QPushButton" name="publishExam_PB">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>600</y>
+          <width>291</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#2E2E2E;
+color:white;
+border-radius:10px;</string>
+        </property>
+        <property name="text">
+         <string>Publish exam</string>
+        </property>
+       </widget>
+       <widget class="QScrollArea" name="scrollArea_3">
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>180</y>
-          <width>861</width>
-          <height>441</height>
+          <y>170</y>
+          <width>881</width>
+          <height>431</height>
          </rect>
         </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents_3">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>881</width>
+           <height>431</height>
+          </rect>
+         </property>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="CreateQuestion">

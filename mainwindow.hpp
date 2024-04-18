@@ -7,7 +7,7 @@
 #include <QLabel>
 #include <QSqlQuery>
 #include <QMessageBox>
-#include <algorithm>
+
 namespace Ui {
 class MainWindow;
 }
@@ -58,14 +58,23 @@ private slots:
 
     void on_createQuestion_PB_clicked();
 
+    void accessExam_PB(const QString& examName);
+    void deleteExam_PB(const QString& examName);
+    void editExam_PB(const QString& examName);
+
+
+    void on_publishExam_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     virtual void paintEvent(QPaintEvent*) override;
 
     void UpdateLessons();
-
+    void UpdateExams();
+    void UpdateQuestions(const QString& examName);
     std::vector<QString> lessonHeadings;
-    std::vector<QString> lessonText;
+    std::vector<QString> examNames;
+    std::vector<QString> questions;
 
     QMap<QString, QList<QWidget*>> uiElementsMap; // Map to store UI elements associated with each lesson
 
