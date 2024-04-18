@@ -58,12 +58,14 @@ private slots:
 
     void on_createQuestion_PB_clicked();
 
-    void accessExam_PB(const QString& examName);
-    void deleteExam_PB(const QString& examName);
+    void accessExam(const QString& examName);
+    void deleteExam(const QString& examName);
     void editExam_PB(const QString& examName);
 
 
     void on_publishExam_PB_clicked();
+
+    void on_closedAnswers_CB_stateChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;

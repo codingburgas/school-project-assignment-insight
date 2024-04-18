@@ -47,7 +47,7 @@ border-radius:10px;
       <x>90</x>
       <y>10</y>
       <width>141</width>
-      <height>51</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -1648,8 +1648,8 @@ border-radius:30px;
        <widget class="QWidget" name="widget_34" native="true">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>290</y>
+          <x>10</x>
+          <y>450</y>
           <width>193</width>
           <height>192</height>
          </rect>
@@ -1756,9 +1756,9 @@ border-radius:10px;</string>
        <widget class="QWidget" name="widget_28" native="true">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>30</y>
-          <width>193</width>
+          <x>10</x>
+          <y>190</y>
+          <width>201</width>
           <height>192</height>
          </rect>
         </property>
@@ -1848,8 +1848,8 @@ border-radius:10px;</string>
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>191</width>
-           <height>181</height>
+           <width>201</width>
+           <height>191</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -1863,8 +1863,8 @@ border-radius:10px;</string>
        <widget class="QWidget" name="widget_26" native="true">
         <property name="geometry">
          <rect>
-          <x>690</x>
-          <y>30</y>
+          <x>640</x>
+          <y>190</y>
           <width>193</width>
           <height>192</height>
          </rect>
@@ -1970,8 +1970,8 @@ border-radius:10px;</string>
        <widget class="QWidget" name="widget_30" native="true">
         <property name="geometry">
          <rect>
-          <x>380</x>
-          <y>30</y>
+          <x>330</x>
+          <y>190</y>
           <width>193</width>
           <height>192</height>
          </rect>
@@ -2077,8 +2077,8 @@ border-radius:10px;</string>
        <widget class="QWidget" name="widget_24" native="true">
         <property name="geometry">
          <rect>
-          <x>690</x>
-          <y>310</y>
+          <x>640</x>
+          <y>470</y>
           <width>193</width>
           <height>192</height>
          </rect>
@@ -2184,8 +2184,8 @@ border-radius:10px;</string>
        <widget class="QWidget" name="widget_32" native="true">
         <property name="geometry">
          <rect>
-          <x>370</x>
-          <y>300</y>
+          <x>320</x>
+          <y>460</y>
           <width>193</width>
           <height>192</height>
          </rect>
@@ -2278,6 +2278,351 @@ border-radius:10px;</string>
            <y>10</y>
            <width>191</width>
            <height>181</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:transparent;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_22" native="true">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>30</y>
+          <width>101</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget
+{
+background-color:#EDEDED
+}</string>
+        </property>
+        <widget class="QWidget" name="widget_36" native="true">
+         <property name="geometry">
+          <rect>
+           <x>15</x>
+           <y>3</y>
+           <width>71</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget
+{
+background-color:white;
+border-radius:30px;
+	image: url(:/Resources/Images/icons/Student Male.png);
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_57">
+         <property name="geometry">
+          <rect>
+           <x>17</x>
+           <y>70</y>
+           <width>71</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>All courses</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="allExams_PB">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>1</y>
+           <width>100</width>
+           <height>111</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:transparent;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_44" native="true">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>30</y>
+          <width>101</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget
+{
+background-color:#EDEDED
+}</string>
+        </property>
+        <widget class="QWidget" name="widget_45" native="true">
+         <property name="geometry">
+          <rect>
+           <x>15</x>
+           <y>3</y>
+           <width>71</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget
+{
+background-color:white;
+border-radius:30px;
+	image: url(:/Resources/Images/icons/Student Male.png);
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_61">
+         <property name="geometry">
+          <rect>
+           <x>15</x>
+           <y>65</y>
+           <width>71</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Social&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;sciences&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="socialSciences_PB_2">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>100</width>
+           <height>111</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:transparent;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_42" native="true">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>30</y>
+          <width>101</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget
+{
+background-color:#EDEDED
+}</string>
+        </property>
+        <widget class="QWidget" name="widget_43" native="true">
+         <property name="geometry">
+          <rect>
+           <x>15</x>
+           <y>3</y>
+           <width>71</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget
+{
+background-color:white;
+border-radius:30px;
+	image: url(:/Resources/Images/icons/Student Male.png);
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_60">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>60</y>
+           <width>81</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Programming&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;courses&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="programmingCourses_PB_2">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>100</width>
+           <height>111</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:transparent;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_40" native="true">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>30</y>
+          <width>101</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget
+{
+background-color:#EDEDED
+}</string>
+        </property>
+        <widget class="QWidget" name="widget_41" native="true">
+         <property name="geometry">
+          <rect>
+           <x>15</x>
+           <y>3</y>
+           <width>71</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget
+{
+background-color:white;
+border-radius:30px;
+	image: url(:/Resources/Images/icons/Student Male.png);
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_59">
+         <property name="geometry">
+          <rect>
+           <x>17</x>
+           <y>70</y>
+           <width>71</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>IT Courses</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="ITExams_PB">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>100</width>
+           <height>111</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:transparent;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_38" native="true">
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>30</y>
+          <width>101</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QWidget
+{
+background-color:#EDEDED
+}</string>
+        </property>
+        <widget class="QWidget" name="widget_39" native="true">
+         <property name="geometry">
+          <rect>
+           <x>15</x>
+           <y>3</y>
+           <width>71</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget
+{
+background-color:white;
+border-radius:30px;
+	image: url(:/Resources/Images/icons/Student Male.png);
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_58">
+         <property name="geometry">
+          <rect>
+           <x>13</x>
+           <y>65</y>
+           <width>71</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Natural&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;sciences&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="naturalSciences_PB_2">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>100</width>
+           <height>111</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -3794,7 +4139,7 @@ font: 13pt &quot;Segoe UI&quot;;</string>
           <bool>true</bool>
          </property>
         </widget>
-        <widget class="QStackedWidget" name="stackedWidget">
+        <widget class="QStackedWidget" name="questionType_SW">
          <property name="geometry">
           <rect>
            <x>20</x>

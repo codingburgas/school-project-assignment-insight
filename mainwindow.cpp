@@ -23,6 +23,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Set scrollbar policy
     ui->scrollArea_3->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+
+    ui->questionType_SW->setCurrentIndex(0);
+
 }
 
 
@@ -176,6 +179,8 @@ void MainWindow::UpdateLessons()
 }
 void MainWindow::on_addLesson_PB_clicked()
 {
+    ui->heading_LA->clear();
+    ui->material_PTE->clear();
     QString heading = ui->heading_LE->text();
     QString lesson = ui->material_PTE->toPlainText();
     QSqlQuery qry;
@@ -262,6 +267,8 @@ void MainWindow::deleteLesson(const QString &heading) {
 
 void MainWindow::on_goBack_PB_clicked()
 {
+    ui->heading_LA->clear();
+    ui->material_PTE->clear();
     ui->Navbar->setCurrentIndex(2);
 }
 
@@ -388,7 +395,7 @@ void MainWindow::UpdateExams()
         acessExam->setObjectName(exam + "_acessExam_PB"); // Set object name
         acessExam->setStyleSheet("background-color: transparent; border: 1px solid black;");
         acessExam->setGeometry(10, yOffset, 500, 50);
-        connect(acessExam, &QPushButton::clicked, this, [=]() { accessExam_PB(exam); });
+        connect(acessExam, &QPushButton::clicked, this, [=]() { accessExam(exam); });
 
         QPushButton *deleteButton = new QPushButton(examsWidget);
         deleteButton->setObjectName(exam + "_delete_PB"); // Set object name
@@ -397,7 +404,7 @@ void MainWindow::UpdateExams()
         deleteButton->setIcon(closeIcon);
         deleteButton->setIconSize(QSize(30, 30));
         deleteButton->setStyleSheet("background-color: #900C0C; border: none;");
-        connect(deleteButton, &QPushButton::clicked, this, [=]() { deleteLesson(exam); });
+        connect(deleteButton, &QPushButton::clicked, this, [=]() { deleteExam(exam); });
 
         QPushButton *editButton = new QPushButton(examsWidget);
         editButton->setObjectName(exam + "_edit_PB"); // Set object name
@@ -452,7 +459,7 @@ void MainWindow::UpdateQuestions(const QString& examName)
         acessExam->setObjectName(question + "_acessExam_PB"); // Set object name
         acessExam->setStyleSheet("background-color: transparent; border: 1px solid black;");
         acessExam->setGeometry(10, yOffset, 500, 50);
-        connect(acessExam, &QPushButton::clicked, this, [=]() { accessExam_PB(acessExam->objectName()); });
+        connect(acessExam, &QPushButton::clicked, this, [=]() { accessExam(acessExam->objectName()); });
 
         QPushButton *deleteButton = new QPushButton(questionsWG);
         deleteButton->setObjectName(question + "_delete_PB"); // Set object name
@@ -461,7 +468,7 @@ void MainWindow::UpdateQuestions(const QString& examName)
         deleteButton->setIcon(closeIcon);
         deleteButton->setIconSize(QSize(30, 30));
         deleteButton->setStyleSheet("background-color: #900C0C; border: none;");
-        connect(deleteButton, &QPushButton::clicked, this, [=]() { deleteExam_PB(acessExam->objectName()); });
+        connect(deleteButton, &QPushButton::clicked, this, [=]() { deleteExam(acessExam->objectName()); });
 
         QPushButton *editButton = new QPushButton(questionsWG);
         editButton->setObjectName(question + "_edit_PB"); // Set object name
@@ -478,7 +485,7 @@ void MainWindow::UpdateQuestions(const QString& examName)
 
 }
 
-void MainWindow::accessExam_PB(const QString& examName)
+void MainWindow::accessExam(const QString& examName)
 {
     UpdateQuestions(examName);
     ui->Exams_SW->setCurrentIndex(4);
@@ -486,10 +493,60 @@ void MainWindow::accessExam_PB(const QString& examName)
     ui->examName_LE->hide();
     ui->subject_LA->setText(examName);
     ui->examName_LE->setText(examName);
+    ui->publishExam_PB->setText("Edit exam");
 }
 
-void MainWindow::deleteExam_PB(const QString& examName){}
-void MainWindow::editExam_PB(const QString& examName){}
+void MainWindow::deleteExam(const QString& examName){
+    QSqlQuery qry;
+    qry.prepare("DELETE FROM exams WHERE `Exam Name` = :examName");
+    qry.bindValue(":examName", examName);
+    if(qry.exec())
+    {
+        // Remove the UI elements associated with the deleted lesson
+        QList<QPushButton*> buttons = ui->exams_WG->findChildren<QPushButton*>(examName + "_acessExam_PB");
+        for (QPushButton* button : buttons) {
+            delete button;
+        }
+
+        QList<QLabel*> labels = ui->exams_WG->findChildren<QLabel*>(examName + "_LA");
+        for (QLabel* label : labels) {
+            delete label;
+        }
+
+        QList<QLabel*> iconLabels = ui->exams_WG->findChildren<QLabel*>(examName + "_icon_LA");
+        for (QLabel* iconLabel : iconLabels) {
+            delete iconLabel;
+        }
+
+        QList<QPushButton*> newButtons = ui->exams_WG->findChildren<QPushButton*>(examName + "_delete_PB");
+        for (QPushButton* newButton : newButtons) {
+            delete newButton;
+        }
+
+        QList<QPushButton*> iconButtons = ui->exams_WG->findChildren<QPushButton*>(examName + "_edit_PB");
+        for (QPushButton* iconButton : iconButtons) {
+            delete iconButton;
+        }
+
+        UpdateExams();
+    }
+    else
+    {
+        qDebug() << qry.lastError();
+    }
+
+}
+void MainWindow::editExam_PB(const QString& examName){
+
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM questions WHERE `Exam Name` = :examName");
+    qry.bindValue(":examName", examName);
+    ui->Exams_SW->setCurrentIndex(5);
+    if(qry.exec())
+    {
+
+    }
+}
 
 
 void MainWindow::on_publishExam_PB_clicked()
@@ -510,6 +567,20 @@ void MainWindow::on_publishExam_PB_clicked()
     else
     {
         qDebug() << "Error executing query:" << qry.lastError().text();
+    }
+}
+
+
+void MainWindow::on_closedAnswers_CB_stateChanged(int arg1)
+{
+    if(ui->closedAnswers_CB->isChecked())
+    {
+        ui->questionType_SW->setCurrentIndex(0);
+    }
+    else
+    {
+        ui->questionType_SW->setCurrentIndex(1);
+
     }
 }
 
