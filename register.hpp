@@ -15,6 +15,7 @@ namespace Ui {
 class Register;
 }
 
+
 class Register : public QWidget
 {
     Q_OBJECT

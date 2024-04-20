@@ -1,6 +1,5 @@
 #include "register.hpp"
 #include "ui_register.h"
-
 Register::Register(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Register)
@@ -116,6 +115,8 @@ void Register::on_register_PB_clicked()
     qry.bindValue(":Password_Salt", salt);
     if (qry.exec()) {
         QMessageBox::information(this, "Success", "Your registration to Trawma Bank has been successful. \n\nRedirecting to the login page..");
+        this->hide();
+
     }
     else
     {
