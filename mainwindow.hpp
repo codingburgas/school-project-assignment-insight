@@ -60,10 +60,10 @@ private slots:
 
     void accessExam(const QString& examName);
     void deleteExam(const QString& examName);
-    void editExam_PB(const QString& examName);
-    void accessQuestion(const QString& questionName);
-    void editQuestion(const QString& questionName);
-    void deleteQuestion(const QString& questionName);
+    void editExam(const QString& examName);
+    void accessQuestion(const QString& examName);
+    void editQuestion(const QString& examName);
+    void deleteQuestion(const QString& examName);
 
 
     void on_publishExam_PB_clicked();
@@ -79,10 +79,8 @@ private:
     void UpdateExams();
     void UpdateQuestions(const QString& examName);
     std::vector<QString> lessonHeadings;
+    std::vector<QString> lessonText;
     std::vector<QString> examNames;
     std::vector<QString> questions;
-
-    QMap<QString, QList<QWidget*>> uiElementsMap; // Map to store UI elements associated with each lesson
-
 
 };

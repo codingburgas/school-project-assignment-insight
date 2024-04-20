@@ -44,6 +44,7 @@ void MainWindow::handleCourseButtons(const QString &heading)
     {
         while(qry.next()) {
             ui->lesson_TB->setText(qry.value(0).toString());
+            qDebug() << qry.value(0);
         }
     }
     else
@@ -178,8 +179,6 @@ void MainWindow::UpdateLessons()
 }
 void MainWindow::on_addLesson_PB_clicked()
 {
-    ui->heading_LA->clear();
-    ui->material_PTE->clear();
     QString heading = ui->heading_LE->text();
     QString lesson = ui->material_PTE->toPlainText();
     QSqlQuery qry;
@@ -202,6 +201,8 @@ void MainWindow::on_addLesson_PB_clicked()
         qDebug() << qry.lastError();
 
     }
+    ui->heading_LA->clear();
+    ui->material_PTE->clear();
 }
 
 void MainWindow::editLesson(const QString& heading)
@@ -410,7 +411,7 @@ void MainWindow::UpdateExams()
         editButton->setIcon(editIcon);
         editButton->setIconSize(QSize(30, 30));
         editButton->setStyleSheet("background-color: transparent; border: none;"); // Customize the appearance
-        connect(editButton, &QPushButton::clicked, this, [=]() { editLesson(exam); });
+        connect(editButton, &QPushButton::clicked, this, [=]() { editExam(exam); });
 
 
         yOffset += 75;
@@ -425,12 +426,12 @@ void MainWindow::UpdateQuestions(const QString& examName)
     QSqlQuery qry;
     qry.prepare("SELECT * FROM questions WHERE `Exam Name` = :examName");
     qry.bindValue(":examName", examName);
-
     if (!qry.exec()) {
         qDebug() << "Error executing query:" << qry.lastError().text();
         return;
     }
 
+    QString question;
     while(qry.next())
     {
         questions.push_back(qry.value(2).toString());
@@ -447,21 +448,10 @@ void MainWindow::UpdateQuestions(const QString& examName)
 
         QHBoxLayout *questionLayout = new QHBoxLayout(questionWidget); // Create a horizontal layout for each question
 
-        QLabel *iconLabel = new QLabel; // Create icon label
-        QPixmap icon(":/Resources/Images/icons/Test Results.png");
-        iconLabel->setPixmap(icon);
-        iconLabel->setStyleSheet("background-color:transparent");
-        iconLabel->setFixedSize(50, 50);
-        questionLayout->addWidget(iconLabel);
-
-        QLabel *label = new QLabel(question); // Create label for the question text
-        label->setStyleSheet("QLabel { color: black; font-size: 16px; }");
-        label->setFixedSize(100, 50);
-        questionLayout->addWidget(label);
-
         QPushButton *accessExam = new QPushButton; // Create button to access the exam
-        accessExam->setStyleSheet("background-color: transparent; border: 1px solid black;");
-        connect(accessExam, &QPushButton::clicked, this, [=]() { accessQuestion(examName); });
+        accessExam->setText(question);
+        accessExam->setStyleSheet("background-color: transparent; border: 1px solid black; color: black;");
+        connect(accessExam, &QPushButton::clicked, this, [=]() { accessQuestion(question); });
         accessExam->setFixedSize(500, 50);
         questionLayout->addWidget(accessExam);
 
@@ -469,7 +459,7 @@ void MainWindow::UpdateQuestions(const QString& examName)
         QIcon closeIcon(":/Resources/Images/icons/Close.png");
         deleteButton->setIcon(closeIcon);
         deleteButton->setIconSize(QSize(30, 30));
-        deleteButton->setStyleSheet("background-color: #900C0C; border: none;");
+        deleteButton->setStyleSheet("background-color: #900C0C; border: none; color: black;");
         connect(deleteButton, &QPushButton::clicked, this, [=]() { deleteQuestion(examName); });
         deleteButton->setFixedSize(40, 40);
         questionLayout->addWidget(deleteButton);
@@ -478,8 +468,8 @@ void MainWindow::UpdateQuestions(const QString& examName)
         QIcon editIcon(":/Resources/Images/icons/Edit.png");
         editButton->setIcon(editIcon);
         editButton->setIconSize(QSize(30, 30));
-        editButton->setStyleSheet("background-color: transparent; border: none;");
-        connect(editButton, &QPushButton::clicked, this, [=]() { editExam_PB(accessExam->objectName()); });
+        editButton->setStyleSheet("background-color: transparent; border: none; color: black;");
+        connect(editButton, &QPushButton::clicked, this, [=]() { editExam(accessExam->objectName()); });
         editButton->setFixedSize(50, 50);
         questionLayout->addWidget(editButton);
 
@@ -488,19 +478,66 @@ void MainWindow::UpdateQuestions(const QString& examName)
 
     ui->scrollArea_3->setWidget(questionsWidget); // Set the widget containing all questions as the content of the scroll area
 
-
 }
 
-void MainWindow::accessQuestion(const QString& question)
+void MainWindow::accessQuestion(const QString& examName)
+{
+    qDebug() << examName;
+    ui->Exams_SW->setCurrentIndex(5);
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM questions WHERE Question = :examName");
+    qry.bindValue(":examName", examName);
+    QString question;
+    QString answer1;
+    QString answer2;
+    QString answer3;
+    QString answer4;
+    QString points;
+    QString correctAnswers;
+    if(qry.exec())
+    {
+        if(qry.next())
+        {
+            question = qry.value("Question").toString();
+            answer1 = qry.value("Answer1").toString();
+            answer2 = qry.value("Answer2").toString();
+            answer3 = qry.value("Answer3").toString();
+            answer4 = qry.value("Answer4").toString();
+            points = qry.value("Points").toString();
+            correctAnswers = qry.value("Correct Answers").toString();
+        }
+    }
+    ui->question_LE->setText(question);
+    ui->answerA_LE->setText(answer1);
+    ui->answerB_LE->setText(answer2);
+    ui->answerC_LE->setText(answer3);
+    ui->answerD_LE->setText(answer4);
+    ui->points_LE->setText(points);
+
+    // Split correctAnswers into individual answers
+    QStringList correctAnswersList = correctAnswers.split(';');
+
+    // Check the checkboxes based on correctAnswers
+    for(const QString& correctAnswer : correctAnswersList)
+    {
+        qDebug() << correctAnswer;
+        int answerIndex = correctAnswer.toInt() - 1; // Assuming answers are 1-indexed
+        if(answerIndex >= 0 && answerIndex <= 3)
+        {
+            QString checkBoxName = "correct" + QString(QChar('A' + answerIndex)) + "_CB";
+            QCheckBox* checkBox = findChild<QCheckBox*>(checkBoxName);
+            if(checkBox)
+                checkBox->setChecked(true);
+        }
+    }
+}
+
+
+void MainWindow::editQuestion(const QString& examName)
 {
 
 }
-
-void MainWindow::editQuestion(const QString& question)
-{
-
-}
-void MainWindow::deleteQuestion(const QString& question)
+void MainWindow::deleteQuestion(const QString& examName)
 {
 
 }
@@ -511,7 +548,7 @@ void MainWindow::accessExam(const QString& examName)
     ui->Exams_SW->setCurrentIndex(4);
     ui->examName_LA->hide();
     ui->examName_LE->hide();
-    ui->subject_LA->setText(examName);
+    ui->subject_LA->setText("Exam " + examName);
     ui->examName_LE->setText(examName);
     ui->publishExam_PB->setText("Edit exam");
     UpdateQuestions(examName);
@@ -557,16 +594,11 @@ void MainWindow::deleteExam(const QString& examName){
     }
 
 }
-void MainWindow::editExam_PB(const QString& examName){
-
-    QSqlQuery qry;
-    qry.prepare("SELECT * FROM questions WHERE `Exam Name` = :examName");
-    qry.bindValue(":examName", examName);
-    ui->Exams_SW->setCurrentIndex(5);
-    if(qry.exec())
-    {
-
-    }
+void MainWindow::editExam(const QString& examName){
+    ui->Exams_SW->setCurrentIndex(4);
+    UpdateQuestions(examName);
+    ui->examName_LE->setText(examName);
+    ui->publishExam_PB->setText("Edit exam");
 }
 
 

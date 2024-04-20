@@ -2711,65 +2711,7 @@ background-color:#7A7D7D
         <height>651</height>
        </rect>
       </property>
-      <widget class="QWidget" name="AllExams">
-       <widget class="QWidget" name="gridLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>320</x>
-          <y>200</y>
-          <width>271</width>
-          <height>201</height>
-         </rect>
-        </property>
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="0">
-          <widget class="QPushButton" name="pushButton">
-           <property name="text">
-            <string>PushButton</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="formLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>10</y>
-          <width>160</width>
-          <height>80</height>
-         </rect>
-        </property>
-        <layout class="QFormLayout" name="formLayout">
-         <item row="0" column="0">
-          <widget class="QPushButton" name="pushButton_2">
-           <property name="text">
-            <string>PushButton</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="verticalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>90</x>
-          <y>240</y>
-          <width>160</width>
-          <height>80</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <item>
-          <widget class="QPushButton" name="pushButton_3">
-           <property name="text">
-            <string>PushButton</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
+      <widget class="QWidget" name="AllExams"/>
       <widget class="QWidget" name="ITExams">
        <widget class="QWidget" name="widget_119" native="true">
         <property name="geometry">
@@ -3950,6 +3892,9 @@ border-radius:30px;
           <height>611</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;</string>
+        </property>
         <widget class="QPushButton" name="createExam_PB">
          <property name="geometry">
           <rect>
@@ -4093,6 +4038,9 @@ border-radius:10px;</string>
           <width>881</width>
           <height>431</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;</string>
         </property>
         <property name="widgetResizable">
          <bool>true</bool>
@@ -4356,7 +4304,8 @@ border-radius:5px;</string>
            </property>
            <property name="styleSheet">
             <string notr="true">border:1px solid black;
-border-radius:5px;</string>
+border-radius:5px;
+color:black;</string>
            </property>
           </widget>
           <widget class="QLabel" name="label_64">
