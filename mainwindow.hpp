@@ -82,5 +82,4 @@ private:
     std::vector<QString> lessonText;
     std::vector<QString> examNames;
     std::vector<QString> questions;
-
 };

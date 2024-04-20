@@ -589,7 +589,7 @@ padding: 5px;
        <rect>
         <x>20</x>
         <y>0</y>
-        <width>931</width>
+        <width>901</width>
         <height>691</height>
        </rect>
       </property>
@@ -2672,31 +2672,54 @@ color:black;
         <property name="geometry">
          <rect>
           <x>-10</x>
-          <y>50</y>
+          <y>100</y>
           <width>911</width>
-          <height>631</height>
+          <height>581</height>
          </rect>
         </property>
-        <widget class="QPushButton" name="createLesson_PB">
+        <widget class="QScrollArea" name="scrollArea_5">
          <property name="geometry">
           <rect>
-           <x>740</x>
-           <y>20</y>
-           <width>131</width>
-           <height>61</height>
+           <x>30</x>
+           <y>10</y>
+           <width>851</width>
+           <height>551</height>
           </rect>
          </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_5">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>851</width>
+            <height>551</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="createLesson_PB">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>10</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton
 {
 background-color:#7A7D7D
 
 }</string>
-         </property>
-         <property name="text">
-          <string>Create a lesson</string>
-         </property>
-        </widget>
+        </property>
+        <property name="text">
+         <string>Create a lesson</string>
+        </property>
        </widget>
       </widget>
      </widget>
@@ -3912,6 +3935,29 @@ background-color:#2E2E2E;</string>
           <string>Creat an exam</string>
          </property>
         </widget>
+        <widget class="QScrollArea" name="scrollArea_6">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>80</y>
+           <width>831</width>
+           <height>521</height>
+          </rect>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_6">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>831</width>
+            <height>521</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
        </widget>
        <widget class="QLabel" name="label_56">
         <property name="geometry">
@@ -4462,6 +4508,215 @@ border-radius:10px;</string>
         </property>
        </widget>
       </widget>
+      <widget class="QWidget" name="ExamOverview">
+       <widget class="QLabel" name="examName">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>881</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:black;
+	font: 16pt &quot;Segoe UI&quot;;
+
+}</string>
+        </property>
+        <property name="text">
+         <string>Exam Name</string>
+        </property>
+       </widget>
+       <widget class="QScrollArea" name="scrollArea_4">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>30</y>
+          <width>801</width>
+          <height>591</height>
+         </rect>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents_4">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>801</width>
+           <height>591</height>
+          </rect>
+         </property>
+         <widget class="QWidget" name="question_WG" native="true">
+          <property name="geometry">
+           <rect>
+            <x>50</x>
+            <y>110</y>
+            <width>471</width>
+            <height>311</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border:1px solid black;</string>
+          </property>
+          <widget class="QLabel" name="questionNumber_LA">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>10</y>
+             <width>191</width>
+             <height>20</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignLeft;
+color:black;
+	font: 16pt &quot;Segoe UI&quot;;
+border:none;
+
+}</string>
+           </property>
+           <property name="text">
+            <string>Question Number</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="points_exam_LA">
+           <property name="geometry">
+            <rect>
+             <x>190</x>
+             <y>10</y>
+             <width>231</width>
+             <height>20</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignRight;
+color:black;
+	font: 16pt &quot;Segoe UI&quot;;
+border:none;
+
+}</string>
+           </property>
+           <property name="text">
+            <string>Points:</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="question_exam_LA">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>60</y>
+             <width>451</width>
+             <height>20</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:black;
+	font: 16pt &quot;Segoe UI&quot;;
+border:none;
+
+}</string>
+           </property>
+           <property name="text">
+            <string>Question</string>
+           </property>
+          </widget>
+          <widget class="QCheckBox" name="checkBox">
+           <property name="geometry">
+            <rect>
+             <x>30</x>
+             <y>120</y>
+             <width>181</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color:transparent;
+color:black;
+font: 16pt &quot;Segoe UI&quot;;
+border:none;</string>
+           </property>
+           <property name="text">
+            <string>A:</string>
+           </property>
+          </widget>
+          <widget class="QCheckBox" name="checkBox_2">
+           <property name="geometry">
+            <rect>
+             <x>240</x>
+             <y>120</y>
+             <width>201</width>
+             <height>81</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color:transparent;
+color:black;
+font: 16pt &quot;Segoe UI&quot;;
+border:none;</string>
+           </property>
+           <property name="text">
+            <string>C:</string>
+           </property>
+          </widget>
+          <widget class="QCheckBox" name="checkBox_3">
+           <property name="geometry">
+            <rect>
+             <x>30</x>
+             <y>210</y>
+             <width>191</width>
+             <height>81</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color:transparent;
+color:black;
+font: 16pt &quot;Segoe UI&quot;;
+border:none;</string>
+           </property>
+           <property name="text">
+            <string>B:</string>
+           </property>
+          </widget>
+          <widget class="QCheckBox" name="checkBox_4">
+           <property name="geometry">
+            <rect>
+             <x>240</x>
+             <y>210</y>
+             <width>201</width>
+             <height>91</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color:transparent;
+color:black;
+font: 16pt &quot;Segoe UI&quot;;
+border:none;</string>
+           </property>
+           <property name="text">
+            <string>D:</string>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+       </widget>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="Messages"/>
@@ -4734,6 +4989,75 @@ border-radius:5px;
      </widget>
     </widget>
    </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>65</x>
+      <y>675</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:transparent;
+border:none;
+}
+QPushButton:hover{
+background-color:transparent;
+border:1px solid black;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>125</x>
+      <y>675</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:transparent;
+border:none;
+}
+QPushButton:hover{
+background-color:transparent;
+border:1px solid black;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>675</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:transparent;
+border:none;
+}
+QPushButton:hover{
+background-color:transparent;
+border:1px solid black;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>logOut_PB</zorder>
    <zorder>settings_PB</zorder>
    <zorder>wallet_PB</zorder>
@@ -4760,6 +5084,9 @@ border-radius:5px;
    <zorder>schedule_LA</zorder>
    <zorder>messages_PB</zorder>
    <zorder>support_LA</zorder>
+   <zorder>pushButton</zorder>
+   <zorder>pushButton_2</zorder>
+   <zorder>pushButton_3</zorder>
   </widget>
  </widget>
  <resources/>

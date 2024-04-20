@@ -25,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->scrollArea_3->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
     ui->questionType_SW->setCurrentIndex(0);
+
+
 }
 
 
@@ -130,53 +132,50 @@ void MainWindow::UpdateLessons()
     {
         lessonHeadings.push_back(qry.value(1).toString());
     }
-    QWidget* lessonWidget = ui->courses_WG;
-    int yOffset = 0; // Initial vertical offset
-    int counter = 0;
 
+    QWidget* lessonWidget = new QWidget(ui->courses_WG); // Create a new widget to hold all the lessons
+    QVBoxLayout *layout = new QVBoxLayout(lessonWidget); // Create a vertical layout for the widget
 
     for (const QString& heading : lessonHeadings) {
-        QLabel *iconLabel = new QLabel(lessonWidget);
-        iconLabel->setObjectName(heading + "_icon_LA"); // Set object name
+        QWidget *lessonItemWidget = new QWidget; // Create a widget for each lesson
+        lessonItemWidget->setFixedSize(800, 70);
+        QLabel *iconLabel = new QLabel; // Create icon label
         QPixmap icon(":/Resources/Images/icons/Test Results.png");
         iconLabel->setPixmap(icon);
-        iconLabel->setGeometry(20, yOffset, 50, 50);
         iconLabel->setStyleSheet("background-color:transparent");
 
-        QLabel *label = new QLabel(heading, lessonWidget);
+        QLabel *label = new QLabel(heading, lessonItemWidget);
         label->setObjectName(heading + "_LA"); // Set object name
         label->setStyleSheet("QLabel { color: black; font-size: 16px; }");
-        label->setGeometry(50, yOffset, 100, 50);
+        label->setGeometry(10, 0, 100, 50);
 
-        QPushButton *acessCourse = new QPushButton(lessonWidget);
-        acessCourse->setObjectName(heading + "_acessCourse_PB"); // Set object name
-        acessCourse->setStyleSheet("background-color: transparent; border: 1px solid black;");
-        acessCourse->setGeometry(10, yOffset, 500, 50);
-        connect(acessCourse, &QPushButton::clicked, this, [=]() { handleCourseButtons(heading); });
+        QPushButton *accessCourse = new QPushButton(lessonItemWidget); // Create button to access the course
+        accessCourse->setFixedSize(500,50);
+        accessCourse->setStyleSheet("background-color: transparent; border: 1px solid black; color: black;");
+        connect(accessCourse, &QPushButton::clicked, this, [=]() { handleCourseButtons(heading); });
 
-        QPushButton *deleteButton = new QPushButton(lessonWidget);
-        deleteButton->setObjectName(heading + "_delete_PB"); // Set object name
-        deleteButton->setGeometry(465, yOffset + 5, 40, 40);
+        QPushButton *deleteButton = new QPushButton(lessonItemWidget); // Create button to delete the lesson
         QIcon closeIcon(":/Resources/Images/icons/Close.png");
         deleteButton->setIcon(closeIcon);
         deleteButton->setIconSize(QSize(30, 30));
+        deleteButton->setGeometry(455, 5, 40, 40);
         deleteButton->setStyleSheet("background-color: #900C0C; border: none;");
         connect(deleteButton, &QPushButton::clicked, this, [=]() { deleteLesson(heading); });
 
-        QPushButton *editButton = new QPushButton(lessonWidget);
-        editButton->setObjectName(heading + "_edit_PB"); // Set object name
-        editButton->setGeometry(420, yOffset, 50, 50);
+        QPushButton *editButton = new QPushButton(lessonItemWidget); // Create button to edit the lesson
         QIcon editIcon(":/Resources/Images/icons/Edit.png");
         editButton->setIcon(editIcon);
         editButton->setIconSize(QSize(30, 30));
-        editButton->setStyleSheet("background-color: transparent; border: none;"); // Customize the appearance
+        editButton->setStyleSheet("background-color: transparent; border: none;");
+        editButton->setGeometry(420, 5, 40 ,40);
         connect(editButton, &QPushButton::clicked, this, [=]() { editLesson(heading); });
 
-
-        yOffset += 75;
-        counter++;
+        layout->addWidget(lessonItemWidget); // Add the lesson widget to the layout
     }
+
+    ui->scrollArea_5->setWidget(lessonWidget); // Set the widget containing all lessons as the content of the scroll area
 }
+
 void MainWindow::on_addLesson_PB_clicked()
 {
     QString heading = ui->heading_LE->text();
@@ -372,51 +371,54 @@ void MainWindow::UpdateExams()
     {
         examNames.push_back(qry.value(2).toString());
     }
-    QWidget* examsWidget = ui->exams_WG;
-    int yOffset = 0; // Initial vertical offset
 
+    QWidget* examsWidget = new QWidget(ui->scrollAreaWidgetContents); // Create a new widget to hold all the exams
+    QVBoxLayout *layout = new QVBoxLayout(examsWidget); // Create a vertical layout for the widget
+    layout->setAlignment(Qt::AlignTop); // Align widgets to the top
 
     for (const QString& exam : examNames) {
-        QLabel *iconLabel = new QLabel(examsWidget);
+        QWidget *examWidget = new QWidget; // Create a widget for each exam
+        examWidget->setFixedSize(500, 50);
+        QLabel *iconLabel = new QLabel; // Create icon label
         iconLabel->setObjectName(exam + "_icon_LA"); // Set object name
         QPixmap icon(":/Resources/Images/icons/Test Results.png");
         iconLabel->setPixmap(icon);
-        iconLabel->setGeometry(20, yOffset, 50, 50);
         iconLabel->setStyleSheet("background-color:transparent");
 
-        QLabel *label = new QLabel(exam, examsWidget);
+        QLabel *label = new QLabel(exam, examWidget); // Create label for the exam name
         label->setObjectName(exam + "_LA"); // Set object name
         label->setStyleSheet("QLabel { color: black; font-size: 16px; }");
-        label->setGeometry(50, yOffset, 100, 50);
+        label->setGeometry(20, 0, 100, 50);
 
-        QPushButton *acessExam = new QPushButton(examsWidget);
-        acessExam->setObjectName(exam + "_acessExam_PB"); // Set object name
-        acessExam->setStyleSheet("background-color: transparent; border: 1px solid black;");
-        acessExam->setGeometry(10, yOffset, 500, 50);
-        connect(acessExam, &QPushButton::clicked, this, [=]() { accessExam(exam); });
+        QPushButton *EnterExam = new QPushButton(examWidget); // Create button to access the exam
+        EnterExam->setObjectName(exam + "_accessExam_PB"); // Set object name
+        EnterExam->setStyleSheet("background-color: transparent; border: 1px solid black;");
+        EnterExam->setFixedSize(500, 50);
+        connect(EnterExam, &QPushButton::clicked, this, [=]() { accessExam(exam); });
 
-        QPushButton *deleteButton = new QPushButton(examsWidget);
+
+        QPushButton *deleteButton = new QPushButton(examWidget); // Create button to delete the exam
         deleteButton->setObjectName(exam + "_delete_PB"); // Set object name
-        deleteButton->setGeometry(465, yOffset + 5, 40, 40);
         QIcon closeIcon(":/Resources/Images/icons/Close.png");
         deleteButton->setIcon(closeIcon);
         deleteButton->setIconSize(QSize(30, 30));
         deleteButton->setStyleSheet("background-color: #900C0C; border: none;");
+        deleteButton->setGeometry(455, 5, 40, 40);
         connect(deleteButton, &QPushButton::clicked, this, [=]() { deleteExam(exam); });
 
-        QPushButton *editButton = new QPushButton(examsWidget);
+        QPushButton *editButton = new QPushButton(examWidget); // Create button to edit the exam
         editButton->setObjectName(exam + "_edit_PB"); // Set object name
-        editButton->setGeometry(420, yOffset, 50, 50);
         QIcon editIcon(":/Resources/Images/icons/Edit.png");
         editButton->setIcon(editIcon);
         editButton->setIconSize(QSize(30, 30));
-        editButton->setStyleSheet("background-color: transparent; border: none;"); // Customize the appearance
+        editButton->setGeometry(420, 5, 40 ,40);
+        editButton->setStyleSheet("background-color: transparent; border: none;");
         connect(editButton, &QPushButton::clicked, this, [=]() { editExam(exam); });
 
-
-        yOffset += 75;
+        layout->addWidget(examWidget); // Add the exam widget to the layout
     }
 
+    ui->scrollArea_6->setWidget(examsWidget); // Set the widget containing all exams as the content of the scroll area
 }
 
 
@@ -431,47 +433,46 @@ void MainWindow::UpdateQuestions(const QString& examName)
         return;
     }
 
-    QString question;
     while(qry.next())
     {
         questions.push_back(qry.value(2).toString());
     }
 
-    QWidget* questionsWidget = new QWidget; // Create a new widget to hold all the questions
+    QWidget* questionsWidget = new QWidget(ui->CreateExam); // Create a new widget to hold all the questions
     QVBoxLayout *layout = new QVBoxLayout(questionsWidget); // Create a vertical layout for the widget
     layout->setAlignment(Qt::AlignTop);
     for (const QString& question : questions) {
         QWidget *questionWidget = new QWidget; // Create a widget for each question
 
         // Set fixed size for the question widget
-        questionWidget->setFixedSize(800, 100);
+        questionWidget->setFixedSize(800, 70);
 
-        QHBoxLayout *questionLayout = new QHBoxLayout(questionWidget); // Create a horizontal layout for each question
 
-        QPushButton *accessExam = new QPushButton; // Create button to access the exam
-        accessExam->setText(question);
+        QLabel *label = new QLabel(question, questionWidget);
+        label->setObjectName(question + "_LA"); // Set object name
+        label->setStyleSheet("QLabel { color: black; font-size: 16px; }");
+        label->setGeometry(20, 0, 100, 50);
+
+        QPushButton *accessExam = new QPushButton(questionWidget); // Create button to access the exam
         accessExam->setStyleSheet("background-color: transparent; border: 1px solid black; color: black;");
         connect(accessExam, &QPushButton::clicked, this, [=]() { accessQuestion(question); });
         accessExam->setFixedSize(500, 50);
-        questionLayout->addWidget(accessExam);
 
-        QPushButton *deleteButton = new QPushButton; // Create button to delete the question
+        QPushButton *deleteButton = new QPushButton(questionWidget); // Create button to delete the question
         QIcon closeIcon(":/Resources/Images/icons/Close.png");
         deleteButton->setIcon(closeIcon);
         deleteButton->setIconSize(QSize(30, 30));
+        deleteButton->setGeometry(455, 5, 40, 40);
         deleteButton->setStyleSheet("background-color: #900C0C; border: none; color: black;");
         connect(deleteButton, &QPushButton::clicked, this, [=]() { deleteQuestion(examName); });
-        deleteButton->setFixedSize(40, 40);
-        questionLayout->addWidget(deleteButton);
 
-        QPushButton *editButton = new QPushButton; // Create button to edit the question
+        QPushButton *editButton = new QPushButton(questionWidget); // Create button to edit the question
         QIcon editIcon(":/Resources/Images/icons/Edit.png");
         editButton->setIcon(editIcon);
         editButton->setIconSize(QSize(30, 30));
+        editButton->setGeometry(420, 5, 40 ,40);
         editButton->setStyleSheet("background-color: transparent; border: none; color: black;");
         connect(editButton, &QPushButton::clicked, this, [=]() { editExam(accessExam->objectName()); });
-        editButton->setFixedSize(50, 50);
-        questionLayout->addWidget(editButton);
 
         layout->addWidget(questionWidget); // Add the question widget to the layout
     }
@@ -552,6 +553,10 @@ void MainWindow::accessExam(const QString& examName)
     ui->examName_LE->setText(examName);
     ui->publishExam_PB->setText("Edit exam");
     UpdateQuestions(examName);
+
+    // ui->Exams_SW->setCurrentIndex(6);
+    // QWidget* QuestionsWidget = ui->scrollAreaWidgetContents_4;
+    // QWidget* questionWidget = ui->question_WG;
 }
 
 void MainWindow::deleteExam(const QString& examName){

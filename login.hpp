@@ -4,11 +4,11 @@
 #include <QWidget>
 #include <QPainter>
 #include <QDebug>
-#include "requestaccess.hpp"
 #include "sha256.hpp"
 class Register;
 class DatabaseManager;
 class MainWindow;
+class RequestAccess;
 namespace Ui {
 class LogIn;
 }
