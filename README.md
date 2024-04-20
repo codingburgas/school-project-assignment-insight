@@ -42,3 +42,5 @@ You can download our project by using the green "Code" button.
 Or by pasting the following code in your CMD:
 git clone https://github.com/codingburgas/school-project-assignment-insight.git
 ```
+
+## Since you came all the way down here, why don't you give us a ⭐ :)
