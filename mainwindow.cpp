@@ -390,11 +390,11 @@ void MainWindow::UpdateExams()
         label->setStyleSheet("QLabel { color: black; font-size: 16px; }");
         label->setGeometry(20, 0, 100, 50);
 
-        QPushButton *EnterExam = new QPushButton(examWidget); // Create button to access the exam
-        EnterExam->setObjectName(exam + "_accessExam_PB"); // Set object name
-        EnterExam->setStyleSheet("background-color: transparent; border: 1px solid black;");
-        EnterExam->setFixedSize(500, 50);
-        connect(EnterExam, &QPushButton::clicked, this, [=]() { accessExam(exam); });
+        QPushButton *accessExam = new QPushButton(examWidget); // Create button to access the exam
+        accessExam->setObjectName(exam + "_accessExam_PB"); // Set object name
+        accessExam->setStyleSheet("background-color: transparent; border: 1px solid black;");
+        accessExam->setFixedSize(500, 50);
+        connect(accessExam, &QPushButton::clicked, this, [=]() { EnterExam(exam); });
 
 
         QPushButton *deleteButton = new QPushButton(examWidget); // Create button to delete the exam
@@ -472,7 +472,7 @@ void MainWindow::UpdateQuestions(const QString& examName)
         editButton->setIconSize(QSize(30, 30));
         editButton->setGeometry(420, 5, 40 ,40);
         editButton->setStyleSheet("background-color: transparent; border: none; color: black;");
-        connect(editButton, &QPushButton::clicked, this, [=]() { editExam(accessExam->objectName()); });
+        connect(editButton, &QPushButton::clicked, this, [=]() { editQuestion(question); });
 
         layout->addWidget(questionWidget); // Add the question widget to the layout
     }
@@ -483,7 +483,12 @@ void MainWindow::UpdateQuestions(const QString& examName)
 
 void MainWindow::accessQuestion(const QString& examName)
 {
-    qDebug() << examName;
+
+}
+
+
+void MainWindow::editQuestion(const QString& examName)
+{
     ui->Exams_SW->setCurrentIndex(5);
     QSqlQuery qry;
     qry.prepare("SELECT * FROM questions WHERE Question = :examName");
@@ -531,11 +536,6 @@ void MainWindow::accessQuestion(const QString& examName)
                 checkBox->setChecked(true);
         }
     }
-}
-
-
-void MainWindow::editQuestion(const QString& examName)
-{
 
 }
 void MainWindow::deleteQuestion(const QString& examName)
@@ -543,20 +543,98 @@ void MainWindow::deleteQuestion(const QString& examName)
 
 }
 
-void MainWindow::accessExam(const QString& examName)
+void MainWindow::EnterExam(const QString& examName)
 {
-    UpdateQuestions(examName);
-    ui->Exams_SW->setCurrentIndex(4);
-    ui->examName_LA->hide();
-    ui->examName_LE->hide();
-    ui->subject_LA->setText("Exam " + examName);
-    ui->examName_LE->setText(examName);
-    ui->publishExam_PB->setText("Edit exam");
-    UpdateQuestions(examName);
+    QString questionDB;
+    QString answerA;
+    QString answerB;
+    QString answerC;
+    QString answerD;
+    QString pointsDB;
+    qDebug() << examName;
+    questions.clear();
+    ui->Exams_SW->setCurrentIndex(6);
 
-    // ui->Exams_SW->setCurrentIndex(6);
-    // QWidget* QuestionsWidget = ui->scrollAreaWidgetContents_4;
-    // QWidget* questionWidget = ui->question_WG;
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM questions WHERE `Exam Name` = :examName");
+    qry.bindValue(":examName", examName);
+    if (!qry.exec()) {
+        qDebug() << "Error executing query:" << qry.lastError().text();
+        return;
+    }
+
+    while(qry.next())
+    {
+        questions.push_back(qry.value(2).toString());
+        questionDB = qry.value("Question").toString();
+        answerA = qry.value("Answer1").toString();
+        answerB = qry.value("Answer2").toString();
+        answerC = qry.value("Answer3").toString();
+        answerD = qry.value("Answer4").toString();
+        pointsDB = qry.value("Points").toString();
+    }
+
+    QWidget* questionsWidget = new QWidget(ui->ExamOverview); // Create a new widget to hold all the questions
+    QVBoxLayout *layout = new QVBoxLayout(questionsWidget); // Create a vertical layout for the widget
+    layout->setAlignment(Qt::AlignTop);
+    int counter = 1;
+    for (const QString& question : questions) {
+        counter++;
+        qDebug() << questionDB;
+
+        QWidget *questionWidget = new QWidget; // Create a widget for each question
+
+        // Set fixed size for the question widget
+        questionWidget->setFixedSize(470, 300);
+        questionsWidget->setStyleSheet("border: 1px solid black;");
+
+
+        QLabel *questionNumber = new QLabel("Question 1", questionWidget);
+        questionNumber->setObjectName(questionDB + "_number_LA"); // Set object name
+        questionNumber->setText("Question ");
+        questionNumber->setStyleSheet("QLabel{background-color:transparent;qproperty-alignment: AlignLeft;color:black;font: 16pt;border:none;}");
+        questionNumber->setGeometry(10, 10, 190, 20);
+
+        QLabel *points = new QLabel("Points: ", questionWidget);
+        points->setText("Points: " + pointsDB);
+        points->setObjectName(questionDB + "_points_LA"); // Set object name
+        points->setStyleSheet("QLabel{background-color:transparent;qproperty-alignment: AlignRight;color:black;font: 16pt;border:none;}");
+        points->setGeometry(230, 10, 230, 20);
+
+        QLabel *question_LA = new QLabel(questionDB, questionWidget);
+        question_LA->setObjectName(questionDB + "_LA"); // Set object name
+        question_LA->setStyleSheet("QLabel{background-color:transparent;qproperty-alignment: AlignCenter;color:black;font: 16pt;border:none;}");
+        question_LA->setGeometry(10, 60, 450, 20);
+
+        QCheckBox *answer1 = new QCheckBox("A: ", questionWidget);
+        answer1->setObjectName(questionDB + "_CB"); // Set object name
+        answer1->setText("A: " + answerA);
+        answer1->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
+        answer1->setGeometry(30, 120, 180, 70);
+
+        QCheckBox *answer2 = new QCheckBox("B: ", questionWidget);
+        answer2->setObjectName(questionDB + "_CB"); // Set object name
+        answer2->setText("B: " + answerB);
+        answer2->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
+        answer2->setGeometry(240, 120, 180, 70);
+
+        QCheckBox *answer3 = new QCheckBox("C: ", questionWidget);
+        answer3->setObjectName(questionDB + "_CB"); // Set object name
+        answer3->setText("C: " + answerC);
+        answer3->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
+        answer3->setGeometry(30, 210, 180, 70);
+
+        QCheckBox *answer4 = new QCheckBox("D: ", questionWidget);
+        answer4->setObjectName(questionDB + "_CB"); // Set object name
+        answer4->setText("D: " + answerD);
+        answer4->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
+        answer4->setGeometry(240, 210, 180, 70);
+
+        layout->addWidget(questionWidget); // Add the question widget to the layout
+    }
+
+    ui->scrollArea_4->setWidget(questionsWidget); // Set the widget containing all questions as the content of the scroll area
+
 }
 
 void MainWindow::deleteExam(const QString& examName){
@@ -600,10 +678,18 @@ void MainWindow::deleteExam(const QString& examName){
 
 }
 void MainWindow::editExam(const QString& examName){
-    ui->Exams_SW->setCurrentIndex(4);
     UpdateQuestions(examName);
+    ui->Exams_SW->setCurrentIndex(4);
+    ui->examName_LA->hide();
+    ui->examName_LE->hide();
+    ui->subject_LA->setText("Exam " + examName);
     ui->examName_LE->setText(examName);
     ui->publishExam_PB->setText("Edit exam");
+    UpdateQuestions(examName);
+
+    // ui->Exams_SW->setCurrentIndex(6);
+    // QWidget* QuestionsWidget = ui->scrollAreaWidgetContents_4;
+    // QWidget* questionWidget = ui->question_WG;
 }
 
 
@@ -641,4 +727,58 @@ void MainWindow::on_closedAnswers_CB_stateChanged(int arg1)
 
     }
 }
+
+
+void MainWindow::on_submitExam_PB_clicked()
+{
+    // Find all widgets within the scroll area
+    QList<QWidget*> allWidgets = ui->scrollArea_4->findChildren<QWidget*>();
+    qDebug() << "Total widgets found in scroll area:" << allWidgets.size();
+
+    // Iterate through all found widgets
+    for (QWidget* questionWidget : allWidgets) {
+        // Find the question label within the current question widget
+        QLabel* questionLabel = questionWidget->findChild<QLabel*>(questionWidget->objectName() + "_LA");
+        if (questionLabel) {
+            qDebug() << "Processing question:" << questionLabel->text();
+
+            QString questionText = questionLabel->text();
+            QStringList checkedAnswers;
+
+            // Find all checkboxes within the current question widget
+            QList<QCheckBox*> checkboxes = questionWidget->findChildren<QCheckBox*>();
+            for (QCheckBox* checkbox : checkboxes) {
+                // Check if the checkbox is a direct child of the current question widget
+                if (checkbox->parentWidget() == questionWidget) {
+                    // If the checkbox is checked, add its text to the list of checked answers
+                    if (checkbox->isChecked()) {
+                        QString answerText = checkbox->text();
+                        // Remove the prefix
+                        answerText.remove(0, 3); // Remove the first 3 characters (e.g., "D: ")
+                        qDebug() << "  Checked answer:" << answerText;
+                        checkedAnswers.append(answerText);
+                    }
+                }
+            }
+
+            // Add the question and its checked answers to the map
+            answersMap.insert(questionText, checkedAnswers);
+        }
+    }
+
+    // Output the map for testing or further processing
+    QMapIterator<QString, QStringList> iter(answersMap);
+    while (iter.hasNext()) {
+        iter.next();
+        qDebug() << "Question:" << iter.key() << "Checked answers:" << iter.value();
+    }
+}
+
+
+
+
+void MainWindow::Grade(QString question, QString answer){
+
+}
+
 

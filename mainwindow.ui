@@ -4204,7 +4204,7 @@ font: 13pt &quot;Segoe UI&quot;;</string>
           <string notr="true">border:none;</string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page">
           <widget class="QLineEdit" name="answerB_LE">
@@ -4538,7 +4538,7 @@ color:black;
           <x>20</x>
           <y>30</y>
           <width>801</width>
-          <height>591</height>
+          <height>541</height>
          </rect>
         </property>
         <property name="widgetResizable">
@@ -4550,171 +4550,28 @@ color:black;
            <x>0</x>
            <y>0</y>
            <width>801</width>
-           <height>591</height>
+           <height>541</height>
           </rect>
          </property>
-         <widget class="QWidget" name="question_WG" native="true">
-          <property name="geometry">
-           <rect>
-            <x>50</x>
-            <y>110</y>
-            <width>471</width>
-            <height>311</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border:1px solid black;</string>
-          </property>
-          <widget class="QLabel" name="questionNumber_LA">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>10</y>
-             <width>191</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QLabel
-{
-background-color:transparent;
-    qproperty-alignment: AlignLeft;
-color:black;
-	font: 16pt &quot;Segoe UI&quot;;
-border:none;
-
-}</string>
-           </property>
-           <property name="text">
-            <string>Question Number</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="points_exam_LA">
-           <property name="geometry">
-            <rect>
-             <x>190</x>
-             <y>10</y>
-             <width>231</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QLabel
-{
-background-color:transparent;
-    qproperty-alignment: AlignRight;
-color:black;
-	font: 16pt &quot;Segoe UI&quot;;
-border:none;
-
-}</string>
-           </property>
-           <property name="text">
-            <string>Points:</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="question_exam_LA">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>60</y>
-             <width>451</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QLabel
-{
-background-color:transparent;
-    qproperty-alignment: AlignCenter;
-color:black;
-	font: 16pt &quot;Segoe UI&quot;;
-border:none;
-
-}</string>
-           </property>
-           <property name="text">
-            <string>Question</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox">
-           <property name="geometry">
-            <rect>
-             <x>30</x>
-             <y>120</y>
-             <width>181</width>
-             <height>71</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color:transparent;
-color:black;
-font: 16pt &quot;Segoe UI&quot;;
-border:none;</string>
-           </property>
-           <property name="text">
-            <string>A:</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox_2">
-           <property name="geometry">
-            <rect>
-             <x>240</x>
-             <y>120</y>
-             <width>201</width>
-             <height>81</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color:transparent;
-color:black;
-font: 16pt &quot;Segoe UI&quot;;
-border:none;</string>
-           </property>
-           <property name="text">
-            <string>C:</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox_3">
-           <property name="geometry">
-            <rect>
-             <x>30</x>
-             <y>210</y>
-             <width>191</width>
-             <height>81</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color:transparent;
-color:black;
-font: 16pt &quot;Segoe UI&quot;;
-border:none;</string>
-           </property>
-           <property name="text">
-            <string>B:</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox_4">
-           <property name="geometry">
-            <rect>
-             <x>240</x>
-             <y>210</y>
-             <width>201</width>
-             <height>91</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color:transparent;
-color:black;
-font: 16pt &quot;Segoe UI&quot;;
-border:none;</string>
-           </property>
-           <property name="text">
-            <string>D:</string>
-           </property>
-          </widget>
-         </widget>
         </widget>
+       </widget>
+       <widget class="QPushButton" name="submitExam_PB">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>590</y>
+          <width>501</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#2E2E2E;
+color:white;
+border-radius:10px;</string>
+        </property>
+        <property name="text">
+         <string>Submit exam</string>
+        </property>
        </widget>
       </widget>
      </widget>

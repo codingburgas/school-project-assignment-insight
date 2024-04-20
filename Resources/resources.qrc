@@ -1,9 +1,6 @@
 <RCC>
     <qresource prefix="/Resources">
         <file>Images/3DBook.png</file>
-        <file>Fonts/Outfit-Bold.ttf</file>
-        <file>Fonts/Outfit-Regular.ttf</file>
-        <file>Images/logo-color 1.png</file>
         <file>Images/logo-color 2.png</file>
         <file>Images/icons/calendar.png</file>
         <file>Images/icons/Chevron Up.png</file>

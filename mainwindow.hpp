@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QSqlQuery>
 #include <QMessageBox>
+#include <QComboBox>
 
 namespace Ui {
 class MainWindow;
@@ -58,7 +59,6 @@ private slots:
 
     void on_createQuestion_PB_clicked();
 
-    void accessExam(const QString& examName);
     void deleteExam(const QString& examName);
     void editExam(const QString& examName);
     void accessQuestion(const QString& examName);
@@ -69,7 +69,11 @@ private slots:
     void on_publishExam_PB_clicked();
 
     void on_closedAnswers_CB_stateChanged(int arg1);
+    void EnterExam(const QString& examName);
 
+
+
+    void on_submitExam_PB_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -78,6 +82,8 @@ private:
     void UpdateLessons();
     void UpdateExams();
     void UpdateQuestions(const QString& examName);
+
+    void Grade(QString question, QString answer);
     std::vector<QString> lessonHeadings;
     std::vector<QString> lessonText;
     std::vector<QString> examNames;
