@@ -6,7 +6,6 @@ RequestAccess::RequestAccess(QWidget *parent)
     , ui(new Ui::RequestAccess)
 {
     ui->setupUi(this);
-    m_logIn = std::make_shared<LogIn>();
 
 }
 
@@ -46,6 +45,7 @@ void RequestAccess::paintEvent(QPaintEvent *)
 void RequestAccess::on_back_PB_clicked()
 {
     this->hide();
+    m_logIn = std::make_shared<LogIn>();
     m_logIn->show();
 }
 

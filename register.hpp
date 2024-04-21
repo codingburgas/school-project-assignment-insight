@@ -11,6 +11,8 @@
 #include <QSqlError>
 #include "sha256.hpp"
 
+
+class LogIn;
 namespace Ui {
 class Register;
 }
@@ -27,6 +29,8 @@ public:
 private slots:
     void on_register_PB_clicked();
 
+    void on_goBack_PB_clicked();
+
 private:
     Ui::Register *ui;
 
@@ -34,6 +38,7 @@ private:
 
     std::shared_ptr<QComboBox> m_BirthYear;
     std::shared_ptr<SHA256> m_SHA256;
+    std::shared_ptr<LogIn> m_login;
 
     int monthToNumber(QString& month);
 };

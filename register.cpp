@@ -1,5 +1,6 @@
 #include "register.hpp"
 #include "ui_register.h"
+#include "login.hpp"
 Register::Register(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Register)
@@ -114,8 +115,10 @@ void Register::on_register_PB_clicked()
     qry.bindValue(":Date_Of_Birth", birth);
     qry.bindValue(":Password_Salt", salt);
     if (qry.exec()) {
-        QMessageBox::information(this, "Success", "Your registration to Trawma Bank has been successful. \n\nRedirecting to the login page..");
+        QMessageBox::information(this, "Success", "Your registration to Insight has been successfull. \n\nRedirecting to the login page..");
+        m_login = std::make_shared<LogIn>();
         this->hide();
+        m_login->show();
 
     }
     else
@@ -123,5 +126,13 @@ void Register::on_register_PB_clicked()
         qDebug() << qry.lastError();
     }
 
+}
+
+
+void Register::on_goBack_PB_clicked()
+{
+    m_login = std::make_shared<LogIn>();
+    this->hide();
+    m_login->show();
 }
 
