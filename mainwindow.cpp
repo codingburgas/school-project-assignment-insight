@@ -8,26 +8,14 @@ MainWindow::MainWindow(LogIn* login, const QString& username_ref, QWidget *paren
     ui->setupUi(this);
     ui->Courses_SW->setCurrentIndex(1);
 
-    UpdateLessons();
     UpdateExams();
-
-    ui->scrollArea_3->setWidgetResizable(true); // Allow the widget to resize with the scroll area
-    ui->scrollArea_3->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding); // Set size policy
-
-    // Set scroll area widget
-    ui->scrollArea_3->setWidget(ui->scrollAreaWidgetContents_3);
-
-    // Add widgets and adjust their sizes and geometries
-
-    // After adding all widgets, adjust the size of the widget contents
-    ui->scrollAreaWidgetContents_3->adjustSize();
-
-    // Set scrollbar policy
-    ui->scrollArea_3->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
     ui->questionType_SW->setCurrentIndex(0);
 
     m_username = username_ref;
+
+    ui->Navbar->setCurrentIndex(2);
+    ui->Courses_SW->setCurrentIndex(1);
 
 }
 
@@ -48,7 +36,6 @@ void MainWindow::handleCourseButtons(const QString &heading)
     {
         while(qry.next()) {
             ui->lesson_TB->setText(qry.value(0).toString());
-            qDebug() << qry.value(0);
         }
     }
     else
@@ -79,6 +66,7 @@ void MainWindow::paintEvent(QPaintEvent *)
 
 void MainWindow::on_ITCourses_PB_clicked()
 {
+    ui->Navbar->setCurrentIndex(2);
     ui->Courses_SW->setCurrentIndex(1);
 }
 
@@ -104,12 +92,15 @@ void MainWindow::on_schedule_PB_clicked()
 void MainWindow::on_classes_PB_clicked()
 {
     ui->Navbar->setCurrentIndex(2);
+    ui->Courses_SW->setCurrentIndex(1);
 }
 
 
 void MainWindow::on_excelSpecialistCourse_PB_clicked()
 {
-    ui->Courses_SW->setCurrentIndex(5);
+    ui->Navbar->setCurrentIndex(7);
+    UpdateLessons("Excel Specialist");
+    ui->subject_LA->setText("Excel Specialist");
 }
 
 
@@ -119,11 +110,12 @@ void MainWindow::on_createLesson_PB_clicked()
 }
 
 
-void MainWindow::UpdateLessons()
+void MainWindow::UpdateLessons(QString subject)
 {
     lessonHeadings.clear();
     QSqlQuery qry;
-    qry.prepare("SELECT * FROM lessons");
+    qry.prepare("SELECT * FROM lessons WHERE Subject = :subject");
+    qry.bindValue(":subject", subject);
 
     if (!qry.exec()) {
         qDebug() << "Error executing query:" << qry.lastError().text();
@@ -132,12 +124,12 @@ void MainWindow::UpdateLessons()
 
     while(qry.next())
     {
-        lessonHeadings.push_back(qry.value(1).toString());
+        lessonHeadings.push_back(qry.value("Heading").toString());
     }
 
     QWidget* lessonWidget = new QWidget(ui->courses_WG); // Create a new widget to hold all the lessons
     QVBoxLayout *layout = new QVBoxLayout(lessonWidget); // Create a vertical layout for the widget
-
+    layout->setAlignment(Qt::AlignTop);
     for (const QString& heading : lessonHeadings) {
         QWidget *lessonItemWidget = new QWidget; // Create a widget for each lesson
         lessonItemWidget->setFixedSize(800, 70);
@@ -149,7 +141,7 @@ void MainWindow::UpdateLessons()
         QLabel *label = new QLabel(heading, lessonItemWidget);
         label->setObjectName(heading + "_LA"); // Set object name
         label->setStyleSheet("QLabel { color: black; font-size: 16px; }");
-        label->setGeometry(10, 0, 100, 50);
+        label->setGeometry(10, 0, 400, 50);
 
         QPushButton *accessCourse = new QPushButton(lessonItemWidget); // Create button to access the course
         accessCourse->setFixedSize(500,50);
@@ -182,15 +174,17 @@ void MainWindow::on_addLesson_PB_clicked()
 {
     QString heading = ui->heading_LE->text();
     QString lesson = ui->material_PTE->toPlainText();
+    QString subject = ui->subject_LA->text();
     QSqlQuery qry;
 
-    qry.prepare("INSERT INTO lessons(Heading, Lesson) "
-                "VALUES (:heading, :lesson)");
+    qry.prepare("INSERT INTO lessons(Subject, Heading, Lesson) "
+                "VALUES (:subject, :heading, :lesson)");
+    qry.bindValue(":subject", subject);
     qry.bindValue(":heading", heading);
     qry.bindValue(":lesson", lesson);
     if (qry.exec()) {
         QMessageBox::information(this, "Success", "You have successfully published a lesson.");
-        UpdateLessons();
+        UpdateLessons(subject);
         ui->Navbar->setCurrentIndex(2);
         ui->heading_LE->clear();
         ui->material_PTE->clear();
@@ -214,8 +208,8 @@ void MainWindow::editLesson(const QString& heading)
     qry.bindValue(":heading", heading);
 
     if(qry.exec() && qry.next()) {
-        ui->heading_LE->setText(qry.value(1).toString());
-        ui->material_PTE->setPlainText(qry.value(2).toString());
+        ui->heading_LE->setText(qry.value("Heading").toString());
+        ui->material_PTE->setPlainText(qry.value("Lesson").toString());
         ui->addLesson_PB->setText("Update Lesson");
     } else {
         qDebug() << qry.lastError();
@@ -256,7 +250,7 @@ void MainWindow::deleteLesson(const QString &heading) {
             delete iconButton;
         }
 
-        UpdateLessons();
+        UpdateLessons(ui->subject_LA->text());
     }
     else
     {
@@ -270,13 +264,13 @@ void MainWindow::on_goBack_PB_clicked()
 {
     ui->heading_LA->clear();
     ui->material_PTE->clear();
-    ui->Navbar->setCurrentIndex(2);
+    ui->Navbar->setCurrentIndex(7);
 }
 
 
 void MainWindow::on_goBack_lesson_PB_clicked()
 {
-    ui->Navbar->setCurrentIndex(2);
+    ui->Navbar->setCurrentIndex(7);
 }
 
 
@@ -288,20 +282,22 @@ void MainWindow::on_exams_PB_clicked()
 
 void MainWindow::on_excelSpecialist_PB_clicked()
 {
-    ui->Exams_SW->setCurrentIndex(3);
+    ui->Navbar->setCurrentIndex(8);
+    ui->createExam_SW->setCurrentIndex(3);
+    ui->subject_exam_LA->setText("Excel Specialist");
 }
 
 
 
 void MainWindow::on_createExam_PB_clicked()
 {
-    ui->Exams_SW->setCurrentIndex(4);
+    ui->createExam_SW->setCurrentIndex(0);
 }
 
 
 void MainWindow::on_addQuestion_PB_clicked()
 {
-    ui->Exams_SW->setCurrentIndex(5);
+    ui->createExam_SW->setCurrentIndex(1);
 }
 
 
@@ -315,7 +311,7 @@ void MainWindow::on_createQuestion_PB_clicked()
     QString answerB = ui->answerB_LE->text();
     QString answerC = ui->answerC_LE->text();
     QString answerD = ui->answerD_LE->text();
-    QString correctAnswers;
+    QString answer;
     QString points = ui->points_LE->text();
 
     for(int i = 0; i <= 4; i++)
@@ -328,15 +324,14 @@ void MainWindow::on_createQuestion_PB_clicked()
             QLineEdit* answerLineEdit = findChild<QLineEdit*>(answerLineEditName);
             if(answerLineEdit)
             {
-                QString answer = answerLineEdit->text();
-                correctAnswers += answer + ";";
+                answer = answerLineEdit->text();
             }
         }
     }
 
     QSqlQuery qry;
-    qry.prepare("INSERT INTO questions(`Exam Name`, `Question`, `Answer1`, `Answer2`, `Answer3`, `Answer4`, `Open Answer`, `Correct Answers`, `Points`)"
-                "VALUES(:examName, :question, :answer1, :answer2, :answer3, :answer4, :openAnswer, :correctAnswers, :points)");
+    qry.prepare("INSERT INTO questions(`Exam Name`, `Question`, `Answer1`, `Answer2`, `Answer3`, `Answer4`, `Open Answer`, `Correct Answer`, `Points`)"
+                "VALUES(:examName, :question, :answer1, :answer2, :answer3, :answer4, :openAnswer, :correctAnswer, :points)");
     qry.bindValue(":examName", examName);
     qry.bindValue(":question", question);
     qry.bindValue(":answer1", answerA);
@@ -344,7 +339,7 @@ void MainWindow::on_createQuestion_PB_clicked()
     qry.bindValue(":answer3", answerC);
     qry.bindValue(":answer4", answerD);
     qry.bindValue(":openAnswer", openAnswer);
-    qry.bindValue(":correctAnswers", correctAnswers);
+    qry.bindValue(":correctAnswer", answer);
     qry.bindValue(":points", points);
     if(!qry.exec())
     {
@@ -353,7 +348,7 @@ void MainWindow::on_createQuestion_PB_clicked()
     else
     {
         QMessageBox::information(this, "Success", "Question added");
-        ui->Exams_SW->setCurrentIndex(4);
+        ui->createExam_SW->setCurrentIndex(0);
         UpdateQuestions(examName);
     }
 }
@@ -371,7 +366,7 @@ void MainWindow::UpdateExams()
 
     while(qry.next())
     {
-        examNames.push_back(qry.value(2).toString());
+        examNames.push_back(qry.value("Exam Name").toString());
     }
 
     QWidget* examsWidget = new QWidget(ui->scrollAreaWidgetContents); // Create a new widget to hold all the exams
@@ -390,7 +385,7 @@ void MainWindow::UpdateExams()
         QLabel *label = new QLabel(exam, examWidget); // Create label for the exam name
         label->setObjectName(exam + "_LA"); // Set object name
         label->setStyleSheet("QLabel { color: black; font-size: 16px; }");
-        label->setGeometry(20, 0, 100, 50);
+        label->setGeometry(20, 0, 500, 50);
 
         QPushButton *accessExam = new QPushButton(examWidget); // Create button to access the exam
         accessExam->setObjectName(exam + "_accessExam_PB"); // Set object name
@@ -437,10 +432,10 @@ void MainWindow::UpdateQuestions(const QString& examName)
 
     while(qry.next())
     {
-        questions.push_back(qry.value(2).toString());
+        questions.push_back(qry.value("Question").toString());
     }
 
-    QWidget* questionsWidget = new QWidget(ui->CreateExam); // Create a new widget to hold all the questions
+    QWidget* questionsWidget = new QWidget(ui->scrollArea_6); // Create a new widget to hold all the questions
     QVBoxLayout *layout = new QVBoxLayout(questionsWidget); // Create a vertical layout for the widget
     layout->setAlignment(Qt::AlignTop);
     for (const QString& question : questions) {
@@ -453,18 +448,17 @@ void MainWindow::UpdateQuestions(const QString& examName)
         QLabel *label = new QLabel(question, questionWidget);
         label->setObjectName(question + "_LA"); // Set object name
         label->setStyleSheet("QLabel { color: black; font-size: 16px; }");
-        label->setGeometry(20, 0, 100, 50);
+        label->setGeometry(20, 0, 700, 50);
 
         QPushButton *accessExam = new QPushButton(questionWidget); // Create button to access the exam
         accessExam->setStyleSheet("background-color: transparent; border: 1px solid black; color: black;");
-        connect(accessExam, &QPushButton::clicked, this, [=]() { accessQuestion(question); });
-        accessExam->setFixedSize(500, 50);
+        accessExam->setFixedSize(700, 50);
 
         QPushButton *deleteButton = new QPushButton(questionWidget); // Create button to delete the question
         QIcon closeIcon(":/Resources/Images/icons/Close.png");
         deleteButton->setIcon(closeIcon);
         deleteButton->setIconSize(QSize(30, 30));
-        deleteButton->setGeometry(455, 5, 40, 40);
+        deleteButton->setGeometry(655, 5, 40, 40);
         deleteButton->setStyleSheet("background-color: #900C0C; border: none; color: black;");
         connect(deleteButton, &QPushButton::clicked, this, [=]() { deleteQuestion(examName); });
 
@@ -472,7 +466,7 @@ void MainWindow::UpdateQuestions(const QString& examName)
         QIcon editIcon(":/Resources/Images/icons/Edit.png");
         editButton->setIcon(editIcon);
         editButton->setIconSize(QSize(30, 30));
-        editButton->setGeometry(420, 5, 40 ,40);
+        editButton->setGeometry(620, 5, 40 ,40);
         editButton->setStyleSheet("background-color: transparent; border: none; color: black;");
         connect(editButton, &QPushButton::clicked, this, [=]() { editQuestion(question); });
 
@@ -483,15 +477,9 @@ void MainWindow::UpdateQuestions(const QString& examName)
 
 }
 
-void MainWindow::accessQuestion(const QString& examName)
-{
-
-}
-
-
 void MainWindow::editQuestion(const QString& examName)
 {
-    ui->Exams_SW->setCurrentIndex(5);
+    ui->createExam_SW->setCurrentIndex(1);
     QSqlQuery qry;
     qry.prepare("SELECT * FROM questions WHERE Question = :examName");
     qry.bindValue(":examName", examName);
@@ -548,7 +536,7 @@ void MainWindow::deleteQuestion(const QString& examName)
 void MainWindow::EnterExam(const QString& examName)
 {
     questions.clear();
-    ui->Exams_SW->setCurrentIndex(6);
+    ui->createExam_SW->setCurrentIndex(2);
 
     QSqlQuery qry;
     qry.prepare("SELECT * FROM questions WHERE `Exam Name` = :examName");
@@ -560,7 +548,7 @@ void MainWindow::EnterExam(const QString& examName)
 
     while(qry.next())
     {
-        questions.push_back(qry.value(2).toString());
+        questions.push_back(qry.value("Question").toString());
     }
 
     QWidget* questionsWidget = new QWidget(ui->ExamOverview); // Create a new widget to hold all the questions
@@ -573,29 +561,31 @@ void MainWindow::EnterExam(const QString& examName)
         if(qry.exec())
         {
             while(qry.next()){
-                counter++;
                 QWidget *questionWidget = new QWidget; // Create a widget for each question
 
                 // Set fixed size for the question widget
-                questionWidget->setFixedSize(470, 300);
+                questionWidget->setFixedSize(800, 300);
                 questionsWidget->setStyleSheet("border: 1px solid black;");
 
 
-                QLabel *questionNumber = new QLabel("Question 1", questionWidget);
-                questionNumber->setText("Question " + counter);
+                QLabel *questionNumber = new QLabel(questionWidget);
+                questionNumber->setText("Question " + QString::number(counter));
                 questionNumber->setStyleSheet("QLabel{background-color:transparent;qproperty-alignment: AlignLeft;color:black;font: 16pt;border:none;}");
-                questionNumber->setGeometry(10, 10, 190, 20);
+                questionNumber->setGeometry(20, 10, 190, 50);
 
                 QLabel *points = new QLabel("Points: ", questionWidget);
                 points->setText("Points: " + qry.value("Points").toString());
                 points->setObjectName(question + "_points_LA"); // Set object name
                 points->setStyleSheet("QLabel{background-color:transparent;qproperty-alignment: AlignRight;color:black;font: 16pt;border:none;}");
-                points->setGeometry(230, 10, 230, 20);
+                points->setGeometry(500, 10, 230, 60);
 
                 QLabel *question_LA = new QLabel(question, questionWidget);
                 question_LA->setObjectName(question + "_LA"); // Set object name
                 question_LA->setStyleSheet("QLabel{background-color:transparent;qproperty-alignment: AlignCenter;color:black;font: 16pt;border:none;}");
-                question_LA->setGeometry(10, 60, 450, 20);
+                question_LA->setGeometry(0, 60, 800, 100);
+                question_LA->setWordWrap(true); // Enable word wrapping
+
+
 
                 QButtonGroup *answerGroup = new QButtonGroup(questionWidget); // Group the checkboxes together
 
@@ -603,33 +593,34 @@ void MainWindow::EnterExam(const QString& examName)
                 answer1->setObjectName(qry.value("Answer1").toString() + "_CB"); // Set object name
                 answer1->setText("A: " + qry.value("Answer1").toString());
                 answer1->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
-                answer1->setGeometry(30, 120, 180, 70);
+                answer1->setGeometry(180, 120, 300, 70);
                 answerGroup->addButton(answer1);
 
                 QCheckBox *answer2 = new QCheckBox("B: ", questionWidget);
                 answer2->setObjectName(qry.value("Answer2").toString() + "_CB"); // Set object name
                 answer2->setText("B: " + qry.value("Answer2").toString());
                 answer2->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
-                answer2->setGeometry(240, 120, 180, 70);
+                answer2->setGeometry(390, 120, 300, 70);
                 answerGroup->addButton(answer2);
 
                 QCheckBox *answer3 = new QCheckBox("C: ", questionWidget);
                 answer3->setObjectName(qry.value("Answer3").toString() + "_CB"); // Set object name
                 answer3->setText("C: " + qry.value("Answer3").toString());
                 answer3->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
-                answer3->setGeometry(30, 210, 180, 70);
+                answer3->setGeometry(180, 180, 300, 70);
                 answerGroup->addButton(answer3);
 
                 QCheckBox *answer4 = new QCheckBox("D: ", questionWidget);
                 answer4->setObjectName(qry.value("Answer4").toString() + "_CB"); // Set object name
                 answer4->setText("D: " + qry.value("Answer4").toString());
                 answer4->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
-                answer4->setGeometry(240, 210, 180, 70);
+                answer4->setGeometry(390, 180, 300, 70);
                 answerGroup->addButton(answer4);
 
                 connect(answerGroup, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(onAnswerClicked(QAbstractButton*))); // Connect the button group's signal to a slot
 
                 layout->addWidget(questionWidget); // Add the question widget to the layout
+                counter++;
             }
         }
     }
@@ -700,15 +691,13 @@ void MainWindow::deleteExam(const QString& examName){
 }
 void MainWindow::editExam(const QString& examName){
     UpdateQuestions(examName);
-    ui->Exams_SW->setCurrentIndex(4);
+    ui->createExam_SW->setCurrentIndex(0);
     ui->examName_LA->hide();
     ui->examName_LE->hide();
-    ui->subject_LA->setText("Exam " + examName);
+    ui->subject_exam_LA->setText("Exam " + examName);
     ui->examName_LE->setText(examName);
     ui->publishExam_PB->setText("Edit exam");
     UpdateQuestions(examName);
-
-    // ui->Exams_SW->setCurrentIndex(6);
     // QWidget* QuestionsWidget = ui->scrollAreaWidgetContents_4;
     // QWidget* questionWidget = ui->question_WG;
 }
@@ -720,14 +709,14 @@ void MainWindow::on_publishExam_PB_clicked()
     QString examName = ui->examName_LE->text();
     qry.prepare("INSERT INTO exams (Subject, `Exam Name`) "
                 "VALUES(:subject, :examName)");
-    qry.bindValue(":subject", ui->subject_LA->text());
+    qry.bindValue(":subject", ui->subject_exam_LA->text());
     qry.bindValue(":examName", examName);
 
     if(qry.exec())
     {
         qDebug() << "Inserted successfully.";
-        ui->Exams_SW->setCurrentIndex(3);
         UpdateExams();
+        ui->Exams_SW->setCurrentIndex(3);
     }
     else
     {
@@ -805,4 +794,44 @@ void MainWindow::Grade(QString question, QString answer){
 
 }
 
+
+
+void MainWindow::on_excelExpertCourses_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("Excel Expert");
+    UpdateLessons("Excel Expert");
+}
+
+
+void MainWindow::on_wordSpecialistCourses_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("Word Specialist");
+    UpdateLessons("Word Specialist");
+}
+
+
+void MainWindow::on_wordExpertCourses_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("Word Expert");
+    UpdateLessons("Word Expert");
+}
+
+
+void MainWindow::on_ITEssentialsCourses_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("IT Essentials");
+    UpdateLessons("IT Essentials");
+}
+
+
+void MainWindow::on_dbFundamentalsCourses_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("Database Fundamentals");
+    UpdateLessons("Database Fundamentals");
+}
 

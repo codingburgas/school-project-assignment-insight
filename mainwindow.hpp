@@ -64,7 +64,6 @@ private slots:
 
     void deleteExam(const QString& examName);
     void editExam(const QString& examName);
-    void accessQuestion(const QString& examName);
     void editQuestion(const QString& examName);
     void deleteQuestion(const QString& examName);
 
@@ -81,11 +80,21 @@ private slots:
     void onAnswerClicked(QAbstractButton* button);
 
 
+    void on_excelExpertCourses_PB_clicked();
+
+    void on_wordSpecialistCourses_PB_clicked();
+
+    void on_wordExpertCourses_PB_clicked();
+
+    void on_ITEssentialsCourses_PB_clicked();
+
+    void on_dbFundamentalsCourses_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     virtual void paintEvent(QPaintEvent*) override;
 
-    void UpdateLessons();
+    void UpdateLessons(QString subject);
     void UpdateExams();
     void UpdateQuestions(const QString& examName);
 

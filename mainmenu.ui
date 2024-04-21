@@ -108,7 +108,7 @@ color:black;
 }</string>
     </property>
     <property name="text">
-     <string>Start E-Reading</string>
+     <string>Start E-Learning</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
