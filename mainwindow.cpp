@@ -1,6 +1,7 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
-MainWindow::MainWindow(QWidget *parent)
+#include "login.hpp"
+MainWindow::MainWindow(LogIn* login, const QString& username_ref, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MainWindow)
 {
@@ -26,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->questionType_SW->setCurrentIndex(0);
 
+    m_username = username_ref;
 
 }
 
@@ -545,13 +547,6 @@ void MainWindow::deleteQuestion(const QString& examName)
 
 void MainWindow::EnterExam(const QString& examName)
 {
-    QString questionDB;
-    QString answerA;
-    QString answerB;
-    QString answerC;
-    QString answerD;
-    QString pointsDB;
-    qDebug() << examName;
     questions.clear();
     ui->Exams_SW->setCurrentIndex(6);
 
@@ -566,12 +561,6 @@ void MainWindow::EnterExam(const QString& examName)
     while(qry.next())
     {
         questions.push_back(qry.value(2).toString());
-        questionDB = qry.value("Question").toString();
-        answerA = qry.value("Answer1").toString();
-        answerB = qry.value("Answer2").toString();
-        answerC = qry.value("Answer3").toString();
-        answerD = qry.value("Answer4").toString();
-        pointsDB = qry.value("Points").toString();
     }
 
     QWidget* questionsWidget = new QWidget(ui->ExamOverview); // Create a new widget to hold all the questions
@@ -579,63 +568,95 @@ void MainWindow::EnterExam(const QString& examName)
     layout->setAlignment(Qt::AlignTop);
     int counter = 1;
     for (const QString& question : questions) {
-        counter++;
-        qDebug() << questionDB;
+        qry.prepare("SELECT * FROM questions WHERE Question = :question");
+        qry.bindValue(":question", question);
+        if(qry.exec())
+        {
+            while(qry.next()){
+                counter++;
+                QWidget *questionWidget = new QWidget; // Create a widget for each question
 
-        QWidget *questionWidget = new QWidget; // Create a widget for each question
-
-        // Set fixed size for the question widget
-        questionWidget->setFixedSize(470, 300);
-        questionsWidget->setStyleSheet("border: 1px solid black;");
+                // Set fixed size for the question widget
+                questionWidget->setFixedSize(470, 300);
+                questionsWidget->setStyleSheet("border: 1px solid black;");
 
 
-        QLabel *questionNumber = new QLabel("Question 1", questionWidget);
-        questionNumber->setObjectName(questionDB + "_number_LA"); // Set object name
-        questionNumber->setText("Question ");
-        questionNumber->setStyleSheet("QLabel{background-color:transparent;qproperty-alignment: AlignLeft;color:black;font: 16pt;border:none;}");
-        questionNumber->setGeometry(10, 10, 190, 20);
+                QLabel *questionNumber = new QLabel("Question 1", questionWidget);
+                questionNumber->setText("Question " + counter);
+                questionNumber->setStyleSheet("QLabel{background-color:transparent;qproperty-alignment: AlignLeft;color:black;font: 16pt;border:none;}");
+                questionNumber->setGeometry(10, 10, 190, 20);
 
-        QLabel *points = new QLabel("Points: ", questionWidget);
-        points->setText("Points: " + pointsDB);
-        points->setObjectName(questionDB + "_points_LA"); // Set object name
-        points->setStyleSheet("QLabel{background-color:transparent;qproperty-alignment: AlignRight;color:black;font: 16pt;border:none;}");
-        points->setGeometry(230, 10, 230, 20);
+                QLabel *points = new QLabel("Points: ", questionWidget);
+                points->setText("Points: " + qry.value("Points").toString());
+                points->setObjectName(question + "_points_LA"); // Set object name
+                points->setStyleSheet("QLabel{background-color:transparent;qproperty-alignment: AlignRight;color:black;font: 16pt;border:none;}");
+                points->setGeometry(230, 10, 230, 20);
 
-        QLabel *question_LA = new QLabel(questionDB, questionWidget);
-        question_LA->setObjectName(questionDB + "_LA"); // Set object name
-        question_LA->setStyleSheet("QLabel{background-color:transparent;qproperty-alignment: AlignCenter;color:black;font: 16pt;border:none;}");
-        question_LA->setGeometry(10, 60, 450, 20);
+                QLabel *question_LA = new QLabel(question, questionWidget);
+                question_LA->setObjectName(question + "_LA"); // Set object name
+                question_LA->setStyleSheet("QLabel{background-color:transparent;qproperty-alignment: AlignCenter;color:black;font: 16pt;border:none;}");
+                question_LA->setGeometry(10, 60, 450, 20);
 
-        QCheckBox *answer1 = new QCheckBox("A: ", questionWidget);
-        answer1->setObjectName(questionDB + "_CB"); // Set object name
-        answer1->setText("A: " + answerA);
-        answer1->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
-        answer1->setGeometry(30, 120, 180, 70);
+                QButtonGroup *answerGroup = new QButtonGroup(questionWidget); // Group the checkboxes together
 
-        QCheckBox *answer2 = new QCheckBox("B: ", questionWidget);
-        answer2->setObjectName(questionDB + "_CB"); // Set object name
-        answer2->setText("B: " + answerB);
-        answer2->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
-        answer2->setGeometry(240, 120, 180, 70);
+                QCheckBox *answer1 = new QCheckBox("A: ", questionWidget);
+                answer1->setObjectName(qry.value("Answer1").toString() + "_CB"); // Set object name
+                answer1->setText("A: " + qry.value("Answer1").toString());
+                answer1->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
+                answer1->setGeometry(30, 120, 180, 70);
+                answerGroup->addButton(answer1);
 
-        QCheckBox *answer3 = new QCheckBox("C: ", questionWidget);
-        answer3->setObjectName(questionDB + "_CB"); // Set object name
-        answer3->setText("C: " + answerC);
-        answer3->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
-        answer3->setGeometry(30, 210, 180, 70);
+                QCheckBox *answer2 = new QCheckBox("B: ", questionWidget);
+                answer2->setObjectName(qry.value("Answer2").toString() + "_CB"); // Set object name
+                answer2->setText("B: " + qry.value("Answer2").toString());
+                answer2->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
+                answer2->setGeometry(240, 120, 180, 70);
+                answerGroup->addButton(answer2);
 
-        QCheckBox *answer4 = new QCheckBox("D: ", questionWidget);
-        answer4->setObjectName(questionDB + "_CB"); // Set object name
-        answer4->setText("D: " + answerD);
-        answer4->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
-        answer4->setGeometry(240, 210, 180, 70);
+                QCheckBox *answer3 = new QCheckBox("C: ", questionWidget);
+                answer3->setObjectName(qry.value("Answer3").toString() + "_CB"); // Set object name
+                answer3->setText("C: " + qry.value("Answer3").toString());
+                answer3->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
+                answer3->setGeometry(30, 210, 180, 70);
+                answerGroup->addButton(answer3);
 
-        layout->addWidget(questionWidget); // Add the question widget to the layout
+                QCheckBox *answer4 = new QCheckBox("D: ", questionWidget);
+                answer4->setObjectName(qry.value("Answer4").toString() + "_CB"); // Set object name
+                answer4->setText("D: " + qry.value("Answer4").toString());
+                answer4->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
+                answer4->setGeometry(240, 210, 180, 70);
+                answerGroup->addButton(answer4);
+
+                connect(answerGroup, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(onAnswerClicked(QAbstractButton*))); // Connect the button group's signal to a slot
+
+                layout->addWidget(questionWidget); // Add the question widget to the layout
+            }
+        }
     }
 
     ui->scrollArea_4->setWidget(questionsWidget); // Set the widget containing all questions as the content of the scroll area
-
 }
+
+
+void MainWindow::onAnswerClicked(QAbstractButton* button)
+{
+    QCheckBox* clickedBox = qobject_cast<QCheckBox*>(button);
+    if (!clickedBox)
+        return;
+
+    QButtonGroup* group = clickedBox->group();
+    if (!group)
+        return;
+
+    QList<QAbstractButton*> buttons = group->buttons();
+    for (auto btn : buttons) {
+        QCheckBox* checkBox = qobject_cast<QCheckBox*>(btn);
+        if (checkBox && checkBox != clickedBox) {
+            checkBox->setChecked(false);
+        }
+    }
+}
+
 
 void MainWindow::deleteExam(const QString& examName){
     QSqlQuery qry;
@@ -731,51 +752,54 @@ void MainWindow::on_closedAnswers_CB_stateChanged(int arg1)
 
 void MainWindow::on_submitExam_PB_clicked()
 {
-    // Find all widgets within the scroll area
-    QList<QWidget*> allWidgets = ui->scrollArea_4->findChildren<QWidget*>();
-    qDebug() << "Total widgets found in scroll area:" << allWidgets.size();
+    QList<QString> plainAnswers;
 
-    // Iterate through all found widgets
-    for (QWidget* questionWidget : allWidgets) {
-        // Find the question label within the current question widget
-        QLabel* questionLabel = questionWidget->findChild<QLabel*>(questionWidget->objectName() + "_LA");
-        if (questionLabel) {
-            qDebug() << "Processing question:" << questionLabel->text();
-
-            QString questionText = questionLabel->text();
-            QStringList checkedAnswers;
-
-            // Find all checkboxes within the current question widget
-            QList<QCheckBox*> checkboxes = questionWidget->findChildren<QCheckBox*>();
-            for (QCheckBox* checkbox : checkboxes) {
-                // Check if the checkbox is a direct child of the current question widget
-                if (checkbox->parentWidget() == questionWidget) {
-                    // If the checkbox is checked, add its text to the list of checked answers
-                    if (checkbox->isChecked()) {
-                        QString answerText = checkbox->text();
-                        // Remove the prefix
-                        answerText.remove(0, 3); // Remove the first 3 characters (e.g., "D: ")
-                        qDebug() << "  Checked answer:" << answerText;
-                        checkedAnswers.append(answerText);
-                    }
+    for (QWidget* questionWidget : ui->scrollArea_4->findChildren<QWidget*>()) {
+        // Find all checkboxes within the current question widget
+        QList<QCheckBox*> checkboxes = questionWidget->findChildren<QCheckBox*>();
+        for (QCheckBox* checkbox : checkboxes) {
+            // Check if the checkbox is a direct child of the current question widget
+            if (checkbox->parentWidget() == questionWidget) {
+                // If the checkbox is checked, print its text
+                if (checkbox->isChecked()) {
+                    QString plainAnswer = checkbox->text().remove(0,3);
+                    qDebug() << "Answer: " << plainAnswer;
+                    plainAnswers.push_back(plainAnswer);
                 }
             }
-
-            // Add the question and its checked answers to the map
-            answersMap.insert(questionText, checkedAnswers);
         }
     }
 
-    // Output the map for testing or further processing
-    QMapIterator<QString, QStringList> iter(answersMap);
-    while (iter.hasNext()) {
-        iter.next();
-        qDebug() << "Question:" << iter.key() << "Checked answers:" << iter.value();
+    QSqlQuery qry;
+    int counter = 0;
+    for(QString question : questions)
+    {
+        qry.prepare("SELECT Points FROM questions WHERE Question = :question");
+        qry.bindValue(":question", question);
+        if(qry.exec() && qry.next()) {
+            int points = qry.value("Points").toInt(); // Retrieve points for the current question
+
+            qry.prepare("INSERT INTO studentsexams(username, Question, Answer, Points)"
+                        " VALUES(:username, :question, :answer, :points)");
+            qry.bindValue(":username", m_username);
+            qry.bindValue(":question", question);
+            qry.bindValue(":answer", plainAnswers[counter]);
+            qry.bindValue(":points", points); // Bind points to the query
+
+            if(qry.exec())
+            {
+                qDebug() << "ds";
+            }
+            else
+            {
+                qDebug() << qry.lastError();
+            }
+        } else {
+            qDebug() << "Error retrieving points for question: " << question;
+        }
+        counter++;
     }
 }
-
-
-
 
 void MainWindow::Grade(QString question, QString answer){
 

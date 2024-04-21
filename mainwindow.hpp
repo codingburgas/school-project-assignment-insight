@@ -8,10 +8,13 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 #include <QComboBox>
+#include <QButtonGroup>
 
 namespace Ui {
 class MainWindow;
 }
+
+class LogIn;
 
 class CreateLesson;
 class MainWindow : public QWidget
@@ -19,7 +22,7 @@ class MainWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(LogIn* login, const QString& username_ref, QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -75,6 +78,9 @@ private slots:
 
     void on_submitExam_PB_clicked();
 
+    void onAnswerClicked(QAbstractButton* button);
+
+
 private:
     Ui::MainWindow *ui;
     virtual void paintEvent(QPaintEvent*) override;
@@ -88,4 +94,6 @@ private:
     std::vector<QString> lessonText;
     std::vector<QString> examNames;
     std::vector<QString> questions;
+    QString points;
+    QString m_username;
 };

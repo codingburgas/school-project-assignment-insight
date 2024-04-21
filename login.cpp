@@ -17,12 +17,6 @@ LogIn::LogIn(QWidget *parent)
         m_database = std::make_shared<DatabaseManager>();
         m_database->OpenConnection();
     }
-
-    m_mainWindow = std::make_shared<MainWindow>();
-
-
-
-
 }
 
 LogIn::~LogIn()
@@ -92,6 +86,7 @@ void LogIn::on_logIn_PB_clicked()
             if(qry.exec())
             {
                 QMessageBox::information(this, "Login Successful", "Welcome to YRT Bank! \n\nYou have successfully logged in.");
+                m_mainWindow = std::make_shared<MainWindow>(this, username);
                 this->hide();
                 m_mainWindow->show();
             }
