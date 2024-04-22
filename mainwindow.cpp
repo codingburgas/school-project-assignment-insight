@@ -17,6 +17,8 @@ MainWindow::MainWindow(LogIn* login, const QString& username_ref, QWidget *paren
     ui->Navbar->setCurrentIndex(2);
     ui->Courses_SW->setCurrentIndex(1);
 
+    UpdateHomepage();
+
 }
 
 
@@ -893,6 +895,9 @@ void MainWindow::GradeExam(int grade)
 void MainWindow::UpdateHomepage()
 {
     QSqlQuery qry;
+    int counter = 0;
+    int studentGrades = 0;
+    double avgGrade = 0;
     qry.prepare("SELECT * FROM users WHERE Username = :username");
     qry.bindValue(":username", m_username);
     if(qry.exec() && qry.next())
@@ -903,6 +908,26 @@ void MainWindow::UpdateHomepage()
         ui->studentName_LA->setText(fullName);
         ui->greeting_LA->setText("Hello again, " + fullName);
 
+        qry.prepare("SELECT * FROM studentgrades WHERE Username = :username");
+        qry.bindValue(":username", m_username);
+        if(!qry.exec())
+        {
+            qDebug() << qry.lastError();
+        }
+        while(qry.next())
+        {
+            counter++;
+            studentGrades += qry.value("Mark").toInt();
+
+        }
+
+        avgGrade = static_cast<double>(studentGrades) / counter;
+
+        ui->averageGrade_LA->setText(QString::number(avgGrade));
+    }
+    else
+    {
+        qDebug() << qry.lastError();
     }
 }
 

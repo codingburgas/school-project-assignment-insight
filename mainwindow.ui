@@ -530,18 +530,67 @@ border:1px solid black;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="HomePage">
      <widget class="QWidget" name="widget_22" native="true">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>130</y>
+        <x>50</x>
+        <y>50</y>
         <width>301</width>
         <height>161</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:#669FD4;</string>
+      </property>
+      <widget class="QLabel" name="label_56">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>291</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:white;
+	font: 16pt &quot;Segoe UI&quot;;
+
+}</string>
+       </property>
+       <property name="text">
+        <string>Average Grade</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="averageGrade_LA">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>50</y>
+         <width>301</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:white;
+	font: 16pt &quot;Segoe UI&quot;;
+
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
      <widget class="QLabel" name="greeting_LA">
       <property name="geometry">
@@ -562,66 +611,7 @@ background-color:transparent;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="Schedule">
-     <widget class="QCalendarWidget" name="calendarWidget">
-      <property name="geometry">
-       <rect>
-        <x>643</x>
-        <y>40</y>
-        <width>301</width>
-        <height>181</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#calendarWidget QWidget{
-alternate-background-color:#D9D9D9;
-background-color:#D9D9D9
-}
-
-QCalendarWidget QAbstractItemView::item:weekend {
-color:black;
-}
-
-#calendarWidget QToolButton::menu-indicator{
-image:none;
-nosubcontrol-origin:margin;
-subcontrol-position: right center;
-margin-top: 10px;
-width:20px;
-}
-
-#qt_calendar_yearbutton{
-color:black;
-}
-
-#qt_calendar_monthbutton{
-color:black;
-}
-
-#qt_calendar_prevmonth, #qt_calendar_nextmonth{
-border:none;
-qproperty-icon:none;
-
-min-width:13px;
-max-width:13px;
-min-height:13px;
-max-height:13px;
-border-radius:5px;
-background-color:transparent;
-padding: 5px;
-}
-
-#qt_calendar_prevmonth{
-	image: url(:/Resources/Images/icons/Less Than.png);
-}
-
-#qt_calendar_nextmonth
-{
-	image: url(:/Resources/Images/icons/More Than.png);
-}</string>
-      </property>
-     </widget>
-    </widget>
+    <widget class="QWidget" name="Schedule"/>
     <widget class="QWidget" name="Classes">
      <widget class="QStackedWidget" name="Courses_SW">
       <property name="geometry">
@@ -2831,8 +2821,8 @@ border-radius:10px;</string>
        <widget class="QWidget" name="widget_134" native="true">
         <property name="geometry">
          <rect>
-          <x>680</x>
-          <y>160</y>
+          <x>660</x>
+          <y>170</y>
           <width>193</width>
           <height>192</height>
          </rect>
