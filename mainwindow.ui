@@ -500,11 +500,21 @@ background-color:transparent;</string>
    <widget class="QPushButton" name="logOut_PB">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>680</y>
-      <width>41</width>
-      <height>31</height>
+      <x>125</x>
+      <y>675</y>
+      <width>35</width>
+      <height>40</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color:transparent;
+border:none;
+}
+QPushButton:hover{
+background-color:transparent;
+border:1px solid black;
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -520,7 +530,7 @@ background-color:transparent;</string>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="HomePage"/>
     <widget class="QWidget" name="Schedule">
@@ -4538,29 +4548,6 @@ border:1px solid black;
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>125</x>
-      <y>675</y>
-      <width>41</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-background-color:transparent;
-border:none;
-}
-QPushButton:hover{
-background-color:transparent;
-border:1px solid black;
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
@@ -4584,7 +4571,6 @@ border:1px solid black;
      <string/>
     </property>
    </widget>
-   <zorder>logOut_PB</zorder>
    <zorder>settings_PB</zorder>
    <zorder>wallet_PB</zorder>
    <zorder>team_LA</zorder>
@@ -4611,8 +4597,8 @@ border:1px solid black;
    <zorder>messages_PB</zorder>
    <zorder>support_LA</zorder>
    <zorder>pushButton</zorder>
-   <zorder>pushButton_2</zorder>
    <zorder>pushButton_3</zorder>
+   <zorder>logOut_PB</zorder>
   </widget>
  </widget>
  <resources/>

@@ -210,13 +210,45 @@ void MainWindow::editLesson(const QString& heading)
     if(qry.exec() && qry.next()) {
         ui->heading_LE->setText(qry.value("Heading").toString());
         ui->material_PTE->setPlainText(qry.value("Lesson").toString());
-        ui->addLesson_PB->setText("Update Lesson");
+        ui->addLesson_PB->hide();
+        QPushButton* updateLesson_PB = new QPushButton(ui->Navbar->widget(6));
+        updateLesson_PB->setGeometry(90, 600, 291, 31);
+        updateLesson_PB->setText("Update Lesson");
+        updateLesson_PB->setStyleSheet("QPushButton{background-color:#4D4C4C;color:white;border-radius:5px;}");
+
+        updateLesson_PB->show(); // Ensure the button is visible
+
+        // Set the widget as the parent of the button
+        updateLesson_PB->setParent(ui->Navbar->widget(6));
+        connect(updateLesson_PB, &QPushButton::clicked, this, [=]() { UpdateLesson(heading); });
+
+
     } else {
         qDebug() << qry.lastError();
     }
 }
 
 
+void MainWindow::UpdateLesson(const QString &heading)
+{
+    QSqlQuery qry;
+    QString headingUpdated = ui->heading_LE->text();
+    QString lessonUpdated = ui->material_PTE->toPlainText();
+    qry.prepare("UPDATE lessons SET Heading = :newHeading, Lesson = :newLesson WHERE Heading = :oldHeading");
+    qry.bindValue(":newHeading", headingUpdated);
+    qry.bindValue(":newLesson", lessonUpdated);
+    qry.bindValue(":oldHeading", heading);
+    if(qry.exec())
+    {
+        ui->Navbar->setCurrentIndex(7);
+        QMessageBox::information(this, "Update Successful", "Your lesson was updated successful");
+    }
+    else
+    {
+        // Handle update failure
+        qDebug() << "Update failed:" << qry.lastError().text();
+    }
+}
 
 void MainWindow::deleteLesson(const QString &heading) {
     QSqlQuery qry;
@@ -833,5 +865,13 @@ void MainWindow::on_dbFundamentalsCourses_PB_clicked()
     ui->Navbar->setCurrentIndex(7);
     ui->subject_LA->setText("Database Fundamentals");
     UpdateLessons("Database Fundamentals");
+}
+
+
+void MainWindow::on_logOut_PB_clicked()
+{
+    this->hide();
+    m_login = std::make_shared<LogIn>();
+    m_login->show();
 }
 

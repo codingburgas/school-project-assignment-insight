@@ -90,6 +90,10 @@ private slots:
 
     void on_dbFundamentalsCourses_PB_clicked();
 
+    void UpdateLesson(const QString& heading);
+
+    void on_logOut_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     virtual void paintEvent(QPaintEvent*) override;
@@ -105,4 +109,6 @@ private:
     std::vector<QString> questions;
     QString points;
     QString m_username;
+
+    std::shared_ptr<LogIn> m_login;
 };
