@@ -102,7 +102,6 @@ private:
     void UpdateExams();
     void UpdateQuestions(const QString& examName);
 
-    void Grade(QString question, QString answer);
     std::vector<QString> lessonHeadings;
     std::vector<QString> lessonText;
     std::vector<QString> examNames;
@@ -113,4 +112,7 @@ private:
     std::shared_ptr<LogIn> m_login;
 
     void UpdateHomepage();
+    void collectPlainAnswers(QList<QString> &plainAnswers);
+    void compareAnswers(const QList<QString> &plainAnswers);
+    void GradeExam(int grade);
 };

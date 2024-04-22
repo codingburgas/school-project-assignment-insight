@@ -569,6 +569,7 @@ void MainWindow::EnterExam(const QString& examName)
 {
     questions.clear();
     ui->createExam_SW->setCurrentIndex(2);
+    ui->examName_LA_2->setText(examName);
 
     QSqlQuery qry;
     qry.prepare("SELECT * FROM questions WHERE `Exam Name` = :examName");
@@ -775,6 +776,15 @@ void MainWindow::on_submitExam_PB_clicked()
 {
     QList<QString> plainAnswers;
 
+    // Step 1: Collect plain answers
+    collectPlainAnswers(plainAnswers);
+
+    // Step 2: Compare with correct answers
+    compareAnswers(plainAnswers);
+}
+
+void MainWindow::collectPlainAnswers(QList<QString> &plainAnswers)
+{
     for (QWidget* questionWidget : ui->scrollArea_4->findChildren<QWidget*>()) {
         // Find all checkboxes within the current question widget
         QList<QCheckBox*> checkboxes = questionWidget->findChildren<QCheckBox*>();
@@ -783,48 +793,93 @@ void MainWindow::on_submitExam_PB_clicked()
             if (checkbox->parentWidget() == questionWidget) {
                 // If the checkbox is checked, print its text
                 if (checkbox->isChecked()) {
-                    QString plainAnswer = checkbox->text().remove(0,3);
-                    qDebug() << "Answer: " << plainAnswer;
+                    QString plainAnswer = checkbox->text().remove(0, 3);
                     plainAnswers.push_back(plainAnswer);
                 }
             }
         }
     }
+}
 
+void MainWindow::compareAnswers(const QList<QString> &plainAnswers)
+{
     QSqlQuery qry;
-    int counter = 0;
-    for(QString question : questions)
+    int examPointsTotal = 0;
+    int studentPoints = 0;
+
+
+    qry.prepare("SELECT Points FROM questions WHERE `Exam Name` = :examName");
+    qry.bindValue(":examName", ui->examName_LA_2->text());
+    if(!qry.exec())
     {
-        qry.prepare("SELECT Points FROM questions WHERE Question = :question");
-        qry.bindValue(":question", question);
-        if(qry.exec() && qry.next()) {
-            int points = qry.value("Points").toInt(); // Retrieve points for the current question
-
-            qry.prepare("INSERT INTO studentsexams(username, Question, Answer, Points)"
-                        " VALUES(:username, :question, :answer, :points)");
-            qry.bindValue(":username", m_username);
-            qry.bindValue(":question", question);
-            qry.bindValue(":answer", plainAnswers[counter]);
-            qry.bindValue(":points", points); // Bind points to the query
-
-            if(qry.exec())
-            {
-                qDebug() << "ds";
-            }
-            else
-            {
-                qDebug() << qry.lastError();
-            }
-        } else {
-            qDebug() << "Error retrieving points for question: " << question;
-        }
-        counter++;
+        qDebug() << qry.lastError();
     }
+    while(qry.next())
+    {
+        examPointsTotal += qry.value(0).toInt();
+    }
+    for (int i = 0; i < questions.size(); ++i) {
+        QString question = questions[i];
+
+        qry.prepare("SELECT * FROM questions WHERE Question = :question");
+        qry.bindValue(":question", question);
+
+        if (qry.exec() && qry.next()) {
+            int points = qry.value("Points").toInt(); // Retrieve points for the current question
+            QString correctAnswer = qry.value("Correct Answer").toString();
+
+            // Iterate over plain answers
+            if (i < plainAnswers.size()) {
+
+
+                if (plainAnswers[i] == correctAnswer)
+                    studentPoints += points;
+            }
+
+            // Insert student's exam data into database if needed
+        } else {
+            qDebug() << "Error retrieving data for question: " << question;
+        }
+    }
+    qDebug() << studentPoints;
+    qDebug() << examPointsTotal;
+    int grade = static_cast<int>((static_cast<float>(studentPoints) / examPointsTotal) * 100);
+    qDebug() << grade;
+    GradeExam(grade);
 }
 
-void MainWindow::Grade(QString question, QString answer){
-
+void MainWindow::GradeExam(int grade)
+{
+    qDebug() << grade;
+    QSqlQuery qry;
+    int mark;
+    if(grade < 50)
+    {
+        mark = 2;
+    }
+    else if(grade >= 50 && grade <= 60)
+    {
+        mark = 3;
+    }
+    else if(grade > 60 && grade <= 75)
+    {
+        mark = 4;
+    }
+    else if(grade > 75 && grade <= 88)
+    {
+        mark = 5;
+    }
+    else // grade > 88
+    {
+        mark = 6;
+    }
+    qry.prepare("INSERT INTO studentgrades(Username, Mark) "
+                "VALUES(:username, :mark)");
+    qry.bindValue(":username", m_username);
+    qry.bindValue(":mark", mark);
 }
+
+
 
 void MainWindow::UpdateHomepage()
 {
@@ -837,6 +892,8 @@ void MainWindow::UpdateHomepage()
         QString lastName = qry.value("Last Name").toString();
         QString fullName = firstName + " " + lastName;
         ui->studentName_LA->setText(fullName);
+        ui->greeting_LA->setText("Hello again, " + fullName);
+
     }
 }
 
