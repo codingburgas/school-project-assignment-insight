@@ -869,7 +869,7 @@ void MainWindow::GradeExam(int grade)
     {
         mark = 5;
     }
-    else // grade > 88
+    else
     {
         mark = 6;
     }
@@ -877,6 +877,15 @@ void MainWindow::GradeExam(int grade)
                 "VALUES(:username, :mark)");
     qry.bindValue(":username", m_username);
     qry.bindValue(":mark", mark);
+    if(qry.exec())
+    {
+        QMessageBox::information(this, "Exam graded", "You have scored " + QString::number(grade) + " from 100");
+    }
+    else
+    {
+        qDebug() << qry.lastError();
+    }
+
 }
 
 
