@@ -1,50 +1,88 @@
-<h1 align="center"> Insight </h1>
-
 <p align="center">
-    <img src="./Resources/Images/logo-color 2.png" width="200px"/>
+     <img align="center" src="./Resources/Images/Insight-logo.png" alt="Insight logo" width="550", height="350">
 </p>
-
-<p align = "center">
-    <img alt="GitHub contributors" src="https://img.shields.io/badge/6-maker?style=flat-square&logoColor=gray&label=contributors&labelColor=gray">
-    <img alt="GitHub contributors" src="https://img.shields.io/badge/3.19%20MB-maker?style=flat-square&label=repo%20size&labelColor=gray&color=blue">
-    <img alt="GitHub contributors" src="https://img.shields.io/badge/1-maker?style=flat-square&label=languages&labelColor=gray&color=yellow">
-
-<br> 
-
-## 🛠️ Languages & Tools
-### IDE and collaborative service
-<p align="left">
-    <a href="https://visualstudio.microsoft.com/vs/"><img src="./Resources/Images/vs.png" alt="Visual Studio" width="44px" /></a>
-    <a href="https://github.com/"><img src="./Resources/Images/github.png" alt="GitHub" width="44px" /></a>
-    <a href="https://www.microsoft.com/en-ww/microsoft-365/word"><img src="./Resources/Images/word.png" alt="MS Word" width="45px" /></a>
-    <a href="https://www.microsoft.com/en-us/microsoft-365/powerpoint"><img src="./Resources/Images/power-point.png" alt="MS PowerPoint" width="43px"></a>
-</p>
-
-## Documents
-
-### 📄 Documentation
-
-
-### 🧑‍🏫 Presenting
-
-
-<hr> 
-
-## 📋 Team Members
-- <a href = ""> Boyan Kiovtorov </a> (Back-end Developer) 
-- <a href = "https://github.com/DPKaragyozova21"> Demetra Karagyozova </a> (SCRUM trainer)
-- <a href = "https://github.com/DRDimov21"> Dimitar Dimov </a> (Back-end Developer)
-- <a href = "https://github.com/YTGeorgieva22"> Yoana Georgieva </a> (Back-end Developer)
-- <a href = "https://github.com/KIHristova22"> Kristiyana Hristova </a> (Back-end Developer)
-- <a href = "https://github.com/ZSVladkov22"> Zarko Vladkov </a> (Back-end Developer)
+    
+    
+<hr>
+    <h4 align="center">We are team Insight and we want to show you our project:</h4>
 
 <hr>
 
-## ⚙ Installation
-```
-You can download our project by using the green "Code" button.
 
-Or by pasting the following code in your CMD:
-git clone https://github.com/codingburgas/school-project-assignment-insight.git
-```
-<h1 align="center">Since you came all the way down here, why don't you give us a ⭐</h1>
+<br>
+    
+<!-- 📋 TABLE OF CONTENTS -->
+<h2 id="table-of-contents">Table of Contents</h2>
+    
+<details open="open">
+    <summary>Table of Contents</summary>
+    <li><a href="#about-the-project"> 🔍 The Project</a></li>
+    <li><a href="#used-technologies"> 🖥️ Technologies</a></li>
+    <li><a href="#contributors"> 🧑 Contributors</a></li>
+    <li><a href="#download">   🚀 Download</a></li>
+</details>
+
+<!-- 🔍ABOUT THE PROJECT -->
+<h2 id="about-the-project">About The Project</h2>
+    
+<p align ="justify">
+    Our project is an online school that will help you learn easily.Thank you for your trust in us and enjoy our project!
+</p>
+<p> - The Insight Team </p>
+    
+<br>              
+    
+</details>
+    
+</td></tr></table>
+<p></p>
+    
+    
+## 🖥️ Technologies used <a name="technologies"></a>
+- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Visual_Studio_Icon_2022.svg/1200px-Visual_Studio_Icon_2022.svg.png" width="20" alt="Visual Studio 2022 Logo"> Visual Studio 2022
+- <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="20" alt="GitHub Logo"> GitHub
+- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Microsoft_Office_Word_%282019%E2%80%93present%29.svg/2203px-Microsoft_Office_Word_%282019%E2%80%93present%29.svg.png" width="20" alt="MS Word Logo"> MS Word
+- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/2203px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" width="20" alt="MS Excel Logo"> MS Excel
+- <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Microsoft_PowerPoint_Logo.png" width="20" alt="MS PowerPoint Logo"> MS PowerPoint
+- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Microsoft_Office_Teams_%282018%E2%80%93present%29.svg/2203px-Microsoft_Office_Teams_%282018%E2%80%93present%29.svg.png" width="20" alt="MS Teams Logo"> MS Teams
+- <img src="https://anturis.com/wp-content/uploads/2022/11/Qt-Creator-Logo.png" width="20" alt="Qt creator"> Qt creator
+-----------------------------------------------------------------------------------------------------------------------------------
+- 👩🏻‍💻 Programing language: <img src="https://brandslogos.com/wp-content/uploads/thumbs/c-logo-vector.svg" width="20" alt="C++ Logo"> <a href="https://cplusplus.com/">C++</a>
+    
+    
+    
+## 🧑 Collaborators <a name="collaborators"></a>
+<h2 id="contributors">Contributors</h2>
+    
+<p>
+    
+    
+<b>Denmetra Karagyozova(Scrum Trainer)</b> <br>
+    Email: <a>DPKaragyozova21@codingburgas.bg</a> <br>
+    
+<b>Boyan Kyovtorov (Back-End Developer)</b> <br>
+    Email: <a>BKKyovtorov21@codingburgas.bg</a> <br>
+    
+<b>Dimitar Dimov(Back-End Developer)</b> <br>
+    Email: <a>DRDimov21@codingburgas.bg</a> <br>
+
+<b>Zarko Vladkov(Back-end Developer)</b> <br>
+Email: <a>ZSVladkov22@codingburgas.bg</a> <br>
+
+<b>Yoana Georgieva (Front-End Developer)</b> <br>
+Email: <a>YTGeorgieva22@codingburgas.bg</a> <br>
+
+<b>Kristiana Hristova(Front-End Developer)</b> <br>
+Email: <a>KIHristova22@codingburgas.bg</a> <br>
+
+</p>
+    
+<h2 id="download">🚀Download</h2>
+    
+<p>To download our project, clone this repository, write git clone and then paste this text in your command prompt:</p>
+    
+<pre>https://github.com/codingburgas/school-project-assignment-insight.git</pre>
+
+<p>To test our project, download the published release and run the .exe file:</p>
+
+<h4 align="center"> Made with ❤️ </h4>
