@@ -826,7 +826,19 @@ void MainWindow::Grade(QString question, QString answer){
 
 }
 
-
+void MainWindow::UpdateHomepage()
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM users WHERE Username = :username");
+    qry.bindValue(":username", m_username);
+    if(qry.exec() && qry.next())
+    {
+        QString firstName = qry.value("First Name").toString();
+        QString lastName = qry.value("Last Name").toString();
+        QString fullName = firstName + " " + lastName;
+        ui->studentName_LA->setText(fullName);
+    }
+}
 
 void MainWindow::on_excelExpertCourses_PB_clicked()
 {

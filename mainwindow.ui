@@ -404,7 +404,7 @@ background-color:transparent;</string>
      <string notr="true">color:black;</string>
     </property>
     <property name="text">
-     <string>Boyan Kyovtorov</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="role_LA">
@@ -530,7 +530,7 @@ border:1px solid black;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="HomePage"/>
     <widget class="QWidget" name="Schedule">
@@ -4524,6 +4524,7 @@ background-color:#2E2E2E;</string>
       </widget>
      </widget>
     </widget>
+    <widget class="QWidget" name="Settings"/>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">

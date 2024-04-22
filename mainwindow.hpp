@@ -111,4 +111,6 @@ private:
     QString m_username;
 
     std::shared_ptr<LogIn> m_login;
+
+    void UpdateHomepage();
 };
