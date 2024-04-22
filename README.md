@@ -1,50 +1,37 @@
-<h1 align="center"> Insight </h1>
-
-<p align="center">
-    <img src="./Resources/Images/logo-color 2.png" width="200px"/>
-</p>
-
-<p align = "center">
-    <img alt="GitHub contributors" src="https://img.shields.io/badge/6-maker?style=flat-square&logoColor=gray&label=contributors&labelColor=gray">
-    <img alt="GitHub contributors" src="https://img.shields.io/badge/3.19%20MB-maker?style=flat-square&label=repo%20size&labelColor=gray&color=blue">
-    <img alt="GitHub contributors" src="https://img.shields.io/badge/1-maker?style=flat-square&label=languages&labelColor=gray&color=yellow">
-
-<br> 
-
-## 🛠️ Languages & Tools
-### IDE and collaborative service
-<p align="left">
-    <a href="https://visualstudio.microsoft.com/vs/"><img src="./Resources/Images/vs.png" alt="Visual Studio" width="44px" /></a>
-    <a href="https://github.com/"><img src="./Resources/Images/github.png" alt="GitHub" width="44px" /></a>
-    <a href="https://www.microsoft.com/en-ww/microsoft-365/word"><img src="./Resources/Images/word.png" alt="MS Word" width="45px" /></a>
-    <a href="https://www.microsoft.com/en-us/microsoft-365/powerpoint"><img src="./Resources/Images/power-point.png" alt="MS PowerPoint" width="43px"></a>
-</p>
-
-## Documents
-
-### 📄 Documentation
-
-
-### 🧑‍🏫 Presenting
-
-
-<hr> 
-
-## 📋 Team Members
-- <a href = ""> Boyan Kiovtorov </a> (Back-end Developer) 
-- <a href = "https://github.com/DPKaragyozova21"> Demetra Karagyozova </a> (SCRUM trainer)
-- <a href = "https://github.com/DRDimov21"> Dimitar Dimov </a> (Back-end Developer)
-- <a href = "https://github.com/YTGeorgieva22"> Yoana Georgieva </a> (Back-end Developer)
-- <a href = "https://github.com/KIHristova22"> Kristiyana Hristova </a> (Back-end Developer)
-- <a href = "https://github.com/ZSVladkov22"> Zarko Vladkov </a> (Back-end Developer)
-
+<p align="center"> <img align="center" src="c:\Users\Admin\Downloads\Insight.logo.png" alt="Insight logo" width="550", height="350"> </p> <hr>
+<h4 align="center">We are team Insight and we want to show you our project:</h4>
 <hr>
+<br>
 
-## ⚙ Installation
-```
-You can download our project by using the green "Code" button.
+<!-- 📋 TABLE OF CONTENTS --> <h2 id="table-of-contents">Table of Contents</h2>
+<details open="open"> <summary>Table of Contents</summary>
 
-Or by pasting the following code in your CMD:
-git clone https://github.com/codingburgas/school-project-assignment-insight.git
-```
-<h1 align="center">Since you came all the way down here, why don't you give us a ⭐</h1>
+<a href="#about-the-project"> 🔍 The Project
+<a href="#used-technologies"> 🖥️ Technologies
+<a href="#contributors"> 🧑 Contributors
+<a href="#download"> 🚀 Download
+</details>
+<!-- 🔍ABOUT THE PROJECT --> <h2 id="about-the-project">About The Project</h2> <p align ="justify"> Our project is an online school that will help you learn easily.Thank you for your trust in us and enjoy our project! </p>
+- The Insight Team
+
+<br>
+
+</details>
+
+</td></tr></table>
+
+🖥️ Technologies used <a name="technologies">
+Visual Studio 2022 Logo Visual Studio 2022
+GitHub Logo GitHub
+MS Word Logo MS Word
+MS Excel Logo MS Excel
+MS PowerPoint Logo MS PowerPoint
+MS Teams Logo MS Teams
+- <img src="data:image/png;base64,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" width="20" alt="Qt creator"> Qt creator
+👩🏻‍💻 Programing language: C++ Logo C++
+🧑 Collaborators <a name="collaborators">
+<h2 id="contributors">Contributors</h2> <p> <b>Denmetra Karagyozova(Scrum Trainer)</b> <br> Email: <a>DPKaragyozova21@codingburgas.bg</a> <br> <b>Boyan Kyovtorov (Back-End Developer)</b> <br> Email: <a>BKKyovtorov21@codingburgas.bg</a> <br> <b>Dimitar Dimov(Back-End Developer)</b> <br> Email: <a>DRDimov21@codingburgas.bg</a> <br> <b>Zarko Vladkov(Back-end Developer)</b> <br> Email: <a>ZSVladkov22@codingburgas.bg</a> <br> <b>Yoana Georgieva (Front-End Developer)</b> <br> Email: <a>YTGeorgieva22@codingburgas.bg</a> <br> <b>Kristiana Hristova(Front-End Developer)</b> <br> Email: <a>KIHristova22@codingburgas.bg</a> <br> </p> <h2 id="download">🚀Download</h2>
+To download our project, clone this repository, write git clone and then paste this text in your command prompt:
+
+https://github.com/codingburgas/school-project-assignment-insight.git
+<h4 align="center"> Made with ❤️ </h4>
