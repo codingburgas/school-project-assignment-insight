@@ -1,7 +1,7 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 #include "login.hpp"
-MainWindow::MainWindow(LogIn* login, const QString& username_ref, QWidget *parent)
+MainWindow::MainWindow(LogIn* login, const QString& username_ref, const QString& role_ref, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MainWindow)
 {
@@ -13,6 +13,7 @@ MainWindow::MainWindow(LogIn* login, const QString& username_ref, QWidget *paren
     ui->questionType_SW->setCurrentIndex(0);
 
     m_username = username_ref;
+    m_role = role_ref;
 
     ui->Navbar->setCurrentIndex(2);
     ui->Courses_SW->setCurrentIndex(1);
@@ -149,7 +150,8 @@ void MainWindow::UpdateLessons(QString subject)
         accessCourse->setFixedSize(500,50);
         accessCourse->setStyleSheet("background-color: transparent; border: 1px solid black; color: black;");
         connect(accessCourse, &QPushButton::clicked, this, [=]() { handleCourseButtons(heading); });
-
+        if(m_role == "Teacher" || m_role == "Principal" || m_role == "Sub-Teacher")
+        {
         QPushButton *deleteButton = new QPushButton(lessonItemWidget); // Create button to delete the lesson
         QIcon closeIcon(":/Resources/Images/icons/Close.png");
         deleteButton->setIcon(closeIcon);
@@ -165,6 +167,7 @@ void MainWindow::UpdateLessons(QString subject)
         editButton->setStyleSheet("background-color: transparent; border: none;");
         editButton->setGeometry(420, 5, 40 ,40);
         connect(editButton, &QPushButton::clicked, this, [=]() { editLesson(heading); });
+        }
 
         layout->addWidget(lessonItemWidget); // Add the lesson widget to the layout
     }
@@ -894,6 +897,9 @@ void MainWindow::GradeExam(int grade)
 
 void MainWindow::UpdateHomepage()
 {
+    ui->createLesson_PB->hide();
+    ui->createExam_PB->hide();
+
     QSqlQuery qry;
     int counter = 0;
     int studentGrades = 0;
@@ -929,6 +935,14 @@ void MainWindow::UpdateHomepage()
     {
         qDebug() << qry.lastError();
     }
+
+    if(m_role == "Teacher" || m_role == "Principal" || m_role == "Sub-Teacher")
+    {
+        ui->createLesson_PB->show();
+        ui->createExam_PB->show();
+    }
+
+
 }
 
 void MainWindow::on_excelExpertCourses_PB_clicked()

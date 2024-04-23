@@ -22,7 +22,7 @@ class MainWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit MainWindow(LogIn* login, const QString& username_ref, QWidget *parent = nullptr);
+    explicit MainWindow(LogIn* login, const QString& username_ref, const QString& role_ref, QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -108,6 +108,7 @@ private:
     std::vector<QString> questions;
     QString points;
     QString m_username;
+    QString m_role;
 
     std::shared_ptr<LogIn> m_login;
 
