@@ -501,7 +501,7 @@ border:1px solid black;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="HomePage">
      <widget class="QWidget" name="widget_22" native="true">
@@ -580,6 +580,65 @@ background-color:transparent;</string>
       <property name="text">
        <string/>
       </property>
+     </widget>
+     <widget class="QWidget" name="widget_36" native="true">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>50</y>
+        <width>301</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:#669FD4;</string>
+      </property>
+      <widget class="QLabel" name="label_57">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>291</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:white;
+	font: 16pt &quot;Segoe UI&quot;;
+
+}</string>
+       </property>
+       <property name="text">
+        <string>Exams submitted</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="examsSubmitted_LA">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>50</y>
+         <width>301</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:white;
+	font: 16pt &quot;Segoe UI&quot;;
+
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="Schedule"/>

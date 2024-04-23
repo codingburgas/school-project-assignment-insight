@@ -83,6 +83,7 @@ void MainWindow::on_programmingCourses_PB_clicked()
 void MainWindow::on_homepage_PB_clicked()
 {
     ui->Navbar->setCurrentIndex(0);
+    UpdateHomepage();
 }
 
 
@@ -846,10 +847,8 @@ void MainWindow::compareAnswers(const QList<QString> &plainAnswers)
             qDebug() << "Error retrieving data for question: " << question;
         }
     }
-    qDebug() << studentPoints;
-    qDebug() << examPointsTotal;
+
     int grade = static_cast<int>((static_cast<float>(studentPoints) / examPointsTotal) * 100);
-    qDebug() << grade;
     GradeExam(grade);
 }
 
@@ -883,8 +882,21 @@ void MainWindow::GradeExam(int grade)
     qry.bindValue(":username", m_username);
     qry.bindValue(":mark", mark);
     if(qry.exec())
-    {
-        QMessageBox::information(this, "Exam graded", "You have scored " + QString::number(grade) + " from 100");
+    {   
+        qry.prepare("SELECT `Exams Submitted Counter` FROM users WHERE Username = :username");
+        qry.bindValue(":username", m_username);
+        int examsDoneCounter = qry.value(0).toInt();
+        examsDoneCounter++;
+        if(qry.exec())
+        {
+            qry.prepare("UPDATE users SET `Exams Submitted Counter` = :examsDoneCounter WHERE username = :username");
+            qry.bindValue(":examsDoneCounter", examsDoneCounter);
+            qry.bindValue(":username", m_username);
+            if(!qry.exec())
+            {
+                qDebug() << "error:" << qry.lastError();
+            }
+        }
     }
     else
     {
@@ -904,6 +916,7 @@ void MainWindow::UpdateHomepage()
     int counter = 0;
     int studentGrades = 0;
     double avgGrade = 0;
+    int examsSubmittedCounter = 0;
     qry.prepare("SELECT * FROM users WHERE Username = :username");
     qry.bindValue(":username", m_username);
     if(qry.exec() && qry.next())
@@ -911,9 +924,10 @@ void MainWindow::UpdateHomepage()
         QString firstName = qry.value("First Name").toString();
         QString lastName = qry.value("Last Name").toString();
         QString fullName = firstName + " " + lastName;
+        examsSubmittedCounter = qry.value("Exams Submitted Counter").toInt();
+        qDebug() << examsSubmittedCounter;
         ui->studentName_LA->setText(fullName);
         ui->greeting_LA->setText("Hello again, " + fullName);
-
         qry.prepare("SELECT * FROM studentgrades WHERE Username = :username");
         qry.bindValue(":username", m_username);
         if(!qry.exec())
@@ -924,12 +938,12 @@ void MainWindow::UpdateHomepage()
         {
             counter++;
             studentGrades += qry.value("Mark").toInt();
-
         }
 
         avgGrade = static_cast<double>(studentGrades) / counter;
 
         ui->averageGrade_LA->setText(QString::number(avgGrade));
+        ui->examsSubmitted_LA->setText(QString::number(examsSubmittedCounter));
     }
     else
     {
