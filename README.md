@@ -49,8 +49,8 @@
 - <img src="https://arunpotti.files.wordpress.com/2021/12/microsoft_azure.svg_.png" width="20" alt="Azure"> Azure
 - <img src="https://cdn-icons-png.flaticon.com/512/5968/5968313.png" width="20" alt="Azure"> MySQL
 
-- <img src="<p align="center">
-     <img align="center" src="./Resources/Images/Insight-logo.png" alt="Insight logo" width="550", height="350">
+- <img src="https://variwiki.com/images/archive/4/4e/20211220183943%21Qt_logo.png" width="20" alt="Azure"> MySQL
+
 </p>
     
     
@@ -100,7 +100,7 @@
 - <img src="https://arunpotti.files.wordpress.com/2021/12/microsoft_azure.svg_.png" width="20" alt="Azure"> Azure
 - <img src="https://cdn-icons-png.flaticon.com/512/5968/5968313.png" width="20" alt="Azure"> MySQL
 
-- <img src="https://e7.pngegg.com/pngimages/794/1022/png-clipart-qt-creator-qt-quick-the-qt-company-posted-write-text-trademark.png" width="20" alt="Qt creator"> Qt creator
+- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Qt_logo_neon_2022.svg/1200px-Qt_logo_neon_2022.svg.png" width="20" alt="Qt creator"> Qt creator
 -----------------------------------------------------------------------------------------------------------------------------------
 - 👩🏻‍💻 Programing language: <img src="https://brandslogos.com/wp-content/uploads/thumbs/c-logo-vector.svg" width="20" alt="C++ Logo"> <a href="https://cplusplus.com/">C++</a>
     
