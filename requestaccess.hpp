@@ -4,7 +4,7 @@
 #include <QFileDialog>
 #include <QDir>
 #include <QPainter>
-
+#include <QMessageBox>
 namespace Ui {
 class RequestAccess;
 }
@@ -24,6 +24,8 @@ private slots:
     void on_submitFile_PB_clicked();
 
     void on_back_PB_clicked();
+
+    void on_request_PB_clicked();
 
 private:
     Ui::RequestAccess *ui;
