@@ -45,7 +45,11 @@
 - <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/2203px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" width="20" alt="MS Excel Logo"> MS Excel
 - <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Microsoft_PowerPoint_Logo.png" width="20" alt="MS PowerPoint Logo"> MS PowerPoint
 - <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Microsoft_Office_Teams_%282018%E2%80%93present%29.svg/2203px-Microsoft_Office_Teams_%282018%E2%80%93present%29.svg.png" width="20" alt="MS Teams Logo"> MS Teams
-- <img src="https://anturis.com/wp-content/uploads/2022/11/Qt-Creator-Logo.png" width="20" alt="Qt creator"> Qt creator
+
+- <img src="https://arunpotti.files.wordpress.com/2021/12/microsoft_azure.svg_.png" width="20" alt="Azure"> Azure
+- <img src="https://cdn-icons-png.flaticon.com/512/5968/5968313.png" width="20" alt="Azure"> MySQL
+
+- <img src="https://cdn-icons-png.flaticon.com/512/5968/5968313.png" width="20" alt="Qt creator"> Qt creator
 -----------------------------------------------------------------------------------------------------------------------------------
 - 👩🏻‍💻 Programing language: <img src="https://brandslogos.com/wp-content/uploads/thumbs/c-logo-vector.svg" width="20" alt="C++ Logo"> <a href="https://cplusplus.com/">C++</a>
     
