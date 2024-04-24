@@ -96,6 +96,4 @@ Email: <a>KIHristova22@codingburgas.bg</a> <br>
 
 <p>To test our project, download the published release and run the .exe file:</p>
 
-<h4 align="center"> Made with ❤️ </h4>" width="20" alt="Qt creator"> Qt creator
------------------------------------------------------------------------------------------------------------------------------------
-- 👩🏻‍💻 Programing language: <img src="https://brandslogos.com/wp-content/uploads/thumbs/c-logo-vector.svg" width="20" alt="C++ Logo"> <a href="https://cplusplus.com/">C++</a>
+<h4 align="center"> Made with ❤️
