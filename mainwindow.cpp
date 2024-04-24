@@ -1005,6 +1005,88 @@ void MainWindow::on_logOut_PB_clicked()
 }
 
 
+void MainWindow::UpdateGrades()
+{
+    subjects.clear();
+    marks.clear(); // Clear the marks vector
+    QSqlQuery qry;
+    qry.prepare("SELECT Subject, Mark FROM studentgrades WHERE Username = :username");
+    qry.bindValue(":username", m_username);
+    if (!qry.exec()) {
+        qDebug() << "Error executing query:" << qry.lastError().text();
+        return;
+    }
+
+    QWidget* gradesWidget = new QWidget(ui->scrollAreaWidgetContents_7); // Create a new widget to hold all the exams
+    QVBoxLayout *layout = new QVBoxLayout(gradesWidget); // Create a vertical layout for the widget
+    layout->setAlignment(Qt::AlignTop); // Align widgets to the top
+
+    QMap<QString, QList<int>> subjectMarksMap; // Map to store subject and corresponding marks
+    QString color;
+    while(qry.next())
+    {
+        QString subject = qry.value("Subject").toString();
+        int mark = qry.value("Mark").toInt(); // Retrieve the mark
+
+        // Add mark to the corresponding subject in the map
+        subjectMarksMap[subject].append(mark);
+    }
+    // Iterate through the map to create widgets for each subject with its marks
+    for (auto it = subjectMarksMap.begin(); it != subjectMarksMap.end(); ++it)
+    {
+        QString subject = it.key();
+        QList<int> marks = it.value();
+
+        QWidget *gradeWidget = new QWidget; // Create a widget for each subject
+        gradeWidget->setFixedSize(800, 50);
+
+        QLabel *subjectLabel = new QLabel(subject, gradeWidget); // Create label for the subject name
+        subjectLabel->setObjectName(subject + "_LA"); // Set object name
+        subjectLabel->setStyleSheet("QLabel { color: black; font-size: 16px; border-radius:10px;}");
+        subjectLabel->setStyleSheet("background-color: transparent; border: 1px solid black;");
+        subjectLabel->setGeometry(20, 0, 700, 50);
+
+        QWidget *gradesContainer = new QWidget(gradeWidget); // Create container for the marks
+        gradesContainer->setGeometry(500, 8, 200, 40);
+        QHBoxLayout *horizontalLayout = new QHBoxLayout(gradesContainer); // Create a vertical layout for the widget
+
+        // Iterate through marks to create and add labels for each mark
+        QString color;
+        for (int mark : marks) {
+            QLabel* gradeLabel = new QLabel(QString::number(mark), gradesContainer);
+            switch (mark)
+            {
+            case 2:
+                color = "#000000";
+                break;
+            case 3:
+                color = "#400C58";
+                break;
+            case 4:
+                color = "#2D0B66";
+                break;
+            case 5:
+                color = "#0B5666";
+                break;
+            case 6:
+                color = "#26C281";
+                break;
+            }
+            gradeLabel->setStyleSheet("QLabel{background-color: " + color + ";border-radius:15px;qproperty-alignment: AlignCenter; color:white}");
+            gradeLabel->setFixedSize(30, 30); // Set fixed size for circular shape
+            gradeLabel->setAlignment(Qt::AlignLeft); // Center the text inside the circular label
+            horizontalLayout->addWidget(gradeLabel); // Add the mark label to the horizontal layout
+        }
+
+
+
+        layout->addWidget(gradeWidget); // Add the subject widget to the layout
+    }
+
+
+
+    ui->scrollArea_7->setWidget(gradesWidget); // Set the widget containing all exams as the content of the scroll area
+}
 
 
 void MainWindow::on_cppCourse_PB_clicked()
