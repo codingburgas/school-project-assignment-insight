@@ -96,4 +96,5 @@ Email: <a>KIHristova22@codingburgas.bg</a> <br>
 
 <p>To test our project, download the published release and run the .exe file:</p>
 
+<p>To review our design you can visit our figma project: https://www.figma.com/community/file/1365099981360620300/insight</p>
 <h4 align="center"> Made with ❤️
