@@ -4644,7 +4644,7 @@ background-color:transparent;</string>
          <string>Public Profile</string>
         </property>
        </widget>
-       <widget class="QLabel" name="pfp_LA">
+       <widget class="QLabel" name="pfp_settings_LA">
         <property name="geometry">
          <rect>
           <x>60</x>

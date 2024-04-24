@@ -1200,3 +1200,50 @@ void MainWindow::on_security_PB_clicked()
 
 }
 
+
+void MainWindow::on_changePicture_PB_clicked()
+{
+    QString ImagePath = QFileDialog::getOpenFileName(this, tr("Select Image"), QCoreApplication::applicationDirPath(), tr("Image Files (*.jpg *.png)"), 0);
+
+    if (!ImagePath.isEmpty())
+    {
+        QPixmap Image(ImagePath);
+        QPixmap scaledImage = Image.scaled(ui->pfp_settings_LA->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        QBuffer ImageBufferData;
+
+        if (ImageBufferData.open(QIODevice::ReadWrite))
+        {
+            QString fileExtension = QFileInfo(ImagePath).suffix().toLower();
+            if (fileExtension == "jpg" || fileExtension == "jpeg" || fileExtension == "png")
+            {
+                // Save the image data in the appropriate format
+                if (fileExtension == "jpg" || fileExtension == "jpeg")
+                    Image.save(&ImageBufferData, "JPG");
+                else if (fileExtension == "png")
+                    Image.save(&ImageBufferData, "PNG");
+
+                ImageBufferData.close();
+                QByteArray FinalDataToSave = ImageBufferData.buffer().toBase64();
+                QSqlQuery qry;
+                qry.prepare("UPDATE users SET pfp = :pfp WHERE Username = :username");
+                qry.bindValue(":pfp", FinalDataToSave);
+                qry.bindValue(":username", m_username);
+
+                if (qry.exec())
+                {
+                    QSqlDatabase::database().commit();
+                    ui->pfp_settings_LA->setPixmap(scaledImage);
+                }
+            }
+            else
+            {
+                QMessageBox::warning(this, tr("Unsupported Format"), tr("Only JPG and PNG files are supported."));
+            }
+        }
+    }
+    else
+    {
+        qDebug() << "invalid image";
+    }
+}
+

@@ -9,6 +9,8 @@
 #include <QMessageBox>
 #include <QComboBox>
 #include <QButtonGroup>
+#include <QFileDialog>
+#include <QBuffer>
 
 namespace Ui {
 class MainWindow;
@@ -116,6 +118,8 @@ private slots:
     void on_language_PB_clicked();
 
     void on_security_PB_clicked();
+
+    void on_changePicture_PB_clicked();
 
 private:
     Ui::MainWindow *ui;
