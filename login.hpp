@@ -18,7 +18,7 @@ class LogIn : public QWidget
     Q_OBJECT
 
 public:
-    explicit LogIn(QWidget *parent = nullptr);
+    LogIn(QWidget *parent = nullptr);
     ~LogIn();
 
 private slots:

@@ -87,9 +87,10 @@ void MainWindow::on_homepage_PB_clicked()
 }
 
 
-void MainWindow::on_schedule_PB_clicked()
+void MainWindow::on_grades_PB_clicked()
 {
     ui->Navbar->setCurrentIndex(1);
+    UpdateGrades();
 }
 
 
@@ -414,11 +415,6 @@ void MainWindow::UpdateExams()
     for (const QString& exam : examNames) {
         QWidget *examWidget = new QWidget; // Create a widget for each exam
         examWidget->setFixedSize(500, 50);
-        QLabel *iconLabel = new QLabel; // Create icon label
-        iconLabel->setObjectName(exam + "_icon_LA"); // Set object name
-        QPixmap icon(":/Resources/Images/icons/Test Results.png");
-        iconLabel->setPixmap(icon);
-        iconLabel->setStyleSheet("background-color:transparent");
 
         QLabel *label = new QLabel(exam, examWidget); // Create label for the exam name
         label->setObjectName(exam + "_LA"); // Set object name
@@ -733,8 +729,7 @@ void MainWindow::editExam(const QString& examName){
     ui->createExam_SW->setCurrentIndex(0);
     ui->examName_LA->hide();
     ui->examName_LE->hide();
-    ui->subject_exam_LA->setText("Exam " + examName);
-    ui->examName_LE->setText(examName);
+   ui->examName_LE->setText(examName);
     ui->publishExam_PB->setText("Edit exam");
     UpdateQuestions(examName);
     // QWidget* QuestionsWidget = ui->scrollAreaWidgetContents_4;
@@ -854,7 +849,7 @@ void MainWindow::compareAnswers(const QList<QString> &plainAnswers)
 
 void MainWindow::GradeExam(int grade)
 {
-    qDebug() << grade;
+    qDebug() << "sds";
     QSqlQuery qry;
     int mark;
     if(grade < 50)
@@ -877,9 +872,11 @@ void MainWindow::GradeExam(int grade)
     {
         mark = 6;
     }
-    qry.prepare("INSERT INTO studentgrades(Username, Mark) "
-                "VALUES(:username, :mark)");
+    qDebug() << ui->subject_exam_LA->text();
+    qry.prepare("INSERT INTO studentgrades(Username, Subject, Mark) "
+                "VALUES(:username, :subject, :mark)");
     qry.bindValue(":username", m_username);
+    qry.bindValue(":subject", ui->subject_exam_LA->text());
     qry.bindValue(":mark", mark);
     if(qry.exec())
     {   
@@ -924,10 +921,11 @@ void MainWindow::UpdateHomepage()
         QString firstName = qry.value("First Name").toString();
         QString lastName = qry.value("Last Name").toString();
         QString fullName = firstName + " " + lastName;
+        QString role = qry.value("Role").toString();
         examsSubmittedCounter = qry.value("Exams Submitted Counter").toInt();
-        qDebug() << examsSubmittedCounter;
         ui->studentName_LA->setText(fullName);
         ui->greeting_LA->setText("Hello again, " + fullName);
+        ui->role_LA->setText(role);
         qry.prepare("SELECT * FROM studentgrades WHERE Username = :username");
         qry.bindValue(":username", m_username);
         if(!qry.exec())
@@ -1004,5 +1002,57 @@ void MainWindow::on_logOut_PB_clicked()
     this->hide();
     m_login = std::make_shared<LogIn>();
     m_login->show();
+}
+
+
+
+
+void MainWindow::on_cppCourse_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("CPP");
+    UpdateLessons("CPP");
+}
+
+
+void MainWindow::on_objCourse_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("Objective C");
+    UpdateLessons("Objective C");
+}
+
+
+void MainWindow::on_CSharpCourse_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("C Sharp");
+    UpdateLessons("C Sharp");
+}
+
+
+void MainWindow::on_javaCourse_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("Java");
+    UpdateLessons("Java");
+}
+
+
+void MainWindow::on_pythonCourse_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("Python");
+    UpdateLessons("Python");
+}
+
+
+
+
+void MainWindow::on_javascriptCourse_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("Javascript");
+    UpdateLessons("Javascript");
 }
 

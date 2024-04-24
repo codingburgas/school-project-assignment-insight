@@ -15,7 +15,7 @@ class RequestAccess : public QWidget
     Q_OBJECT
 
 public:
-    explicit RequestAccess(QWidget *parent = nullptr);
+    RequestAccess(QWidget *parent = nullptr);
     ~RequestAccess();
 
     virtual void paintEvent(QPaintEvent*);

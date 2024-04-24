@@ -81,7 +81,7 @@ color:black;
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="schedule_PB">
+   <widget class="QPushButton" name="grades_PB">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -103,10 +103,10 @@ background-color:rgb(103,103,103);
 }</string>
     </property>
     <property name="text">
-     <string>Schedule</string>
+     <string>Grades</string>
     </property>
    </widget>
-   <widget class="QLabel" name="schedule_LA">
+   <widget class="QLabel" name="grades_LA">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -420,7 +420,7 @@ background-color:transparent;</string>
      <string notr="true">color:rgb(190,190,190);</string>
     </property>
     <property name="text">
-     <string>Student</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="wallet_LA">
@@ -501,14 +501,14 @@ border:1px solid black;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="HomePage">
      <widget class="QWidget" name="widget_22" native="true">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>50</y>
+        <x>30</x>
+        <y>140</y>
         <width>301</width>
         <height>161</height>
        </rect>
@@ -584,8 +584,8 @@ background-color:transparent;</string>
      <widget class="QWidget" name="widget_36" native="true">
       <property name="geometry">
        <rect>
-        <x>470</x>
-        <y>50</y>
+        <x>450</x>
+        <y>150</y>
         <width>301</width>
         <height>161</height>
        </rect>
@@ -641,7 +641,31 @@ color:white;
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="Schedule"/>
+    <widget class="QWidget" name="Grades">
+     <widget class="QScrollArea" name="scrollArea_7">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>901</width>
+        <height>661</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_3">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>901</width>
+         <height>661</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </widget>
     <widget class="QWidget" name="Classes">
      <widget class="QStackedWidget" name="Courses_SW">
       <property name="geometry">
@@ -3212,6 +3236,27 @@ border-radius:10px;</string>
          </property>
         </widget>
        </widget>
+       <widget class="QLabel" name="label_58">
+        <property name="geometry">
+         <rect>
+          <x>560</x>
+          <y>610</y>
+          <width>30</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel
+{
+background-color:black;
+border-radius:15px;
+    qproperty-alignment: AlignCenter;
+}</string>
+        </property>
+        <property name="text">
+         <string>6</string>
+        </property>
+       </widget>
       </widget>
      </widget>
      <widget class="QWidget" name="widget_71" native="true">
@@ -3967,29 +4012,6 @@ border:1px solid black;
 border-radius:5px;</string>
         </property>
        </widget>
-       <widget class="QLabel" name="subject_exam_LA">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>871</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel
-{
-background-color:transparent;
-    qproperty-alignment: AlignCenter;
-color:black;
-	font: 16pt &quot;Segoe UI&quot;;
-
-}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
        <widget class="QPushButton" name="publishExam_PB">
         <property name="geometry">
          <rect>
@@ -4164,7 +4186,7 @@ font: 13pt &quot;Segoe UI&quot;;</string>
           <string notr="true">border:none;</string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page">
           <widget class="QLineEdit" name="answerB_LE">
@@ -4533,7 +4555,7 @@ color:black;
          <property name="geometry">
           <rect>
            <x>730</x>
-           <y>10</y>
+           <y>20</y>
            <width>141</width>
            <height>51</height>
           </rect>
@@ -4568,6 +4590,29 @@ background-color:#2E2E2E;</string>
            </rect>
           </property>
          </widget>
+        </widget>
+        <widget class="QLabel" name="subject_exam_LA">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>881</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:black;
+	font: 16pt &quot;Segoe UI&quot;;
+
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
         </widget>
        </widget>
       </widget>
@@ -4646,7 +4691,7 @@ border:1px solid black;
    <zorder>role_LA</zorder>
    <zorder>Navbar</zorder>
    <zorder>homepage_PB</zorder>
-   <zorder>schedule_PB</zorder>
+   <zorder>grades_PB</zorder>
    <zorder>classes_PB</zorder>
    <zorder>exams_PB</zorder>
    <zorder>achievements_PB</zorder>
@@ -4657,7 +4702,7 @@ border:1px solid black;
    <zorder>classes_LA</zorder>
    <zorder>exams_LA</zorder>
    <zorder>achievements_LA</zorder>
-   <zorder>schedule_LA</zorder>
+   <zorder>grades_LA</zorder>
    <zorder>messages_PB</zorder>
    <zorder>support_LA</zorder>
    <zorder>pushButton_3</zorder>

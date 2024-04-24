@@ -36,5 +36,7 @@
         <file>Images/icons/List View.png</file>
         <file>Images/icons/Close.png</file>
         <file>Images/icons/Edit.png</file>
+        <file>Images/icons/Report Card.png</file>
+        <file>Images/icons/Quiz.png</file>
     </qresource>
 </RCC>
