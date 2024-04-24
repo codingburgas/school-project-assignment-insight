@@ -1043,7 +1043,7 @@ void MainWindow::UpdateGrades()
         QLabel *subjectLabel = new QLabel(subject, gradeWidget); // Create label for the subject name
         subjectLabel->setObjectName(subject + "_LA"); // Set object name
         subjectLabel->setStyleSheet("QLabel { color: black; font-size: 16px; border-radius:10px;}");
-        subjectLabel->setStyleSheet("background-color: transparent; border: 1px solid black;");
+        subjectLabel->setStyleSheet("background-color: transparent;");
         subjectLabel->setGeometry(20, 0, 700, 50);
 
         QWidget *gradesContainer = new QWidget(gradeWidget); // Create container for the marks
@@ -1136,5 +1136,11 @@ void MainWindow::on_javascriptCourse_PB_clicked()
     ui->Navbar->setCurrentIndex(7);
     ui->subject_LA->setText("Javascript");
     UpdateLessons("Javascript");
+}
+
+
+void MainWindow::on_settings_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(9);
 }
 

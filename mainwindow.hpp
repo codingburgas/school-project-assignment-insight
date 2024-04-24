@@ -107,6 +107,8 @@ private slots:
 
     void on_javascriptCourse_PB_clicked();
 
+    void on_settings_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     virtual void paintEvent(QPaintEvent*) override;
