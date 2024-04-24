@@ -394,14 +394,16 @@ background-color:transparent;</string>
    <widget class="QLabel" name="studentName_LA">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>30</x>
       <y>630</y>
-      <width>111</width>
-      <height>16</height>
+      <width>121</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:black;</string>
+     <string notr="true">color:black;
+    qproperty-alignment: AlignCenter;
+</string>
     </property>
     <property name="text">
      <string/>
@@ -410,14 +412,16 @@ background-color:transparent;</string>
    <widget class="QLabel" name="role_LA">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>30</x>
       <y>650</y>
-      <width>58</width>
-      <height>16</height>
+      <width>121</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:rgb(190,190,190);</string>
+     <string notr="true">color:rgb(190,190,190);
+    qproperty-alignment: AlignCenter;
+</string>
     </property>
     <property name="text">
      <string/>
@@ -4644,22 +4648,6 @@ background-color:transparent;</string>
          <string>Public Profile</string>
         </property>
        </widget>
-       <widget class="QLabel" name="pfp_settings_LA">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>70</y>
-          <width>151</width>
-          <height>121</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
        <widget class="QPushButton" name="changePicture_PB">
         <property name="geometry">
          <rect>
@@ -4835,6 +4823,38 @@ background-color:transparent;</string>
         <property name="text">
          <string>Bio</string>
         </property>
+       </widget>
+       <widget class="QFrame" name="settings_FR">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>70</y>
+          <width>121</width>
+          <height>120</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLabel" name="pfp_settings_LA">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>150</width>
+           <height>120</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="page_4">
@@ -5550,6 +5570,35 @@ border:1px solid black;
      <string/>
     </property>
    </widget>
+   <widget class="QFrame" name="navbar_FR">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>560</y>
+      <width>61</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="pfp_LA">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>81</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
    <zorder>wallet_PB</zorder>
    <zorder>team_LA</zorder>
    <zorder>logo_LA</zorder>
@@ -5577,6 +5626,7 @@ border:1px solid black;
    <zorder>logOut_PB</zorder>
    <zorder>settings_LA</zorder>
    <zorder>settings_PB</zorder>
+   <zorder>navbar_FR</zorder>
   </widget>
  </widget>
  <resources/>

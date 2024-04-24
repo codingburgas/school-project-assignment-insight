@@ -906,6 +906,7 @@ void MainWindow::GradeExam(int grade)
 
 void MainWindow::UpdateHomepage()
 {
+    UpdatePfp();
     ui->createLesson_PB->hide();
     ui->createExam_PB->hide();
 
@@ -1247,3 +1248,57 @@ void MainWindow::on_changePicture_PB_clicked()
     }
 }
 
+void MainWindow::UpdatePfp()
+{
+    QLabel *imageLabel = ui->pfp_settings_LA;
+    QLabel *imageLabel2 = ui->pfp_LA;
+    QFrame *frame = ui->navbar_FR;
+    QFrame *frame2 = ui->settings_FR;
+
+    QSqlQuery query;
+    query.prepare("SELECT pfp FROM users WHERE Username = :username");
+    query.bindValue(":username", m_username);
+
+    if (query.exec() && query.first())
+    {
+        QByteArray imageData = query.value("pfp").toByteArray();
+        QPixmap userPixmap;
+        userPixmap.loadFromData(QByteArray::fromBase64(imageData));
+
+        if (!userPixmap.isNull())
+        {
+            // Set up circular mask and style for profile picture
+            SetCircularMaskAndStyle(frame, imageLabel, userPixmap);
+            SetCircularMaskAndStyle(frame2, imageLabel2, userPixmap);
+        }
+        else
+        {
+            qDebug() << "Invalid or empty image data.";
+        }
+    }
+}
+
+void MainWindow::SetCircularMaskAndStyle(QFrame* frame, QLabel* imageLabel, const QPixmap& userPixmap)
+{
+    // Set up circular mask
+    QBitmap mask(frame->size());
+    mask.fill(Qt::color0); // Transparent mask
+    QPainter painter(&mask);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setBrush(Qt::color1); // Fill with opaque color
+    painter.drawEllipse(mask.rect());
+    frame->setMask(mask);
+
+    // Set circular style for the frame
+    frame->setStyleSheet("background-color: white; border-radius: " + QString::number(frame->width() / 2) + "px;");
+
+    // Scale the pixmap to fit within the circular frame
+    QPixmap scaledPixmap = userPixmap.scaled(frame->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+    // Set parent and geometry for the imageLabel
+    imageLabel->setParent(frame);
+    imageLabel->setGeometry(0, 0, frame->width(), frame->height());
+
+    // Set the scaled pixmap for the imageLabel
+    imageLabel->setPixmap(scaledPixmap);
+}

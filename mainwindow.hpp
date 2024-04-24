@@ -146,4 +146,6 @@ private:
     void collectPlainAnswers(QList<QString> &plainAnswers);
     void compareAnswers(const QList<QString> &plainAnswers);
     void GradeExam(int grade);
+    void UpdatePfp();
+    void SetCircularMaskAndStyle(QFrame* frame, QLabel* imageLabel, const QPixmap& userPixmap);
 };
