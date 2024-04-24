@@ -93,7 +93,7 @@ void Register::on_register_PB_clicked()
     QString firstName = ui->firstName_LE->text();
     QString lastName = ui->lastName_LE->text();
     QString username = ui->useranme_LE->text();
-    QString email = ui->useranme_LE->text();
+    QString email = ui->email_LE->text();
     QString password = ui->password_LE->text();
     QString birthDay = ui->birthDay_CB->currentText();
     QString birthMonth = ui->birthMonth_CB->currentText();
@@ -108,7 +108,7 @@ void Register::on_register_PB_clicked()
     qry.prepare("INSERT INTO users(`First Name`, `Last Name`, Username, Email, Password, `Date Of Birth`, `Password Salt`) "
                 "VALUES (:First_Name, :Last_Name, :Username, :Email, :Password, :Date_Of_Birth, :Password_Salt)");
     qry.bindValue(":First_Name", firstName);
-    qry.bindValue(":Last_Name", firstName);
+    qry.bindValue(":Last_Name", lastName);
     qry.bindValue(":Username", username);
     qry.bindValue(":Email", email);
     qry.bindValue(":Password", hashedPassword);

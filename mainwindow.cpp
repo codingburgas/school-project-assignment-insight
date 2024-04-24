@@ -390,6 +390,15 @@ void MainWindow::on_createQuestion_PB_clicked()
         ui->createExam_SW->setCurrentIndex(0);
         UpdateQuestions(examName);
     }
+
+    ui->question_LE->clear();
+    ui->answerA_LE->clear();
+    ui->answerB_LE->clear();
+    ui->answerC_LE->clear();
+    ui->answerD_LE->clear();
+    ui->points_LE->clear();
+
+
 }
 
 void MainWindow::UpdateExams()
@@ -635,7 +644,7 @@ void MainWindow::EnterExam(const QString& examName)
                 answer2->setObjectName(qry.value("Answer2").toString() + "_CB"); // Set object name
                 answer2->setText("B: " + qry.value("Answer2").toString());
                 answer2->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
-                answer2->setGeometry(390, 120, 300, 70);
+                answer2->setGeometry(500, 120, 300, 70);
                 answerGroup->addButton(answer2);
 
                 QCheckBox *answer3 = new QCheckBox("C: ", questionWidget);
@@ -649,7 +658,7 @@ void MainWindow::EnterExam(const QString& examName)
                 answer4->setObjectName(qry.value("Answer4").toString() + "_CB"); // Set object name
                 answer4->setText("D: " + qry.value("Answer4").toString());
                 answer4->setStyleSheet("background-color:transparent;color:black;font: 16pt;border:none;");
-                answer4->setGeometry(390, 180, 300, 70);
+                answer4->setGeometry(500, 180, 300, 70);
                 answerGroup->addButton(answer4);
 
                 connect(answerGroup, SIGNAL(buttonClicked(QAbstractButton*)), this, SLOT(onAnswerClicked(QAbstractButton*))); // Connect the button group's signal to a slot
@@ -748,9 +757,9 @@ void MainWindow::on_publishExam_PB_clicked()
 
     if(qry.exec())
     {
-        qDebug() << "Inserted successfully.";
+        QMessageBox::information(this, "Exam Published", "Your exam has been published");
         UpdateExams();
-        ui->Exams_SW->setCurrentIndex(3);
+        ui->Navbar->setCurrentIndex(3);
     }
     else
     {
@@ -849,7 +858,6 @@ void MainWindow::compareAnswers(const QList<QString> &plainAnswers)
 
 void MainWindow::GradeExam(int grade)
 {
-    qDebug() << "sds";
     QSqlQuery qry;
     int mark;
     if(grade < 50)
@@ -939,6 +947,7 @@ void MainWindow::UpdateHomepage()
         {
             counter++;
             studentGrades += qry.value("Mark").toInt();
+            qDebug() << studentGrades;
         }
 
         avgGrade = static_cast<double>(studentGrades) / counter;
@@ -1049,8 +1058,7 @@ void MainWindow::UpdateGrades()
 
         QLabel *subjectLabel = new QLabel(subject, gradeWidget); // Create label for the subject name
         subjectLabel->setObjectName(subject + "_LA"); // Set object name
-        subjectLabel->setStyleSheet("QLabel { color: black; font-size: 16px; border-radius:10px;}");
-        subjectLabel->setStyleSheet("background-color: transparent;");
+        subjectLabel->setStyleSheet("QLabel { color: black; font-size: 16px; border: 1px solid black; border-radius:5px;}");
         subjectLabel->setGeometry(20, 0, 700, 50);
 
         QWidget *gradesContainer = new QWidget(gradeWidget); // Create container for the marks
@@ -1298,8 +1306,8 @@ void MainWindow::SetCircularMaskAndStyle(QFrame* frame, QLabel* imageLabel, cons
     // Set circular style for the frame
     frame->setStyleSheet("background-color: white; border-radius: " + QString::number(frame->width() / 2) + "px;");
 
-    // Scale the pixmap to fit within the circular frame
-    QPixmap scaledPixmap = userPixmap.scaled(frame->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    // Scale the pixmap to fit within the circular frame and stretch if necessary
+    QPixmap scaledPixmap = userPixmap.scaled(frame->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
     // Set parent and geometry for the imageLabel
     imageLabel->setParent(frame);
@@ -1308,6 +1316,8 @@ void MainWindow::SetCircularMaskAndStyle(QFrame* frame, QLabel* imageLabel, cons
     // Set the scaled pixmap for the imageLabel
     imageLabel->setPixmap(scaledPixmap);
 }
+
+
 
 void MainWindow::on_reviewRequests_PB_clicked()
 {
@@ -1368,5 +1378,43 @@ void MainWindow::on_approveRequest_PB_clicked()
 void MainWindow::on_ignoreRequest_PB_clicked()
 {
     ui->homepage_SW->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_ITExams_PB_clicked()
+{
+    ui->Exams_SW->setCurrentIndex(1);
+
+}
+
+void MainWindow::on_programmingExams_PB_clicked()
+{
+    ui->Exams_SW->setCurrentIndex(2);
+
+}
+void MainWindow::on_naturalExams_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(3);
+    ui->Exams_SW->setCurrentIndex(3);
+}
+
+
+void MainWindow::on_socialExams_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(3);
+    ui->Exams_SW->setCurrentIndex(4);
+
+}
+
+void MainWindow::on_naturalSciences_PB_clicked()
+{
+    ui->Courses_SW->setCurrentIndex(3);
+
+}
+
+
+void MainWindow::on_socialSciences_PB_clicked()
+{
+    ui->Courses_SW->setCurrentIndex(4);
 }
 

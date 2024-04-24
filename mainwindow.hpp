@@ -127,6 +127,18 @@ private slots:
 
     void on_ignoreRequest_PB_clicked();
 
+    void on_naturalExams_PB_clicked();
+
+    void on_socialExams_PB_clicked();
+
+    void on_programmingExams_PB_clicked();
+
+    void on_ITExams_PB_clicked();
+
+    void on_naturalSciences_PB_clicked();
+
+    void on_socialSciences_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     virtual void paintEvent(QPaintEvent*) override;

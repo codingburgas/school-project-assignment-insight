@@ -38,5 +38,11 @@
         <file>Images/icons/Edit.png</file>
         <file>Images/icons/Report Card.png</file>
         <file>Images/icons/Quiz.png</file>
+        <file>Images/biology.webp</file>
+        <file>Images/physics.jpg</file>
+        <file>Images/chemistry.png</file>
+        <file>Images/economics.jpg</file>
+        <file>Images/geography.jpg</file>
+        <file>Images/history.jpg</file>
     </qresource>
 </RCC>
