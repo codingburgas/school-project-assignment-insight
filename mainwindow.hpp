@@ -109,6 +109,14 @@ private slots:
 
     void on_settings_PB_clicked();
 
+    void on_profile_PB_clicked();
+
+    void on_appearence_PB_clicked();
+
+    void on_language_PB_clicked();
+
+    void on_security_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     virtual void paintEvent(QPaintEvent*) override;
@@ -116,6 +124,7 @@ private:
     void UpdateLessons(QString subject);
     void UpdateExams();
     void UpdateQuestions(const QString& examName);
+    void UpdateSettings();
 
     std::vector<QString> lessonHeadings;
     std::vector<QString> lessonText;

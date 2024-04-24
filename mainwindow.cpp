@@ -1142,5 +1142,61 @@ void MainWindow::on_javascriptCourse_PB_clicked()
 void MainWindow::on_settings_PB_clicked()
 {
     ui->Navbar->setCurrentIndex(9);
+    UpdateSettings();
+}
+
+void MainWindow::UpdateSettings()
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM users WHERE Username = :username");
+    qry.bindValue(":username", m_username);
+    if(qry.exec())
+    {
+        if(qry.next())
+        {
+            QString firstName = qry.value("First Name").toString();
+            QString lastName = qry.value("Last Name").toString();
+            QString username = qry.value("Username").toString();
+            QString email = qry.value("Email").toString();
+            QString bio = qry.value("Bio").toString();
+            QString password = qry.value("Password").toString();
+            QString phoneNumber = qry.value("Phone Number").toString();
+            QString country = qry.value("Country").toString();
+
+            ui->firstName_LE->setText(firstName);
+            ui->lastName_LE->setText(lastName);
+            ui->username_LE->setText(username);
+            ui->bio_LE->setText(bio);
+            ui->password_LE->setText(password);
+            ui->phoneNumber_LE->setText(phoneNumber);
+            ui->email_LE->setText(email);
+        }
+    }
+}
+
+
+void MainWindow::on_profile_PB_clicked()
+{
+    ui->settings_SW->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_appearence_PB_clicked()
+{
+    ui->settings_SW->setCurrentIndex(1);
+}
+
+
+void MainWindow::on_language_PB_clicked()
+{
+    ui->settings_SW->setCurrentIndex(2);
+
+}
+
+
+void MainWindow::on_security_PB_clicked()
+{
+    ui->settings_SW->setCurrentIndex(3);
+
 }
 

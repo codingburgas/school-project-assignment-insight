@@ -5220,7 +5220,7 @@ QCheckBox::indicator:checked:hover {
           <x>40</x>
           <y>70</y>
           <width>551</width>
-          <height>24</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -5236,7 +5236,7 @@ border-radius:5px;</string>
          <rect>
           <x>40</x>
           <y>20</y>
-          <width>131</width>
+          <width>551</width>
           <height>41</height>
          </rect>
         </property>
@@ -5254,7 +5254,7 @@ background-color:transparent;</string>
          <rect>
           <x>40</x>
           <y>120</y>
-          <width>131</width>
+          <width>551</width>
           <height>41</height>
          </rect>
         </property>
@@ -5276,7 +5276,7 @@ background-color:transparent;</string>
           <x>40</x>
           <y>170</y>
           <width>551</width>
-          <height>24</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -5293,9 +5293,9 @@ border-radius:5px;</string>
        <widget class="QLabel" name="country_LA">
         <property name="geometry">
          <rect>
-          <x>40</x>
-          <y>230</y>
-          <width>131</width>
+          <x>30</x>
+          <y>330</y>
+          <width>371</width>
           <height>41</height>
          </rect>
         </property>
@@ -5311,8 +5311,8 @@ background-color:transparent;</string>
        <widget class="QComboBox" name="country_CB">
         <property name="geometry">
          <rect>
-          <x>40</x>
-          <y>300</y>
+          <x>30</x>
+          <y>400</y>
           <width>351</width>
           <height>41</height>
          </rect>
@@ -5351,6 +5351,47 @@ QComboBox::down-arrow {
           <string>Bulgaria</string>
          </property>
         </item>
+       </widget>
+       <widget class="QLabel" name="phoneNumber_LA">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>220</y>
+          <width>561</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;
+font: 16pt &quot;Segoe UI&quot;;
+background-color:transparent;</string>
+        </property>
+        <property name="text">
+         <string>Phone number</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="phoneNumber_LE">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>270</y>
+          <width>551</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid black;
+border-radius:5px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
        </widget>
       </widget>
      </widget>
