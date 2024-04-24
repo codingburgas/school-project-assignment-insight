@@ -4598,7 +4598,7 @@ color:black;
      </widget>
     </widget>
     <widget class="QWidget" name="Settings">
-     <widget class="QLabel" name="label_58">
+     <widget class="QLabel" name="settings_LA_2">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -4626,7 +4626,7 @@ background-color:transparent;</string>
        </rect>
       </property>
       <widget class="QWidget" name="page_3">
-       <widget class="QLabel" name="label_59">
+       <widget class="QLabel" name="publicProfile_LA">
         <property name="geometry">
          <rect>
           <x>60</x>
@@ -4766,7 +4766,7 @@ background-color:transparent;</string>
 border-radius:5px;</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="firstName_LE_2">
+       <widget class="QLineEdit" name="email_LE">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -4783,7 +4783,7 @@ border-radius:5px;</string>
 border-radius:5px;</string>
         </property>
        </widget>
-       <widget class="QLabel" name="firstName_LA_2">
+       <widget class="QLabel" name="email_LA">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -4801,7 +4801,7 @@ background-color:transparent;</string>
          <string>Email</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="firstName_LE_3">
+       <widget class="QLineEdit" name="bio_LE">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -4818,7 +4818,7 @@ background-color:transparent;</string>
 border-radius:5px;</string>
         </property>
        </widget>
-       <widget class="QLabel" name="firstName_LA_3">
+       <widget class="QLabel" name="bio_LA">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -4836,27 +4836,9 @@ background-color:transparent;</string>
          <string>Bio</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="changePicture_PB_2">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>500</y>
-          <width>301</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-radius:10px;
-background-color:#0E1A39;
-color:white;</string>
-        </property>
-        <property name="text">
-         <string>Update Profile</string>
-        </property>
-       </widget>
       </widget>
       <widget class="QWidget" name="page_4">
-       <widget class="QLabel" name="label_60">
+       <widget class="QLabel" name="theme_LA">
         <property name="geometry">
          <rect>
           <x>60</x>
@@ -4874,7 +4856,7 @@ background-color:transparent;</string>
          <string>Theme</string>
         </property>
        </widget>
-       <widget class="QRadioButton" name="radioButton">
+       <widget class="QRadioButton" name="dark_RB">
         <property name="geometry">
          <rect>
           <x>50</x>
@@ -4900,7 +4882,7 @@ QRadioButton::indicator {
          <string>Dark</string>
         </property>
        </widget>
-       <widget class="QRadioButton" name="radioButton_2">
+       <widget class="QRadioButton" name="light_RB">
         <property name="geometry">
          <rect>
           <x>50</x>
@@ -4926,7 +4908,7 @@ QRadioButton::indicator {
          <string>Light</string>
         </property>
        </widget>
-       <widget class="QRadioButton" name="radioButton_3">
+       <widget class="QRadioButton" name="systemSettings_RB">
         <property name="geometry">
          <rect>
           <x>50</x>
@@ -4952,7 +4934,7 @@ QRadioButton::indicator {
          <string>System Settings</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_61">
+       <widget class="QLabel" name="chatType_LA">
         <property name="geometry">
          <rect>
           <x>70</x>
@@ -4970,7 +4952,7 @@ background-color:transparent;</string>
          <string>Chat Type</string>
         </property>
        </widget>
-       <widget class="QSlider" name="horizontalSlider">
+       <widget class="QSlider" name="textSize_HS">
         <property name="geometry">
          <rect>
           <x>70</x>
@@ -5000,7 +4982,7 @@ QSlider::handle:horizontal {
          <enum>Qt::Horizontal</enum>
         </property>
        </widget>
-       <widget class="QLabel" name="label_62">
+       <widget class="QLabel" name="textSize_LA">
         <property name="geometry">
          <rect>
           <x>70</x>
@@ -5020,7 +5002,7 @@ background-color:transparent;</string>
        </widget>
       </widget>
       <widget class="QWidget" name="page_5">
-       <widget class="QLabel" name="label_66">
+       <widget class="QLabel" name="language_LA">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -5038,7 +5020,7 @@ background-color:transparent;</string>
          <string>Language</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="language_CB">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -5082,7 +5064,7 @@ QComboBox::down-arrow {
          </property>
         </item>
        </widget>
-       <widget class="QLabel" name="label_67">
+       <widget class="QLabel" name="timeZone_LA">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -5100,7 +5082,7 @@ background-color:transparent;</string>
          <string>Time Zone</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="checkBox">
+       <widget class="QCheckBox" name="automaticTimeZone_CB">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -5140,7 +5122,7 @@ QCheckBox::indicator:checked:hover {
          <string>Set Time Zone Automatically</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="comboBox_2">
+       <widget class="QComboBox" name="timeZone_CB">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -5184,7 +5166,7 @@ QComboBox::down-arrow {
          </property>
         </item>
        </widget>
-       <widget class="QCheckBox" name="checkBox_2">
+       <widget class="QCheckBox" name="hourtType_CB">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -5228,8 +5210,151 @@ QCheckBox::indicator:checked:hover {
         </property>
        </widget>
       </widget>
+      <widget class="QWidget" name="page_6">
+       <widget class="QLineEdit" name="username_LE">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>70</y>
+          <width>551</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid black;
+border-radius:5px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="username_LA">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>20</y>
+          <width>131</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;
+font: 16pt &quot;Segoe UI&quot;;
+background-color:transparent;</string>
+        </property>
+        <property name="text">
+         <string>Username</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="password_LA">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>120</y>
+          <width>131</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;
+font: 16pt &quot;Segoe UI&quot;;
+background-color:transparent;</string>
+        </property>
+        <property name="text">
+         <string>Password</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="password_LE">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>170</y>
+          <width>551</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid black;
+border-radius:5px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="country_LA">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>230</y>
+          <width>131</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;
+font: 16pt &quot;Segoe UI&quot;;
+background-color:transparent;</string>
+        </property>
+        <property name="text">
+         <string>Country</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="country_CB">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>300</y>
+          <width>351</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+    background-color: #D9D9D9; /* Background color of the combobox */
+    color: #333333; /* Text color */
+    selection-background-color: #66b3ff; /* Background color when item is selected */
+    selection-color: #ffffff; /* Text color when item is selected */
+    border: 1px solid #999999;
+    padding: 2px 20px 2px 5px;
+    min-width: 6em;
+	border-radius:5px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border: none;
+    padding-right: 5px;
+    background-color: #D9D9D9;
+}
+
+QComboBox::down-arrow {
+    
+	image: url(:/Resources/Images/icons/Expand Arrow.png);
+	width:23px;
+	height:23px;
+}
+</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Bulgaria</string>
+         </property>
+        </item>
+       </widget>
+      </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="profile_PB">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -5247,7 +5372,7 @@ font: 14pt &quot;Segoe UI&quot;;</string>
        <string>Profile</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="appearence_PB">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -5265,7 +5390,7 @@ font: 14pt &quot;Segoe UI&quot;;</string>
        <string>Appearance</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="language_PB">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -5283,7 +5408,7 @@ font: 14pt &quot;Segoe UI&quot;;</string>
        <string>Language</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="security_PB">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -5300,6 +5425,24 @@ font: 14pt &quot;Segoe UI&quot;;
       </property>
       <property name="text">
        <string>Security</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="changePicture_PB_2">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>580</y>
+        <width>301</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius:10px;
+background-color:#0E1A39;
+color:white;</string>
+      </property>
+      <property name="text">
+       <string>Update Profile</string>
       </property>
      </widget>
     </widget>
