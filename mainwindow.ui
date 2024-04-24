@@ -4855,7 +4855,379 @@ color:white;</string>
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_4"/>
+      <widget class="QWidget" name="page_4">
+       <widget class="QLabel" name="label_60">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>20</y>
+          <width>181</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;
+font: 18pt &quot;Segoe UI&quot;;
+background-color:transparent;</string>
+        </property>
+        <property name="text">
+         <string>Theme</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="radioButton">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>70</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton
+{
+    background-color:transparent;
+	color:black;
+	font: 14pt &quot;Segoe UI&quot;;
+}
+QRadioButton::indicator {
+    width: 20px;
+    height: 20px;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Dark</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="radioButton_2">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>120</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton
+{
+    background-color:transparent;
+	color:black;
+	font: 14pt &quot;Segoe UI&quot;;
+}
+QRadioButton::indicator {
+    width: 20px;
+    height: 20px;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Light</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="radioButton_3">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>170</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton
+{
+    background-color:transparent;
+	color:black;
+	font: 14pt &quot;Segoe UI&quot;;
+}
+QRadioButton::indicator {
+    width: 20px;
+    height: 20px;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>System Settings</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_61">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>240</y>
+          <width>181</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;
+font: 18pt &quot;Segoe UI&quot;;
+background-color:transparent;</string>
+        </property>
+        <property name="text">
+         <string>Chat Type</string>
+        </property>
+       </widget>
+       <widget class="QSlider" name="horizontalSlider">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>330</y>
+          <width>351</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QSlider::groove:horizontal {
+    border: 1px solid #999999;
+    height: 8px;
+    background: #dddddd;
+    margin: 2px 0;
+}
+
+QSlider::handle:horizontal {
+    background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 255, 255, 255), stop:1 rgba(200, 200, 200, 255));
+    border: 1px solid #5c5c5c;
+    width: 20px;
+    margin: -5px 0;
+    border-radius: 10px; /* Adjust this value to change the handle size */
+}
+</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_62">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>280</y>
+          <width>181</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;
+font: 14pt &quot;Segoe UI&quot;;
+background-color:transparent;</string>
+        </property>
+        <property name="text">
+         <string>Text Size</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_5">
+       <widget class="QLabel" name="label_66">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>181</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;
+font: 18pt &quot;Segoe UI&quot;;
+background-color:transparent;</string>
+        </property>
+        <property name="text">
+         <string>Language</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBox">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>80</y>
+          <width>351</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+    background-color: #D9D9D9; /* Background color of the combobox */
+    color: #333333; /* Text color */
+    selection-background-color: #66b3ff; /* Background color when item is selected */
+    selection-color: #ffffff; /* Text color when item is selected */
+    border: 1px solid #999999;
+    padding: 2px 20px 2px 5px;
+    min-width: 6em;
+	border-radius:5px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border: none;
+    padding-right: 5px;
+    background-color: #D9D9D9;
+}
+
+QComboBox::down-arrow {
+    
+	image: url(:/Resources/Images/icons/Expand Arrow.png);
+	width:23px;
+	height:23px;
+}
+</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>English (US)</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="label_67">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>150</y>
+          <width>181</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;
+font: 18pt &quot;Segoe UI&quot;;
+background-color:transparent;</string>
+        </property>
+        <property name="text">
+         <string>Time Zone</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>220</y>
+          <width>231</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QCheckBox {
+    spacing: 8px;
+	color: #4D4C4C;
+
+}
+
+QCheckBox::indicator {
+    width: 20px;
+    height: 20px;
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #dddddd;
+    border: 1px solid #999999;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #333333; /* Background color when checkbox is checked */
+    border: 1px solid #666666; /* Border color when checkbox is checked */
+}
+
+QCheckBox::indicator:checked:hover {
+    background-color: #444444; /* Background color when checkbox is checked and hovered */
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Set Time Zone Automatically</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBox_2">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>280</y>
+          <width>351</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+    background-color: #D9D9D9; /* Background color of the combobox */
+    color: #333333; /* Text color */
+    selection-background-color: #66b3ff; /* Background color when item is selected */
+    selection-color: #ffffff; /* Text color when item is selected */
+    border: 1px solid #999999;
+    padding: 2px 20px 2px 5px;
+    min-width: 6em;
+	border-radius:5px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border: none;
+    padding-right: 5px;
+    background-color: #D9D9D9;
+}
+
+QComboBox::down-arrow {
+    
+	image: url(:/Resources/Images/icons/Expand Arrow.png);
+	width:23px;
+	height:23px;
+}
+</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>(UTC+2:00) Helsiniki, Kyiv, Riga, Sofia, Tallim, Vilnuis</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_2">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>360</y>
+          <width>231</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QCheckBox {
+    spacing: 8px;
+	color: #4D4C4C;
+
+}
+
+QCheckBox::indicator {
+    width: 20px;
+    height: 20px;
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #dddddd;
+    border: 1px solid #999999;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #333333; /* Background color when checkbox is checked */
+    border: 1px solid #666666; /* Border color when checkbox is checked */
+}
+
+QCheckBox::indicator:checked:hover {
+    background-color: #444444; /* Background color when checkbox is checked and hovered */
+}
+</string>
+        </property>
+        <property name="text">
+         <string>24-Hour Time</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </widget>
      </widget>
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
