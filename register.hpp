@@ -23,7 +23,7 @@ class Register : public QWidget
     Q_OBJECT
 
 public:
-    explicit Register(QWidget *parent = nullptr);
+    Register(QWidget *parent = nullptr);
     ~Register();
 
 private slots:

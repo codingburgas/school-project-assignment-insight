@@ -74,6 +74,7 @@ void LogIn::on_logIn_PB_clicked()
         // Retrieve hashed password and salt from the database
         QString hashedPasswordFromDB = qry.value("Password").toString();
         QString saltFromDB = qry.value("Password Salt").toString();
+        QString role = qry.value("Role").toString();
 
         // Hash the entered password for comparison
         QString hashedPasswordToCheck = m_SHA256->Hash(password, saltFromDB);
@@ -86,7 +87,7 @@ void LogIn::on_logIn_PB_clicked()
             if(qry.exec())
             {
                 QMessageBox::information(this, "Login Successful", "Welcome to Insight! \n\nYou have successfully logged in.");
-                m_mainWindow = std::make_shared<MainWindow>(this, username);
+                m_mainWindow = std::make_shared<MainWindow>(this, username, role);
                 this->hide();
                 m_mainWindow->show();
             }

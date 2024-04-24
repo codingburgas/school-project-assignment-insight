@@ -1,7 +1,7 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 #include "login.hpp"
-MainWindow::MainWindow(LogIn* login, const QString& username_ref, QWidget *parent)
+MainWindow::MainWindow(LogIn* login, const QString& username_ref, const QString& role_ref, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MainWindow)
 {
@@ -13,9 +13,12 @@ MainWindow::MainWindow(LogIn* login, const QString& username_ref, QWidget *paren
     ui->questionType_SW->setCurrentIndex(0);
 
     m_username = username_ref;
+    m_role = role_ref;
 
     ui->Navbar->setCurrentIndex(2);
     ui->Courses_SW->setCurrentIndex(1);
+
+    UpdateHomepage();
 
 }
 
@@ -80,12 +83,14 @@ void MainWindow::on_programmingCourses_PB_clicked()
 void MainWindow::on_homepage_PB_clicked()
 {
     ui->Navbar->setCurrentIndex(0);
+    UpdateHomepage();
 }
 
 
-void MainWindow::on_schedule_PB_clicked()
+void MainWindow::on_grades_PB_clicked()
 {
     ui->Navbar->setCurrentIndex(1);
+    UpdateGrades();
 }
 
 
@@ -147,7 +152,8 @@ void MainWindow::UpdateLessons(QString subject)
         accessCourse->setFixedSize(500,50);
         accessCourse->setStyleSheet("background-color: transparent; border: 1px solid black; color: black;");
         connect(accessCourse, &QPushButton::clicked, this, [=]() { handleCourseButtons(heading); });
-
+        if(m_role == "Teacher" || m_role == "Principal" || m_role == "Sub-Teacher")
+        {
         QPushButton *deleteButton = new QPushButton(lessonItemWidget); // Create button to delete the lesson
         QIcon closeIcon(":/Resources/Images/icons/Close.png");
         deleteButton->setIcon(closeIcon);
@@ -163,6 +169,7 @@ void MainWindow::UpdateLessons(QString subject)
         editButton->setStyleSheet("background-color: transparent; border: none;");
         editButton->setGeometry(420, 5, 40 ,40);
         connect(editButton, &QPushButton::clicked, this, [=]() { editLesson(heading); });
+        }
 
         layout->addWidget(lessonItemWidget); // Add the lesson widget to the layout
     }
@@ -408,11 +415,6 @@ void MainWindow::UpdateExams()
     for (const QString& exam : examNames) {
         QWidget *examWidget = new QWidget; // Create a widget for each exam
         examWidget->setFixedSize(500, 50);
-        QLabel *iconLabel = new QLabel; // Create icon label
-        iconLabel->setObjectName(exam + "_icon_LA"); // Set object name
-        QPixmap icon(":/Resources/Images/icons/Test Results.png");
-        iconLabel->setPixmap(icon);
-        iconLabel->setStyleSheet("background-color:transparent");
 
         QLabel *label = new QLabel(exam, examWidget); // Create label for the exam name
         label->setObjectName(exam + "_LA"); // Set object name
@@ -727,8 +729,7 @@ void MainWindow::editExam(const QString& examName){
     ui->createExam_SW->setCurrentIndex(0);
     ui->examName_LA->hide();
     ui->examName_LE->hide();
-    ui->subject_exam_LA->setText("Exam " + examName);
-    ui->examName_LE->setText(examName);
+   ui->examName_LE->setText(examName);
     ui->publishExam_PB->setText("Edit exam");
     UpdateQuestions(examName);
     // QWidget* QuestionsWidget = ui->scrollAreaWidgetContents_4;
@@ -841,16 +842,14 @@ void MainWindow::compareAnswers(const QList<QString> &plainAnswers)
             qDebug() << "Error retrieving data for question: " << question;
         }
     }
-    qDebug() << studentPoints;
-    qDebug() << examPointsTotal;
+
     int grade = static_cast<int>((static_cast<float>(studentPoints) / examPointsTotal) * 100);
-    qDebug() << grade;
     GradeExam(grade);
 }
 
 void MainWindow::GradeExam(int grade)
 {
-    qDebug() << grade;
+    qDebug() << "sds";
     QSqlQuery qry;
     int mark;
     if(grade < 50)
@@ -873,13 +872,28 @@ void MainWindow::GradeExam(int grade)
     {
         mark = 6;
     }
-    qry.prepare("INSERT INTO studentgrades(Username, Mark) "
-                "VALUES(:username, :mark)");
+    qDebug() << ui->subject_exam_LA->text();
+    qry.prepare("INSERT INTO studentgrades(Username, Subject, Mark) "
+                "VALUES(:username, :subject, :mark)");
     qry.bindValue(":username", m_username);
+    qry.bindValue(":subject", ui->subject_exam_LA->text());
     qry.bindValue(":mark", mark);
     if(qry.exec())
-    {
-        QMessageBox::information(this, "Exam graded", "You have scored " + QString::number(grade) + " from 100");
+    {   
+        qry.prepare("SELECT `Exams Submitted Counter` FROM users WHERE Username = :username");
+        qry.bindValue(":username", m_username);
+        int examsDoneCounter = qry.value(0).toInt();
+        examsDoneCounter++;
+        if(qry.exec())
+        {
+            qry.prepare("UPDATE users SET `Exams Submitted Counter` = :examsDoneCounter WHERE username = :username");
+            qry.bindValue(":examsDoneCounter", examsDoneCounter);
+            qry.bindValue(":username", m_username);
+            if(!qry.exec())
+            {
+                qDebug() << "error:" << qry.lastError();
+            }
+        }
     }
     else
     {
@@ -892,7 +906,17 @@ void MainWindow::GradeExam(int grade)
 
 void MainWindow::UpdateHomepage()
 {
+    UpdatePfp();
+    ui->createLesson_PB->hide();
+    ui->createExam_PB->hide();
+    ui->reviewRequests_PB->hide();
+
+
     QSqlQuery qry;
+    int counter = 0;
+    int studentGrades = 0;
+    double avgGrade = 0;
+    int examsSubmittedCounter = 0;
     qry.prepare("SELECT * FROM users WHERE Username = :username");
     qry.bindValue(":username", m_username);
     if(qry.exec() && qry.next())
@@ -900,10 +924,44 @@ void MainWindow::UpdateHomepage()
         QString firstName = qry.value("First Name").toString();
         QString lastName = qry.value("Last Name").toString();
         QString fullName = firstName + " " + lastName;
+        QString role = qry.value("Role").toString();
+        examsSubmittedCounter = qry.value("Exams Submitted Counter").toInt();
         ui->studentName_LA->setText(fullName);
         ui->greeting_LA->setText("Hello again, " + fullName);
+        ui->role_LA->setText(role);
+        qry.prepare("SELECT * FROM studentgrades WHERE Username = :username");
+        qry.bindValue(":username", m_username);
+        if(!qry.exec())
+        {
+            qDebug() << qry.lastError();
+        }
+        while(qry.next())
+        {
+            counter++;
+            studentGrades += qry.value("Mark").toInt();
+        }
 
+        avgGrade = static_cast<double>(studentGrades) / counter;
+
+        ui->averageGrade_LA->setText(QString::number(avgGrade));
+        ui->examsSubmitted_LA->setText(QString::number(examsSubmittedCounter));
     }
+    else
+    {
+        qDebug() << qry.lastError();
+    }
+
+    if(m_role == "Teacher" || m_role == "Principal" || m_role == "Sub-Teacher")
+    {
+        ui->createLesson_PB->show();
+        ui->createExam_PB->show();
+    }
+    if(m_role == "Principal")
+    {
+        ui->reviewRequests_PB->show();
+    }
+
+
 }
 
 void MainWindow::on_excelExpertCourses_PB_clicked()
@@ -951,5 +1009,364 @@ void MainWindow::on_logOut_PB_clicked()
     this->hide();
     m_login = std::make_shared<LogIn>();
     m_login->show();
+}
+
+
+void MainWindow::UpdateGrades()
+{
+    subjects.clear();
+    marks.clear(); // Clear the marks vector
+    QSqlQuery qry;
+    qry.prepare("SELECT Subject, Mark FROM studentgrades WHERE Username = :username");
+    qry.bindValue(":username", m_username);
+    if (!qry.exec()) {
+        qDebug() << "Error executing query:" << qry.lastError().text();
+        return;
+    }
+
+    QWidget* gradesWidget = new QWidget(ui->scrollAreaWidgetContents_7); // Create a new widget to hold all the exams
+    QVBoxLayout *layout = new QVBoxLayout(gradesWidget); // Create a vertical layout for the widget
+    layout->setAlignment(Qt::AlignTop); // Align widgets to the top
+
+    QMap<QString, QList<int>> subjectMarksMap; // Map to store subject and corresponding marks
+    QString color;
+    while(qry.next())
+    {
+        QString subject = qry.value("Subject").toString();
+        int mark = qry.value("Mark").toInt(); // Retrieve the mark
+
+        // Add mark to the corresponding subject in the map
+        subjectMarksMap[subject].append(mark);
+    }
+    // Iterate through the map to create widgets for each subject with its marks
+    for (auto it = subjectMarksMap.begin(); it != subjectMarksMap.end(); ++it)
+    {
+        QString subject = it.key();
+        QList<int> marks = it.value();
+
+        QWidget *gradeWidget = new QWidget; // Create a widget for each subject
+        gradeWidget->setFixedSize(800, 50);
+
+        QLabel *subjectLabel = new QLabel(subject, gradeWidget); // Create label for the subject name
+        subjectLabel->setObjectName(subject + "_LA"); // Set object name
+        subjectLabel->setStyleSheet("QLabel { color: black; font-size: 16px; border-radius:10px;}");
+        subjectLabel->setStyleSheet("background-color: transparent;");
+        subjectLabel->setGeometry(20, 0, 700, 50);
+
+        QWidget *gradesContainer = new QWidget(gradeWidget); // Create container for the marks
+        gradesContainer->setGeometry(500, 8, 200, 40);
+        QHBoxLayout *horizontalLayout = new QHBoxLayout(gradesContainer); // Create a vertical layout for the widget
+
+        // Iterate through marks to create and add labels for each mark
+        QString color;
+        for (int mark : marks) {
+            QLabel* gradeLabel = new QLabel(QString::number(mark), gradesContainer);
+            switch (mark)
+            {
+            case 2:
+                color = "#000000";
+                break;
+            case 3:
+                color = "#400C58";
+                break;
+            case 4:
+                color = "#2D0B66";
+                break;
+            case 5:
+                color = "#0B5666";
+                break;
+            case 6:
+                color = "#26C281";
+                break;
+            }
+            gradeLabel->setStyleSheet("QLabel{background-color: " + color + ";border-radius:15px;qproperty-alignment: AlignCenter; color:white}");
+            gradeLabel->setFixedSize(30, 30); // Set fixed size for circular shape
+            gradeLabel->setAlignment(Qt::AlignLeft); // Center the text inside the circular label
+            horizontalLayout->addWidget(gradeLabel); // Add the mark label to the horizontal layout
+        }
+
+
+
+        layout->addWidget(gradeWidget); // Add the subject widget to the layout
+    }
+
+
+
+    ui->scrollArea_7->setWidget(gradesWidget); // Set the widget containing all exams as the content of the scroll area
+}
+
+
+void MainWindow::on_cppCourse_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("CPP");
+    UpdateLessons("CPP");
+}
+
+
+void MainWindow::on_objCourse_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("Objective C");
+    UpdateLessons("Objective C");
+}
+
+
+void MainWindow::on_CSharpCourse_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("C Sharp");
+    UpdateLessons("C Sharp");
+}
+
+
+void MainWindow::on_javaCourse_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("Java");
+    UpdateLessons("Java");
+}
+
+
+void MainWindow::on_pythonCourse_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("Python");
+    UpdateLessons("Python");
+}
+
+
+
+
+void MainWindow::on_javascriptCourse_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(7);
+    ui->subject_LA->setText("Javascript");
+    UpdateLessons("Javascript");
+}
+
+
+void MainWindow::on_settings_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(9);
+    UpdateSettings();
+}
+
+void MainWindow::UpdateSettings()
+{
+    QSqlQuery qry;
+    qry.prepare("SELECT * FROM users WHERE Username = :username");
+    qry.bindValue(":username", m_username);
+    if(qry.exec())
+    {
+        if(qry.next())
+        {
+            QString firstName = qry.value("First Name").toString();
+            QString lastName = qry.value("Last Name").toString();
+            QString username = qry.value("Username").toString();
+            QString email = qry.value("Email").toString();
+            QString bio = qry.value("Bio").toString();
+            QString password = qry.value("Password").toString();
+            QString phoneNumber = qry.value("Phone Number").toString();
+            QString country = qry.value("Country").toString();
+
+            ui->firstName_LE->setText(firstName);
+            ui->lastName_LE->setText(lastName);
+            ui->username_LE->setText(username);
+            ui->bio_LE->setText(bio);
+            ui->password_LE->setText(password);
+            ui->phoneNumber_LE->setText(phoneNumber);
+            ui->email_LE->setText(email);
+        }
+    }
+}
+
+
+void MainWindow::on_profile_PB_clicked()
+{
+    ui->settings_SW->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_appearence_PB_clicked()
+{
+    ui->settings_SW->setCurrentIndex(1);
+}
+
+
+void MainWindow::on_language_PB_clicked()
+{
+    ui->settings_SW->setCurrentIndex(2);
+
+}
+
+
+void MainWindow::on_security_PB_clicked()
+{
+    ui->settings_SW->setCurrentIndex(3);
+
+}
+
+
+void MainWindow::on_changePicture_PB_clicked()
+{
+    QString ImagePath = QFileDialog::getOpenFileName(this, tr("Select Image"), QCoreApplication::applicationDirPath(), tr("Image Files (*.jpg *.png)"), 0);
+
+    if (!ImagePath.isEmpty())
+    {
+        QPixmap Image(ImagePath);
+        QPixmap scaledImage = Image.scaled(ui->pfp_settings_LA->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        QBuffer ImageBufferData;
+
+        if (ImageBufferData.open(QIODevice::ReadWrite))
+        {
+            QString fileExtension = QFileInfo(ImagePath).suffix().toLower();
+            if (fileExtension == "jpg" || fileExtension == "jpeg" || fileExtension == "png")
+            {
+                // Save the image data in the appropriate format
+                if (fileExtension == "jpg" || fileExtension == "jpeg")
+                    Image.save(&ImageBufferData, "JPG");
+                else if (fileExtension == "png")
+                    Image.save(&ImageBufferData, "PNG");
+
+                ImageBufferData.close();
+                QByteArray FinalDataToSave = ImageBufferData.buffer().toBase64();
+                QSqlQuery qry;
+                qry.prepare("UPDATE users SET pfp = :pfp WHERE Username = :username");
+                qry.bindValue(":pfp", FinalDataToSave);
+                qry.bindValue(":username", m_username);
+
+                if (qry.exec())
+                {
+                    QSqlDatabase::database().commit();
+                    ui->pfp_settings_LA->setPixmap(scaledImage);
+                }
+            }
+            else
+            {
+                QMessageBox::warning(this, tr("Unsupported Format"), tr("Only JPG and PNG files are supported."));
+            }
+        }
+    }
+    else
+    {
+        qDebug() << "invalid image";
+    }
+}
+
+void MainWindow::UpdatePfp()
+{
+    QLabel *imageLabel = ui->pfp_settings_LA;
+    QLabel *imageLabel2 = ui->pfp_LA;
+    QFrame *frame = ui->navbar_FR;
+    QFrame *frame2 = ui->settings_FR;
+
+    QSqlQuery query;
+    query.prepare("SELECT pfp FROM users WHERE Username = :username");
+    query.bindValue(":username", m_username);
+
+    if (query.exec() && query.first())
+    {
+        QByteArray imageData = query.value("pfp").toByteArray();
+        QPixmap userPixmap;
+        userPixmap.loadFromData(QByteArray::fromBase64(imageData));
+
+        if (!userPixmap.isNull())
+        {
+            // Set up circular mask and style for profile picture
+            SetCircularMaskAndStyle(frame, imageLabel, userPixmap);
+            SetCircularMaskAndStyle(frame2, imageLabel2, userPixmap);
+        }
+        else
+        {
+            qDebug() << "Invalid or empty image data.";
+        }
+    }
+}
+
+void MainWindow::SetCircularMaskAndStyle(QFrame* frame, QLabel* imageLabel, const QPixmap& userPixmap)
+{
+    // Set up circular mask
+    QBitmap mask(frame->size());
+    mask.fill(Qt::color0); // Transparent mask
+    QPainter painter(&mask);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setBrush(Qt::color1); // Fill with opaque color
+    painter.drawEllipse(mask.rect());
+    frame->setMask(mask);
+
+    // Set circular style for the frame
+    frame->setStyleSheet("background-color: white; border-radius: " + QString::number(frame->width() / 2) + "px;");
+
+    // Scale the pixmap to fit within the circular frame
+    QPixmap scaledPixmap = userPixmap.scaled(frame->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+    // Set parent and geometry for the imageLabel
+    imageLabel->setParent(frame);
+    imageLabel->setGeometry(0, 0, frame->width(), frame->height());
+
+    // Set the scaled pixmap for the imageLabel
+    imageLabel->setPixmap(scaledPixmap);
+}
+
+void MainWindow::on_reviewRequests_PB_clicked()
+{
+    ui->homepage_SW->setCurrentIndex(1);
+    UpdateRequests();
+
+}
+
+void MainWindow::UpdateRequests()
+{
+    QSqlQuery qry;
+    QLabel* imageLabel = ui->proof_LA;
+    qry.prepare("SELECT * FROM accessrequests");
+    if(qry.exec() && qry.next())
+    {
+        QString username = qry.value("Username").toString();
+        QString role = qry.value("Access Requested").toString();
+        QByteArray imageData = qry.value("Document Proof").toByteArray();
+        QPixmap userPixmap;
+        userPixmap.loadFromData(QByteArray::fromBase64(imageData));
+        if (!userPixmap.isNull())
+        {
+            // Set up circular mask and style for profile picture
+            imageLabel->setPixmap(userPixmap);
+        }
+        else
+        {
+            qDebug() << "Invalid or empty image data.";
+        }
+        ui->candidatRole_LA->setText("Role Requested: " + role);
+        ui->candidatUsername_LE->setText(username);
+    }
+}
+
+
+
+void MainWindow::on_approveRequest_PB_clicked()
+{
+    QString username = ui->candidatUsername_LE->text();
+    QString roleRequested = ui->candidatRole_LA->text();
+    roleRequested.erase(roleRequested.begin(), roleRequested.begin() + 16);
+    QSqlQuery qry;
+    qry.prepare("UPDATE users SET Role = :newRole WHERE Username = :username");
+    qry.bindValue(":username", username);
+    qry.bindValue(":newRole", roleRequested);
+    if(qry.exec() && qry.next())
+    {
+        QMessageBox::information(this, "User promoted", "The user you have approved is now promoted");
+    }
+    else
+    {
+        qDebug() <<qry.lastError();
+    }
+    ui->homepage_SW->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_ignoreRequest_PB_clicked()
+{
+    ui->homepage_SW->setCurrentIndex(0);
 }
 

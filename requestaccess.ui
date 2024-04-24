@@ -19,7 +19,7 @@
      <x>410</x>
      <y>160</y>
      <width>602</width>
-     <height>424</height>
+     <height>591</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -69,8 +69,8 @@ color:black;
    <widget class="QPushButton" name="request_PB">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>360</y>
+      <x>30</x>
+      <y>530</y>
       <width>521</width>
       <height>41</height>
      </rect>
@@ -361,6 +361,38 @@ background-color:transparent;</string>
     <property name="text">
      <string/>
     </property>
+   </widget>
+   <widget class="QFrame" name="proof_FR">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>360</y>
+      <width>171</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="proof_LA">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>191</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
