@@ -121,6 +121,12 @@ private slots:
 
     void on_changePicture_PB_clicked();
 
+    void on_reviewRequests_PB_clicked();
+
+    void on_approveRequest_PB_clicked();
+
+    void on_ignoreRequest_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     virtual void paintEvent(QPaintEvent*) override;
@@ -148,4 +154,5 @@ private:
     void GradeExam(int grade);
     void UpdatePfp();
     void SetCircularMaskAndStyle(QFrame* frame, QLabel* imageLabel, const QPixmap& userPixmap);
+    void UpdateRequests();
 };

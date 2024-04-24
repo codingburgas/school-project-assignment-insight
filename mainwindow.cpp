@@ -909,6 +909,8 @@ void MainWindow::UpdateHomepage()
     UpdatePfp();
     ui->createLesson_PB->hide();
     ui->createExam_PB->hide();
+    ui->reviewRequests_PB->hide();
+
 
     QSqlQuery qry;
     int counter = 0;
@@ -953,6 +955,10 @@ void MainWindow::UpdateHomepage()
     {
         ui->createLesson_PB->show();
         ui->createExam_PB->show();
+    }
+    if(m_role == "Principal")
+    {
+        ui->reviewRequests_PB->show();
     }
 
 
@@ -1302,3 +1308,65 @@ void MainWindow::SetCircularMaskAndStyle(QFrame* frame, QLabel* imageLabel, cons
     // Set the scaled pixmap for the imageLabel
     imageLabel->setPixmap(scaledPixmap);
 }
+
+void MainWindow::on_reviewRequests_PB_clicked()
+{
+    ui->homepage_SW->setCurrentIndex(1);
+    UpdateRequests();
+
+}
+
+void MainWindow::UpdateRequests()
+{
+    QSqlQuery qry;
+    QLabel* imageLabel = ui->proof_LA;
+    qry.prepare("SELECT * FROM accessrequests");
+    if(qry.exec() && qry.next())
+    {
+        QString username = qry.value("Username").toString();
+        QString role = qry.value("Access Requested").toString();
+        QByteArray imageData = qry.value("Document Proof").toByteArray();
+        QPixmap userPixmap;
+        userPixmap.loadFromData(QByteArray::fromBase64(imageData));
+        if (!userPixmap.isNull())
+        {
+            // Set up circular mask and style for profile picture
+            imageLabel->setPixmap(userPixmap);
+        }
+        else
+        {
+            qDebug() << "Invalid or empty image data.";
+        }
+        ui->candidatRole_LA->setText("Role Requested: " + role);
+        ui->candidatUsername_LE->setText(username);
+    }
+}
+
+
+
+void MainWindow::on_approveRequest_PB_clicked()
+{
+    QString username = ui->candidatUsername_LE->text();
+    QString roleRequested = ui->candidatRole_LA->text();
+    roleRequested.erase(roleRequested.begin(), roleRequested.begin() + 16);
+    QSqlQuery qry;
+    qry.prepare("UPDATE users SET Role = :newRole WHERE Username = :username");
+    qry.bindValue(":username", username);
+    qry.bindValue(":newRole", roleRequested);
+    if(qry.exec() && qry.next())
+    {
+        QMessageBox::information(this, "User promoted", "The user you have approved is now promoted");
+    }
+    else
+    {
+        qDebug() <<qry.lastError();
+    }
+    ui->homepage_SW->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_ignoreRequest_PB_clicked()
+{
+    ui->homepage_SW->setCurrentIndex(0);
+}
+

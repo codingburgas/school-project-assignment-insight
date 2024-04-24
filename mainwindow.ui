@@ -505,68 +505,9 @@ border:1px solid black;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>9</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="HomePage">
-     <widget class="QWidget" name="widget_22" native="true">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>140</y>
-        <width>301</width>
-        <height>161</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:#669FD4;</string>
-      </property>
-      <widget class="QLabel" name="label_56">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>291</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel
-{
-background-color:transparent;
-    qproperty-alignment: AlignCenter;
-color:white;
-	font: 16pt &quot;Segoe UI&quot;;
-
-}</string>
-       </property>
-       <property name="text">
-        <string>Average Grade</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="averageGrade_LA">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>50</y>
-         <width>301</width>
-         <height>101</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel
-{
-background-color:transparent;
-    qproperty-alignment: AlignCenter;
-color:white;
-	font: 16pt &quot;Segoe UI&quot;;
-
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </widget>
      <widget class="QLabel" name="greeting_LA">
       <property name="geometry">
        <rect>
@@ -585,64 +526,255 @@ background-color:transparent;</string>
        <string/>
       </property>
      </widget>
-     <widget class="QWidget" name="widget_36" native="true">
+     <widget class="QStackedWidget" name="homepage_SW">
       <property name="geometry">
        <rect>
-        <x>450</x>
-        <y>150</y>
-        <width>301</width>
-        <height>161</height>
+        <x>10</x>
+        <y>90</y>
+        <width>881</width>
+        <height>561</height>
+       </rect>
+      </property>
+      <widget class="QWidget" name="page_7">
+       <widget class="QWidget" name="widget_36" native="true">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>60</y>
+          <width>301</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#669FD4;</string>
+        </property>
+        <widget class="QLabel" name="label_57">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>291</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:white;
+	font: 16pt &quot;Segoe UI&quot;;
+
+}</string>
+         </property>
+         <property name="text">
+          <string>Exams submitted</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="examsSubmitted_LA">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>50</y>
+           <width>301</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:white;
+	font: 16pt &quot;Segoe UI&quot;;
+
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget_22" native="true">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>50</y>
+          <width>301</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#669FD4;</string>
+        </property>
+        <widget class="QLabel" name="label_56">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>291</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:white;
+	font: 16pt &quot;Segoe UI&quot;;
+
+}</string>
+         </property>
+         <property name="text">
+          <string>Average Grade</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="averageGrade_LA">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>50</y>
+           <width>301</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel
+{
+background-color:transparent;
+    qproperty-alignment: AlignCenter;
+color:white;
+	font: 16pt &quot;Segoe UI&quot;;
+
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_8">
+       <widget class="QLabel" name="candidatUsername_LA">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>50</y>
+          <width>161</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 16pt &quot;Segoe UI&quot;;
+color:black;</string>
+        </property>
+        <property name="text">
+         <string>Username</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="candidatUsername_LE">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>50</y>
+          <width>611</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid black;
+border-radius:5px;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="candidatRole_LA">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>120</y>
+          <width>371</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 16pt &quot;Segoe UI&quot;;
+color:black;</string>
+        </property>
+        <property name="text">
+         <string>Role Requested: Teacher</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="proof_LA">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>190</y>
+          <width>681</width>
+          <height>281</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="approveRequest_PB">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>490</y>
+          <width>301</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius:10px;
+background-color:#0E1A39;
+color:white;</string>
+        </property>
+        <property name="text">
+         <string>Approve Request</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="ignoreRequest_PB">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>490</y>
+          <width>301</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius:10px;
+background-color:#797D85;
+color:white;</string>
+        </property>
+        <property name="text">
+         <string>Ignore Request</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="reviewRequests_PB">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>171</width>
+        <height>61</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:#669FD4;</string>
+       <string notr="true">border-radius:10px;
+background-color:#797D85;
+color:white;</string>
       </property>
-      <widget class="QLabel" name="label_57">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>291</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel
-{
-background-color:transparent;
-    qproperty-alignment: AlignCenter;
-color:white;
-	font: 16pt &quot;Segoe UI&quot;;
-
-}</string>
-       </property>
-       <property name="text">
-        <string>Exams submitted</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="examsSubmitted_LA">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>50</y>
-         <width>301</width>
-         <height>101</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel
-{
-background-color:transparent;
-    qproperty-alignment: AlignCenter;
-color:white;
-	font: 16pt &quot;Segoe UI&quot;;
-
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
+      <property name="text">
+       <string>Review requests</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="Grades">
