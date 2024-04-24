@@ -139,6 +139,8 @@ private slots:
 
     void on_socialSciences_PB_clicked();
 
+    void on_cppExams_PB_clicked();
+
 private:
     Ui::MainWindow *ui;
     virtual void paintEvent(QPaintEvent*) override;

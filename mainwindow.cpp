@@ -405,7 +405,8 @@ void MainWindow::UpdateExams()
 {
     examNames.clear();
     QSqlQuery qry;
-    qry.prepare("SELECT * FROM exams");
+    qry.prepare("SELECT * FROM exams WHERE Subject = :subject");
+    qry.bindValue(":subject", ui->subject_exam_LA->text());
 
     if (!qry.exec()) {
         qDebug() << "Error executing query:" << qry.lastError().text();
@@ -897,6 +898,9 @@ void MainWindow::GradeExam(int grade)
             qry.prepare("UPDATE users SET `Exams Submitted Counter` = :examsDoneCounter WHERE username = :username");
             qry.bindValue(":examsDoneCounter", examsDoneCounter);
             qry.bindValue(":username", m_username);
+            QMessageBox::information(this, "Exam submitted", "You submitted your exam");
+            ui->Navbar->setCurrentIndex(3);
+            ui->Exams_SW->setCurrentIndex(1);
             if(!qry.exec())
             {
                 qDebug() << "error:" << qry.lastError();
@@ -1416,5 +1420,14 @@ void MainWindow::on_naturalSciences_PB_clicked()
 void MainWindow::on_socialSciences_PB_clicked()
 {
     ui->Courses_SW->setCurrentIndex(4);
+}
+
+
+void MainWindow::on_cppExams_PB_clicked()
+{
+    ui->Navbar->setCurrentIndex(8);
+    ui->createExam_SW->setCurrentIndex(3);
+    ui->subject_exam_LA->setText("Programming C++");
+    UpdateExams();
 }
 
