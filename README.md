@@ -23,7 +23,9 @@
 </details>
 
 📄 Documents Code & Team Documentation <br>
- • [Presentation](https://codingburgas-my.sharepoint.com/:p:/g/personal/zsvladkov22_codingburgas_bg/EUOMM3kPgKxEp2Nx4MN3izEBUYaiPdqe2gd44uIG84U0SQ?e=9JuhFd)
+ • [Presentation](https://codingburgas-my.sharepoint.com/:p:/g/personal/zsvladkov22_codingburgas_bg/EUOMM3kPgKxEp2Nx4MN3izEBUYaiPdqe2gd44uIG84U0SQ?e=9JuhFd) <br>
+ • [QA Documentation](https://codingburgas-my.sharepoint.com/:x:/g/personal/zsvladkov22_codingburgas_bg/ETZthrop4AFNgs13_3TotkwBPBV19teivn9fbDVsMPb2nA?e=0ndwJM) <br>
+ • [Documentation](https://codingburgas-my.sharepoint.com/:w:/g/personal/zsvladkov22_codingburgas_bg/ETYzkuTSf0ZAlIEd1QasBkMBgEOC5fErbnFYDy9jmrtsgQ?e=5PQHAt)
 
 <!-- 🔍ABOUT THE PROJECT -->
 <h2 id="about-the-project">About The Project</h2>
